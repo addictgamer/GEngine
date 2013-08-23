@@ -18,6 +18,3 @@ cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../..
 make -j8
 
 cd ../..
-
-rm ./GNOMAL
-ln -n ./bin/release/GNOMAL ./GNOMAL

@@ -18,6 +18,3 @@ cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" ../..
 make -j8
 
 cd ../..
-
-rm ./GNOMAL
-ln -n ./bin/debug/GNOMAL ./GNOMAL

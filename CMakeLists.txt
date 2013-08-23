@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(GNOMAL)
+project(gengine)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
@@ -37,9 +37,9 @@ find_package (Threads)
 
 # Set executable output path
 if(CMAKE_BUILD_TYPE MATCHES Debug)
-    set(EXECUTABLE_OUTPUT_PATH ${GNOMAL_SOURCE_DIR}/bin/debug)
+    set(LIBRARY_OUTPUT_PATH ${gengine_SOURCE_DIR}/bin/debug)
 elseif(CMAKE_BUILD_TYPE MATCHES Release)
-    set(EXECUTABLE_OUTPUT_PATH ${GNOMAL_SOURCE_DIR}/bin/release)
+    set(LIBRARY_OUTPUT_PATH ${gengine_SOURCE_DIR}/bin/release)
 endif()
 
 # Add include directories
@@ -49,16 +49,19 @@ include_directories(${SFML_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
 
 # Add the source directory
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+ file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+# add_subdirectory(src)
+# the file() will be moved into each individual module so that we build all the different modules we need.
+# TODO: Finish this and make it work http://www.cmake.org/Wiki/CMake/Tutorials/Object_Library
 
-add_executable(GNOMAL ${SOURCE_FILES})
+add_library(gengine ${SOURCE_FILES})
 
-target_link_libraries(GNOMAL ${OPENGL_LIBRARIES})
-target_link_libraries(GNOMAL ${GLEW_LIBRARIES})
+target_link_libraries(gengine ${OPENGL_LIBRARIES})
+target_link_libraries(gengine ${GLEW_LIBRARIES})
 # We need to link to Winsock if we're on Windows
 if(WIN32)
-  target_link_libraries(GNOMAL wsock32 ws2_32)
+  target_link_libraries(gengine wsock32 ws2_32)
 endif()
-target_link_libraries(GNOMAL ${Boost_LIBRARIES})
-target_link_libraries(GNOMAL ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIBRARY_RELEASE} ${SFML_WINDOW_LIBRARY_RELEASE} ${SFML_AUDIO_LIBRARY_RELEASE})
-target_link_libraries(GNOMAL ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(gengine ${Boost_LIBRARIES})
+target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIBRARY_RELEASE} ${SFML_WINDOW_LIBRARY_RELEASE} ${SFML_AUDIO_LIBRARY_RELEASE})
+target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})

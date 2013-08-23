@@ -1,0 +1,15 @@
+The graphics module is split up into three subsystems:
+
+1. The 2D subsystem. It has all the 2d graphics code.
+
+2. The 3D subsystem. It has all the 3D graphics code.
+
+3. The Window susbystem. It has all the window code.
+
+Libraries/engines used (dependencies):
+SFML and OpenGL.
+
+Namespace:
+All graphics module code is in the mgfx namespace.
+
+Module Dependencies:

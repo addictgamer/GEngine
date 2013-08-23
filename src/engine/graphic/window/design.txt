@@ -1,0 +1,18 @@
+Purpose:
+Window management.
+
+Functionality Requirements:
+1. Multiple windows.
+2. The resizing of a window.
+3. Fullscreen support.
+4. Going from fullscreen to windowed mode and vice versa at runtime.
+5. Support common bit depths.
+6. Support a wide range of resolutions, if not infinite (by infinite, I mean, whatever is the max the computer running this supports. Like some computers can't go past 800x600, while mine can go way over 1600x900).
+
+Libraries/engines used (dependencies):
+SFML and OpenGL.
+
+Namespace:
+None is needed due to encapsulation provided by OO programming. So, it's part of the graphic module's namespace.
+
+Module Dependencies:

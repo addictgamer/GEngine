@@ -1,0 +1,10 @@
+Purpose:
+Provide various math definitions, variables, functions, constants, and algorithms.
+
+Required Functionality:
+Erm...Well...Provide all math functions needed in the code. It'll mostly end up wrapping the standard library and some external helper libraries, cause no way am I wasting time writing my own fully featured math library.
+
+Namespace:
+All math code is in the mmath namespace.
+
+Module Dependencies:

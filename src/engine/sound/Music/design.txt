@@ -1,0 +1,17 @@
+Purpose:
+Provide a juke box/music thing.
+
+Required Functionality:
+1. The loading of music.
+2. The playing of music.
+3. Playing all music in a directory.
+4. Playing all music in subdirectories of a directory. (Needs to be configurable)
+5. Manage all playing music.
+6. Pausing music.
+7. Skipping music.
+8. Volume adjustment.
+
+Namespace:
+None is needed due to encapsulation provided by OO programming. So, it's part of the sound module's namespace.
+
+Module Dependencies:

@@ -1,0 +1,20 @@
+Purpose:
+Handle all 2D graphics code, including, but not limited to: Textures, loading and creation of images, rendering of text, etc.
+
+Libraries/engines used (dependencies):
+SFML and OpenGL.
+
+Required Functionality:
+	1. Load images and textures.
+	2. Automatically free images and textures on program exit.
+	3. Rendering of text into an image such that it can be drawn onto the screen.
+	4. Working with the 3D code such as to be able to draw 2D images to the screen even when in 3D mode (such as interface elements, text, etc).
+
+Libraries/engines used (dependencies):
+SFML and OpenGL.
+
+Namespace:
+None is needed due to encapsulation provided by OO programming. So, it's part of the graphic module's namespace. -- WRONG. There will probably be conflicts since everything cannot be plopped into one big class.
+So: All of the 2D module is contained within namespace d2d.
+
+Module Dependencies:

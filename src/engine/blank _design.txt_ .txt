@@ -1,0 +1,11 @@
+Purpose:
+<purpose>
+
+Required Functionality:
+<required functionality>
+
+Namespace:
+<namespace>
+
+Module Dependencies:
+<module dependencies>

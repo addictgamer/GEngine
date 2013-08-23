@@ -1,0 +1,15 @@
+Purpose:
+Hangle all client networking code.
+
+Required Functionality:
+1. Connect to server.
+2. Send and recieve data from the server.
+3. Secure connections.
+4. Fast.
+5. Reliable.
+6. Sending and recieving files.
+
+Namespace:
+None is needed due to encapsulation provided by OO programming. So, it's part of the net module's namespace.
+
+Module Dependencies:

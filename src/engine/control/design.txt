@@ -1,0 +1,14 @@
+Purpose:
+Provide the needed control device/method input code, such as keyboard, mouse, gamepad, and joystick use for controlling the program.
+
+Required Functionality:
+1. Keyboard support.
+2. Mouse support.
+3. Joystick support.
+4. Gamepad support.
+5. Mental interface support.
+
+Namespace:
+All control module code is in the mcontrol namespace.
+
+Module Dependencies:

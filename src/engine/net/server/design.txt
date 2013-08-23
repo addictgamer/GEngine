@@ -1,0 +1,17 @@
+Purpose:
+Hangle all server networking code.
+
+Required Functionality:
+1. Accept incoming connections from clients.
+2. Support an infinite number of connections.
+3. Scalability. See: http://en.wikipedia.org/wiki/Scalability
+4. The ability to send large ammounts of data. This engine is intended to be used with a worldsim. There will be LOTS of data transfer, and we want to make this work with is as many peoples' situations as possible.
+5. Secure connections.
+6. Fast.
+7. Reliable.
+8. Sending and recieving files.
+
+Namespace:
+None is needed due to encapsulation provided by OO programming. So, it's part of the net module's namespace.
+
+Module Dependencies:

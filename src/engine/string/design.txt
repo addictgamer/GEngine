@@ -1,0 +1,13 @@
+Purpose:
+To provide various needed strings, functions, variables, constants, definitions, algorithms, and a string data type.
+
+Required Functionality:
+1. String data type (tt'll probably be a wrapper to std::string).
+2. Conversions from string to other data types and vice versa.
+3. Various string operations.
+4. Unicode support.
+
+Namespace:
+All string module code is in the mstring namespace.
+
+Module Dependencies:

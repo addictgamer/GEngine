@@ -1,0 +1,152 @@
+/* Copyright Ciprian Ilies */
+
+//#include <SFML/Network.hpp>
+#include <boost/asio.hpp>
+#include <thread>
+
+#include "server.hpp"
+
+using boost::asio::ip::tcp;
+
+namespace mnet
+{
+
+/*void ServerClient::setSocket(tcp::socket &the_socket)
+{
+	//Delete the socket, if it already exists.
+	if (socket)
+	{
+		delete socket;
+	}
+	socket = &the_socket; //Set the seocket.
+}*/
+
+void ServerClient::stop()
+{
+	run = false;
+	close();
+	//TODO: Join thread and stuff.
+}
+
+void ServerClient::update()
+{
+	/*while (run)
+	{
+		//TODO: Update the socket.
+		//TODO: Receive and send messages.
+		//TODO: Etcetera.
+	}*/
+
+	writeMessage("HAY. YOU STILL ALIVE?.\n");
+}
+
+void ServerClient::close()
+{
+	parent_server->removeClient(shared_from_this());
+	socket.get_io_service().post(boost::bind(&ServerClient::DoClose, this));
+}
+
+Server::Server()
+{
+	port = DEFAULT_PORT;
+	acceptor = nullptr;
+	run = true;
+}
+
+Server::~Server()
+{
+}
+
+bool Server::start(int _port)
+{
+	std::cout << "\n[SERVER] STARTING SERVER.\n";
+	port = _port; //Set the port.
+	acceptor = new tcp::acceptor(io_service, tcp::endpoint(tcp::v4(), port)); //Start the server on the port.
+
+
+	/*
+	ServerClient::pointer new_connection = ServerClient::create(acceptor_.get_io_service());
+	
+	acceptor_.async_accept(new_connection->socket(), boost::bind(&tcp_server::handle_accept, this, new_connection, boost::asio::placeholders::error));
+	*/
+
+	return true;
+}
+
+void Server::stop()
+{
+	run = false;
+	//TODO: Stop all clients.
+	//TODO: Join with this thread and stuff.
+}
+
+void Server::update()
+{
+	std::cout << "\n[SERVER] IN SERVER UPDATE THREAD.\n";
+
+	startAccept();
+	std::cout << "[SERVER] Test.\n";
+	io_service.run();
+
+
+	//while (run)
+	//{
+		//tcp::socket *socket = new tcp::socket(io_service);
+		//acceptor->accept(*socket);
+
+		//std::cout << "\n\n[SERVER] Incoming connection.\n\n";
+
+		//TODO: Send the socket into its own thread.
+	//}
+	std::cout << "\n[SERVER] Finished.\n";
+}
+
+void Server::updateClients()
+{
+	if (clients.size() != 0)
+	{
+		//std::cout << "Updating " << clients.size() << " client(s).\n";
+	}
+	for (int i = 0; i < clients.size(); ++i)
+	{
+		clients[i]->update();
+	}
+}
+
+void Server::startAccept()
+{
+	std::cout << "\n[SERVER] startAccept()\n";
+	ServerClient::pointer new_connection = ServerClient::create(acceptor->get_io_service());
+
+	acceptor->async_accept(new_connection->getSocket(), boost::bind(&Server::handleAccept, this, new_connection, boost::asio::placeholders::error));
+	std::cout << "\n[SERVER] New_connection.\n";
+}
+
+void Server::handleAccept(ServerClient::pointer new_connection, const boost::system::error_code& error)
+{
+	std::cout << "\n[SERVER] handleAccept()\n";
+	if (!error)
+	{
+		new_connection->parent_server = this; //Set the parent server.
+		clients.push_back(new_connection); //Add the connection to the list of clients.
+		new_connection->start();
+	}
+
+	startAccept();
+}
+
+void Server::removeClient(ServerClient::pointer client)
+{
+	for (int i = 0; i < clients.size(); ++i)
+	{
+		if (clients[i] == client) //If found a match.
+		{
+			clients.erase(clients.begin() + i);
+			return;
+		}
+	}
+}
+
+std::string IDENTIFICATION_MESSAGE = "HALLO!\n";
+
+} //namespace mnet

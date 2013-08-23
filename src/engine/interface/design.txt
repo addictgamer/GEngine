@@ -1,0 +1,17 @@
+Purpose:
+Graphical and nongraphical user interface.
+
+Required Functionality:
+1. GUI.
+2. Message Boxes.
+3. Buttons.
+4. Popups.
+5. Context Menus.
+6. Text Boxes/Editors.
+7. Menus.
+8. Notifications.
+
+Namespace:
+All interface code is in the mui namespace.
+
+Module Dependencies:

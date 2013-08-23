@@ -1,0 +1,31 @@
+The engine is split up into several modules.
+
+A summary of how the engine works:
+The engine is a collection of modules that encapsulate code that provides needed functionality for the worldsim and game cores.
+The modules are written in such a way that the worldsim and game cores, and even other engine modules, do not care how the features are implemented, only that they are.
+Do not be mislead. Many times the modules are only wrapping the c++ standard library or other handy libraries.
+
+Module List:
+Graphics,
+Networking,
+Math,
+String,
+Sound,
+Control,
+Interface,
+Config,
+Error,
+Thread,
+Data,
+File
+
+See each module subdirectory for an explanation of what each module does.
+
+Namespace:
+All engine code used to be in the engine namespace. But, engine::modulename_module::modulesusbsystem is a pain to type. So, no namespace.
+Here's the module naming convention:
+m<modulename>
+
+Looking through the modules' namespaces though...I think a naming convention needs to be agreed upon, since typing
+engine::graphics_module::window_manager_subsystem
+can be quite a pain.

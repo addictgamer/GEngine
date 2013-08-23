@@ -1,0 +1,14 @@
+Purpose:
+Provide error support.
+
+Required Functionality:
+1. The notification of the user of an error.
+2. The storing and giving of the info of an error.
+3. Error codes/IDs.
+4. An error class.
+5. Error severity levels.
+
+Namespace:
+All error module code is in the merror namespace.
+
+Module Dependencies:

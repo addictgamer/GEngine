@@ -1,0 +1,11 @@
+Purpose:
+Provide data structures, data storage, data management, data algorithms, and so on and so forth.
+
+Required Functionality:
+1. Linked list.
+2. Binary tree.
+
+Namespace:
+All data module code is in the mdata namespace.
+
+Module Dependencies:

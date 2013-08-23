@@ -1,0 +1,15 @@
+Purpose:
+Provide file, directory, and otherwise hard drive (or solid state drive, I don't care what the hardware is, the point is, it's data storage) access such as to read and write data.
+
+Required Functionality:
+1. Creating files.
+2. Reading files.
+3. Creating directories.
+4. Grabbing a list of the contents of a directory.
+
+Namespace:
+All file module code is in the mfile namespace.
+
+Module Dependencies:
+1. Error Module.
+2. String module.

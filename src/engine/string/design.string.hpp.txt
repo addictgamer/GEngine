@@ -1,0 +1,7 @@
+This file defines all the string stuff.
+
+1. A string class. - NOPE. Causes problems. At least for now.
+
+2. String functions.
+
+3. Functions that convert strings between other datatypes, and other datatypes to strings.

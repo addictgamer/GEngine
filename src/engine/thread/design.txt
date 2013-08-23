@@ -1,0 +1,14 @@
+Purpose:
+Provide safe and reliable threading.
+
+Required Functionality:
+1. Safe.
+2. Reliable.
+3. Lightweight.
+4. Thread manager ensuring all threads close at program end and making sure no thread locks.
+5. The locking of data to ensure only one thread at a time has access to the data which it is modifying.
+
+Namespace:
+All thread module code is in the mthread namespace.
+
+Module Dependencies:

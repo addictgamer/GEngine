@@ -1,0 +1,15 @@
+Purpose:
+To handle all networking code.
+
+Required Functionality:
+1. Server functionality.
+2. Client functionality.
+
+There are two subsystems:
+1. Server.
+2. Client.
+
+Namespace:
+All networking code is in the mnet namespace.
+
+Module Dependencies:

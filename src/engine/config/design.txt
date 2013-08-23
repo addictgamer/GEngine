@@ -1,0 +1,11 @@
+Purpose:
+Provide everything needed for the proper configuration and customization of the engine and program.
+
+Required Functionality:
+1. CFG Support.
+2. Variables storing all configuration.
+
+Namespace:
+All config module code is in the mconfig namespace.
+
+Module Dependencies:

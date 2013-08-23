@@ -1,0 +1,14 @@
+Purpose:
+Provide random stuff support (such as random numbers).
+
+Required Functionality:
+1. Make a random number of different types (int, long, double, float, etc)
+2. Make random strings and stuff.
+3. Make random graphics?
+4. Make random everything we'll need, pretty much.
+5. Oh, and some of these can probably be templates.
+
+Namespace:
+All rand module code is in the mrand namespace.
+
+Module Dependencies:

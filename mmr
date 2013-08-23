@@ -1,0 +1,19 @@
+#!/bin/sh
+# cm - CMake shortcut command
+
+mkdir -p build/release
+
+cd build/release
+
+# If CMake cannot find one of these, uncomment and write the correct path
+export GLEW_ROOT="E:/Projects/C++/Libs/glew-1.7.0"
+export GLM_ROOT="E:/Projects/C++/Libs/glm-0.9.3.4"
+
+# SFML
+export SFML_ROOT="E:/Projects/C++/Libs/SFML-2.0-rc-gcc"
+
+# Change this to Unix Makefiles on Linux
+cmake -DCMAKE_BUILD_TYPE=Release -G "MSYS Makefiles" ../..
+
+make
+cd ..

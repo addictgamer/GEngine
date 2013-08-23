@@ -1,0 +1,20 @@
+1. Include files in the most logical order
+   
+   #include <std_header_1>
+   ...
+   
+   #include <3rd_party_header_1>
+   ...
+   
+   #include "local_header_1"
+   ...
+   
+   This way, overrides and redefines come in a logical order. For example, you
+   probably want your defines and undefines to take priority over those of the
+   standard library or something like Boost.
+   
+2. Include SFML libraries as late as possible
+   
+   Since SFML includes "windows.h", using it with Boost::Asio means you need to
+   include Asio before SFML. This is because Winsock cannot be included after
+   windows.h, only before.

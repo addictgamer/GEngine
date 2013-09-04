@@ -5,8 +5,10 @@
 #include "../internal_header.hpp"
 
 #include <string>
+#include <stdio>
+#include <iostream>
 
-#include <sqlite3.h> 
+#include <sqlite3.h>
 
 /*
  * SQLite 3 functions.

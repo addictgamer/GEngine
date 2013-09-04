@@ -6,6 +6,8 @@
 
 #include <string>
 
+#include <sqlite3.h> 
+
 /*
  * SQLite 3 functions.
  */

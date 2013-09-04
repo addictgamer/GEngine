@@ -1,5 +1,5 @@
 #!/bin/sh
-# cm - CMake shortcut command
+# lm - CMake shortcut command (Intended for addictgamer)
 
 mkdir -p build/debug
 
@@ -25,4 +25,5 @@ mkdir include
 mkdir include/GEngine
 cp src/* -r include/GEngine
 
-cp bin/debug/libgengine.a bin/libgengine.a
+mkdir bin
+cp build/debug/libgengine.a bin/libgengine.a

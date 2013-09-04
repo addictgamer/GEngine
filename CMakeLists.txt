@@ -38,12 +38,8 @@ find_package(Threads)
 # Find SQLite
 find_package(SQLite REQUIRED)
 
-# Set executable output path
-if(CMAKE_BUILD_TYPE MATCHES Debug)
-    set(LIBRARY_OUTPUT_PATH ${gengine_SOURCE_DIR}/bin/debug)
-elseif(CMAKE_BUILD_TYPE MATCHES Release)
-    set(LIBRARY_OUTPUT_PATH ${gengine_SOURCE_DIR}/bin/release)
-endif()
+# And finally, CEGUI
+find_package(CEGUI REQUIRED)
 
 # Add include directories
 include_directories(${GLEW_INCLUDE_DIR})
@@ -51,6 +47,7 @@ include_directories(${GLM_INCLUDE_DIR})
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
 include_directories(${SQLITE3_INCLUDE_DIR})
+include_directories("${CEGUI_INCLUDE_DIR}/..")
 
 # Add the source directory
  file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
@@ -70,3 +67,4 @@ target_link_libraries(gengine ${Boost_LIBRARIES})
 target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIBRARY_RELEASE} ${SFML_WINDOW_LIBRARY_RELEASE} ${SFML_AUDIO_LIBRARY_RELEASE})
 target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(gengine ${SQLITE3_LIBRARIES})
+target_link_libraries(gengine ${CEGUI_LIBRARIES})

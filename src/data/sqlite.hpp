@@ -38,6 +38,8 @@ sqlite3* openDatabase(std::string database)
 	{
 		std::cout << "\n[mdata::sqlite] Opened database successfully.\n";
 	}
+
+	return db;
 }
 
 } //namespace sqlite

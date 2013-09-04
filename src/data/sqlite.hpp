@@ -25,7 +25,7 @@ sqlite3* openDatabase(std::string database)
 
 	sqlite3 *db = nullptr;
 
-	rc = sqlite3_open(database, &db);
+	rc = sqlite3_open(database.c_str(), &db);
 
 	if (rc)
 	{

@@ -97,12 +97,33 @@ public:
 		int rc = sqlite3_exec(db, sql.c_str(), SQLiteCallback, 0, &error_message);
 		if (rc != SQLITE_OK)
 		{
-			fprintf(stderr, "\n[mdata::sqlite::Database] ERROR: SQL error: %s\n", error_message);
+			fprintf(stderr, "\n[mdata::sqlite::Database] createTable() ERROR: SQL error: %s\n", error_message);
 			sqlite3_free(error_message);
 		}
 		else
 		{
 			std::cout << "\n[mdata::sqlite::Database] Table created successfully\n";
+		}
+	}
+
+	/*
+	 * Inserts a value into a table.
+	 */
+	void insert(std::string table_name, std::string value_format, std::string values)
+	{
+		std::string sql = "INSERT INTO " + table_name + " " + value_format + " " + values;
+
+		char* error_message = nullptr;
+
+		int rc = sqlite3_exec(db, sql.c_str(), SQLiteCallback, 0, &error_message);
+		if (rc != SQLITE_OK)
+		{
+			fprintf(stderr, "\n[mdata::sqlite::Database] insert() ERROR: SQL error: %s\n", error_message);
+			sqlite3_free(error_message);
+		}
+		else
+		{
+			std::cout << "\n[mdata::sqlite::Database] Records created successfully\n";
 		}
 	}
 };

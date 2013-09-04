@@ -33,7 +33,10 @@ find_package(SFML 2 COMPONENTS system graphics window audio REQUIRED)
 find_package(Boost COMPONENTS system REQUIRED)
 
 # And threads.
-find_package (Threads)
+find_package(Threads)
+
+# Find SQLite
+find_package(SQLite REQUIRED)
 
 # Set executable output path
 if(CMAKE_BUILD_TYPE MATCHES Debug)

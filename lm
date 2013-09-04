@@ -21,4 +21,4 @@ cd ../..
 
 rm include -r
 mkdir include
-cp src/* include/
+cp src/* -r include/

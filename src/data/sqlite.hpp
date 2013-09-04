@@ -36,7 +36,7 @@ sqlite3* openDatabase(std::string database)
 	}
 	else
 	{
-		cout << "\n[mdata::sqlite] Opened database successfully.\n";
+		std::cout << "\n[mdata::sqlite] Opened database successfully.\n";
 	}
 }
 

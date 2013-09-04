@@ -21,4 +21,7 @@ cd ../..
 
 rm include -r
 mkdir include
-cp src/* -r include/
+mkdir include/GEngine
+cp src/* -r include/GEngine
+
+cp bin/engine/debub/libgengine.a bin/libgengine.a

@@ -2,9 +2,7 @@
 
 #include "sqlite.hpp"
 
-#include <sqlite3.h>
-
-namespace mdata
+/*namespace mdata
 {
 
 namespace sqlite
@@ -66,9 +64,6 @@ static int Database::SQLiteCallback(void *not_used, int argc, char **argv, char 
 	return 0;
 }
 
-/*
- * Creates a table, if it doesn't exist.
- */
 void createTable(std::string table_name, std::string column_args)
 {
 	std::string sql = "CREATE TABLE IF NOTE EXISTS " + table_name + "(" + column_args + ");";
@@ -87,8 +82,7 @@ void createTable(std::string table_name, std::string column_args)
 	}
 }
 
-};
-
 } //namespace sqlite
 
 } //namespace mdata
+*/

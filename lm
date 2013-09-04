@@ -15,7 +15,8 @@ cd build/debug
 # Change this to Unix Makefiles on Linux
 cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" ../..
 
-make -j8
+#make -j8
+make
 
 cd ../..
 

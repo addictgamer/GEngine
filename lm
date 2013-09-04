@@ -20,5 +20,5 @@ make -j8
 cd ../..
 
 rm include -r
-
+mkdir include
 cp src/* include/*

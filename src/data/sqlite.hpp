@@ -25,12 +25,12 @@ class Database
 private:
 	sqlite3* db;
 public:
-	SQLiteDB()
+	Database()
 	{
 		db = nullptr;
 	}
 
-	~SQLiteDB()
+	~Database()
 	{
 		this->close();
 	}

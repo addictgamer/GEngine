@@ -1,7 +1,5 @@
 /* Copyright Ciprian Ilies */
 
-#pragma once
-
 #include "sqlite.hpp"
 
 #include <sqlite3.h>

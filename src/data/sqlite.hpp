@@ -5,7 +5,7 @@
 #include "../internal_header.hpp"
 
 #include <string>
-#include <stdio>
+#include <stdio.h>
 #include <iostream>
 
 #include <sqlite3.h>

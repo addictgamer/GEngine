@@ -24,4 +24,4 @@ mkdir include
 mkdir include/GEngine
 cp src/* -r include/GEngine
 
-cp bin/engine/debug/libgengine.a bin/libgengine.a
+cp bin/debug/libgengine.a bin/libgengine.a

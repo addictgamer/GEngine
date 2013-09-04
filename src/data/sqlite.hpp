@@ -90,7 +90,7 @@ public:
 	 */
 	void createTable(std::string table_name, std::string column_args)
 	{
-		std::string sql = "CREATE TABLE IF NOTE EXISTS " + table_name + "(" + column_args + ");";
+		std::string sql = "CREATE TABLE IF NOT EXISTS " + table_name + "(" + column_args + ");";
 
 		char* error_message = nullptr;
 

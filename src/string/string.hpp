@@ -71,10 +71,15 @@ std::string stringToLower(std::string input);
 //The result is stored in result.
 void splitString(std::string str, char delimeter, std::vector<std::string> &output);
 
-//Takes a vector of strings and concates them into a vector of strings putting as much into each string as it can without exceeding the characters per string limit.
+//Takes a string turns it into a vector of strings putting as much into each string as it can without exceeding the characters per string limit.
 //The use_newlines_in_result paramater determines if newlines will be returned with the result.
 //The result is stored in output.
 void formString(std::string input, unsigned int characters_per_string, bool use_newlines_in_result, std::vector<std::string> &output);
+
+/*
+ * Takes a vector of strings and concates them into one string.
+ */
+void formStringFromVector(std::vector<std::string> input, std::string &output);
 
 //Takes a string and splits it into the words that make it up.
 //The result is stored in output.

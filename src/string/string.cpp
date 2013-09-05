@@ -220,7 +220,7 @@ void formString(std::string input, unsigned int characters_per_string, bool use_
 					}
 					else
 					{
-						//TODO: This one sometimes does this:
+						//TODO: This one sometimes does this (OH: Might be because it counts the newline as part of it or something.):
 						/*
 						B
 						l
@@ -438,5 +438,15 @@ void formString(std::string input, unsigned int characters_per_string, bool use_
 		}
 	}
 } //formString()
+
+void formStringFromVector(std::vector<std::string> input, std::string &output)
+{
+	std::vector<std::string>::iterator i; //Vector iterator.
+
+	for (i = input.begin(); i != input.end(); ++i)
+	{
+		output += *i;
+	}
+}
 
 } //namespace mstring

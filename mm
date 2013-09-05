@@ -1,6 +1,8 @@
 #!/bin/sh
 # cm - CMake shortcut command
 
+SOURCE_DIR=$(printf "%q" "$PWD") # escapes the dir with backslashes
+
 mkdir -p build/debug
 
 cd build/debug
@@ -16,7 +18,7 @@ export SFML_ROOT="E:/Projects/C++/Libs/SFML-2.0-gcc"
 export BOOST_ROOT="E:/Projects/C++/Libs/boost_1_53_0"
 
 # Change this to Unix Makefiles on Linux
-cmake -DCMAKE_BUILD_TYPE=Debug -G "MSYS Makefiles" ../..
+cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$SOURCE_DIR -G "MSYS Makefiles" ../..
 
 make
 cd ..

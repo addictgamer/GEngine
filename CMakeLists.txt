@@ -42,12 +42,12 @@ include_directories(${SQLITE3_INCLUDE_DIR})
 include_directories("${CEGUI_INCLUDE_DIR}/..")
 
 # Add the source directory
- file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+file(GLOB_RECURSE gengine_SOURCE_FILES src/*.cpp)
 # add_subdirectory(src)
 # the file() will be moved into each individual module so that we build all the different modules we need.
 # TODO: Finish this and make it work http://www.cmake.org/Wiki/CMake/Tutorials/Object_Library
 
-add_library(gengine ${SOURCE_FILES})
+add_library(gengine ${gengine_SOURCE_FILES})
 
 target_link_libraries(gengine ${OPENGL_LIBRARIES})
 target_link_libraries(gengine ${GLEW_LIBRARIES})
@@ -60,3 +60,15 @@ target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIB
 target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(gengine ${SQLITE3_LIBRARIES})
 target_link_libraries(gengine ${CEGUI_LIBRARIES})
+
+install(TARGETS gengine
+  ARCHIVE DESTINATION lib COMPONENT Development
+  LIBRARY DESTINATION lib COMPONENT Runtime
+)
+
+file(GLOB_RECURSE gengine_HEADER_FILES RELATIVE ${PROJECT_SOURCE_DIR}/src src/*.hpp)
+list(REMOVE_ITEM gengine_HEADER_FILES src/internal_header.hpp)
+foreach(HEADER ${gengine_HEADER_FILES})
+  get_filename_component(HEADER_DIR "${HEADER}" PATH) # Ugly hack because CMake can't currently install headers while preserving directory structure <I think>
+  install(FILES src/${HEADER} DESTINATION include/GEngine/${HEADER_DIR})
+endforeach(HEADER gengine_HEADER_FILES)

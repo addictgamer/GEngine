@@ -1,4 +1,8 @@
-bin
+# Files generated during compilation
+lib
+include
 build
+
+# Files that may be generated during running
 *.log
 .directory

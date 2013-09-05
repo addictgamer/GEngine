@@ -445,6 +445,11 @@ void formStringFromVector(std::vector<std::string> input, std::string &output, s
 
 	for (i = input.begin(); i != input.end(); ++i)
 	{
+		//Add the mediator only if it's not on the first element so that we don't end up getting things like " THIS IS SOMETHING" instead of "THIS IS SOMETHING".
+		if (i != input.begin())
+		{
+			output += mediator;
+		}
 		output += *i;
 	}
 }

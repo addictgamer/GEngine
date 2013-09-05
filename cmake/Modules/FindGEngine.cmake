@@ -5,7 +5,7 @@
 #  GENGINE_INCLUDE_DIR - the GENGINE include directory
 #  GENGINE_LIBRARIES - The libraries needed to use GENGINE
 
-if(NOT GENGINE_INCLUDE_DIR AND GENGINE_LIBRARIES)
+if(NOT GENGINE_INCLUDE_DIR OR NOT GENGINE_LIBRARIES)
 	FIND_PATH(GENGINE_INCLUDE_DIR GEngine/GEngine.hpp
 	   /usr/include
 	   /usr/local/include

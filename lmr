@@ -1,9 +1,13 @@
 #!/bin/sh
 # cm - CMake shortcut command
 
-mkdir -p build/release
+SOURCE_DIR=$(printf "%q" "$PWD") # escapes the dir with backslashes
 
-cd build/release
+rm -rf include bin/libgengine.a
+
+mkdir -p build/debug
+
+cd build/debug
 
 # If CMake cannot find one of these, uncomment and write the correct path
 #export GLEW_ROOT="E:/Projects/C++/Libs/glew-1.7.0"
@@ -12,9 +16,8 @@ cd build/release
 # SFML
 #export SFML_ROOT="E:/Projects/C++/Libs/SFML-2.0-rc-gcc"
 
-# Change this to Unix Makefiles on Linux
-cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$SOURCE_DIR -G "Unix Makefiles" ../..
 
-make -j8
+#make -j8
+make install
 
-cd ../..

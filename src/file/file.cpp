@@ -6,6 +6,8 @@
 
 #include "../string/string.hpp"
 
+#include "../internal_header.hpp"
+
 #include <sys/stat.h>
 #include <errno.h>
 #include <stdio.h>

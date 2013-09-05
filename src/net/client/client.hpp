@@ -10,8 +10,6 @@
 
 #include <vector>
 
-#include "../../internal_header.hpp"
-
 namespace mnet
 {
 

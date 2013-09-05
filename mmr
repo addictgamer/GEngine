@@ -1,6 +1,8 @@
 #!/bin/sh
 # cm - CMake shortcut command
 
+SOURCE_DIR=$(printf "%q" "$PWD") # escapes the dir with backslashes
+
 mkdir -p build/release
 
 cd build/release
@@ -13,7 +15,7 @@ export GLM_ROOT="E:/Projects/C++/Libs/glm-0.9.3.4"
 export SFML_ROOT="E:/Projects/C++/Libs/SFML-2.0-rc-gcc"
 
 # Change this to Unix Makefiles on Linux
-cmake -DCMAKE_BUILD_TYPE=Release -G "MSYS Makefiles" ../..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$SOURCE_DIR -G "MSYS Makefiles" ../..
 
 make
 cd ..

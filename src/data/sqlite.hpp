@@ -6,8 +6,6 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "../internal_header.hpp"
-
 /*extern "C" {
 #include "sqlite/sqlite3.h"
 }*/

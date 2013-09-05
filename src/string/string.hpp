@@ -81,9 +81,9 @@ void formString(std::string input, unsigned int characters_per_string, bool use_
  */
 
 /*
- * Takes a string and splits it into the words that make it up.
+ * Takes a vector of strings and splits them up.
  * The result is stored in output.
- * mediator is whatever you want to split each word in the output string 
+ * mediator is whatever you want to split each word in the output string.
  */
 void formStringFromVector(std::vector<std::string> input, std::string &output, std::string mediator = "");
 

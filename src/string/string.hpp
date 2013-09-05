@@ -78,9 +78,9 @@ void formString(std::string input, unsigned int characters_per_string, bool use_
  */
 
 /*
- * Takes a vector of strings and splits them up.
+ * Takes a vector of strings and concates them.
  * The result is stored in output.
- * mediator is whatever you want to split each word in the output string.
+ * mediator is whatever you want to split each word in the output string (would delimeter be the correct word here?).
  */
 void formStringFromVector(std::vector<std::string> input, std::string &output, std::string mediator = "");
 

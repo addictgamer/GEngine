@@ -1,6 +1,10 @@
 #!/bin/sh
 # cm - CMake shortcut command
 
+SOURCE_DIR=$(printf "%q" "$PWD") # escapes the dir with backslashes
+
+rm -rf include bin/libgengine.a
+
 mkdir -p build/debug
 
 cd build/debug
@@ -13,16 +17,8 @@ cd build/debug
 #export SFML_ROOT="E:/Projects/C++/Libs/SFML-2.0-rc-gcc"
 
 # Change this to Unix Makefiles on Linux
-cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" ../..
+cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$SOURCE_DIR -G "Unix Makefiles" ../..
 
 #make -j8
-make
+make install
 
-cd ../..
-
-rm include -r
-mkdir include
-mkdir include/GEngine
-cp src/* -r include/GEngine
-
-cp bin/debug/libgengine.a bin/libgengine.a

@@ -11,8 +11,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../internal_header.hpp"
-
 namespace mgfx
 {
 

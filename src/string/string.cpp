@@ -439,7 +439,7 @@ void formString(std::string input, unsigned int characters_per_string, bool use_
 	}
 } //formString()
 
-void formStringFromVector(std::vector<std::string> input, std::string &output)
+void formStringFromVector(std::vector<std::string> input, std::string &output, std::string mediator)
 {
 	std::vector<std::string>::iterator i; //Vector iterator.
 

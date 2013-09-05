@@ -60,3 +60,8 @@ target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIB
 target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(gengine ${SQLITE3_LIBRARIES})
 target_link_libraries(gengine ${CEGUI_LIBRARIES})
+
+install (TARGETS gengine
+  ARCHIVE DESTINATION lib COMPONENT Development
+  LIBRARY DESTINATION lib COMPONENT Runtime
+)

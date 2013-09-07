@@ -9,8 +9,6 @@
 #include <boost/array.hpp>
 #include <boost/shared_ptr.hpp>
 
-#include "../../internal_header.hpp"
-
 using boost::asio::ip::tcp;
 
 namespace mnet

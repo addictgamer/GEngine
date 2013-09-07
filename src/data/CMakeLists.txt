@@ -1,11 +1,11 @@
-if (SQLITE3_FOUND)
+if (GEngine_USE_SQLITE)
   list(APPEND GEngine_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/sqlite.cpp"
   )
   list(APPEND GEngine_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/sqlite.hpp"
   )
-endif(SQLITE_FOUND)
+endif(GEngine_USE_SQLITE)
 list (APPEND GEngine_HEADERS
   "${CMAKE_CURRENT_SOURCE_DIR}/data.hpp"
 )

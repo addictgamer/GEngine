@@ -192,6 +192,8 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 	bool done = false;
 	while (!done)
 	{
+		std::cout << "i = \"" << (*i) << "\" & count = " << count << "\n";
+
 		//If it found where the filepath ends...
 		if ((*i) != '/')
 		{

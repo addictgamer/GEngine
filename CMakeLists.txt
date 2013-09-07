@@ -28,10 +28,10 @@ find_package(Boost COMPONENTS system REQUIRED)
 find_package(Threads)
 
 # Find SQLite
-find_package(SQLite REQUIRED)
+find_package(SQLite)
 
 # And finally, CEGUI
-find_package(CEGUI REQUIRED)
+find_package(CEGUI COMPONENTS OpenGLRenderer REQUIRED)
 
 # Add include directories
 include_directories(${GLEW_INCLUDE_DIR})
@@ -41,13 +41,17 @@ include_directories(${Boost_INCLUDE_DIR})
 include_directories(${SQLITE3_INCLUDE_DIR})
 include_directories("${CEGUI_INCLUDE_DIR}/..")
 
+include_directories("${PROJECT_BINARY_DIR}/src/")
+
+configure_file (${PROJECT_SOURCE_DIR}/src/build_config.hpp.in ${PROJECT_BINARY_DIR}/src/build_config.hpp )
+
 # Add the source directory
-file(GLOB_RECURSE gengine_SOURCE_FILES src/*.cpp)
+file(GLOB_RECURSE gengine_SOURCE_FILES src/*.cpp src/*.hpp)
 # add_subdirectory(src)
 # the file() will be moved into each individual module so that we build all the different modules we need.
 # TODO: Finish this and make it work http://www.cmake.org/Wiki/CMake/Tutorials/Object_Library
 
-add_library(gengine ${gengine_SOURCE_FILES})
+add_library(gengine ${gengine_SOURCE_FILES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
 
 target_link_libraries(gengine ${OPENGL_LIBRARIES})
 target_link_libraries(gengine ${GLEW_LIBRARIES})
@@ -72,3 +76,4 @@ foreach(HEADER ${gengine_HEADER_FILES})
   get_filename_component(HEADER_DIR "${HEADER}" PATH) # Ugly hack because CMake can't currently install headers while preserving directory structure <I think>
   install(FILES src/${HEADER} DESTINATION include/GEngine/${HEADER_DIR})
 endforeach(HEADER gengine_HEADER_FILES)
+install(FILES ${PROJECT_BINARY_DIR}/src/build_config.hpp DESTINATION include/GEngine/)

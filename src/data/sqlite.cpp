@@ -2,7 +2,7 @@
 
 #include "sqlite.hpp"
 
-/*namespace mdata
+namespace mdata
 {
 
 namespace sqlite
@@ -30,7 +30,7 @@ void Database::open(std::string filepath)
 	std::string error_message = "";
 	int rc;
 
-	rc = sqlite3_open(database.c_str(), &db);
+	rc = sqlite3_open(filepath.c_str(), &db);
 
 	if (rc)
 	{
@@ -53,7 +53,7 @@ void Database::close()
 	}
 }
 
-static int Database::SQLiteCallback(void *not_used, int argc, char **argv, char **col_name)
+int Database::SQLiteCallback(void *not_used, int argc, char **argv, char **col_name)
 {
 	int i;
 	for (i=0; i<argc; i++)
@@ -64,13 +64,13 @@ static int Database::SQLiteCallback(void *not_used, int argc, char **argv, char 
 	return 0;
 }
 
-void createTable(std::string table_name, std::string column_args)
+    void Database::createTable(std::string table_name, std::string column_args)
 {
 	std::string sql = "CREATE TABLE IF NOTE EXISTS " + table_name + "(" + column_args + ");";
 
 	char* error_message = nullptr;
 
-	int rc = sqlite3_exec(db, sql, SQLiteCallback, 0, &error_message);
+	int rc = sqlite3_exec(db, sql.c_str(), SQLiteCallback, 0, &error_message);
 	if (rc != SQLITE_OK)
 	{
 		fprintf(stderr, "\n[mdata::sqlite::Database] ERROR: SQL error: %s\n", error_message);
@@ -85,4 +85,4 @@ void createTable(std::string table_name, std::string column_args)
 } //namespace sqlite
 
 } //namespace mdata
-*/
+

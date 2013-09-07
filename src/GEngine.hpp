@@ -1,8 +1,13 @@
 /* Copyright Ciprian Ilies */
+#include "build_config.hpp"
 
 #include "config/config.hpp"
 #include "data/data.hpp"
+
+#ifdef SQLITE_FOUND
 #include "data/sqlite.hpp" //TODO: Make this an optional include.
+#endif // def SQLITE_FOUND
+
 #include "error/error.hpp"
 #include "file/file.hpp"
 #include "graphic/graphic.hpp"

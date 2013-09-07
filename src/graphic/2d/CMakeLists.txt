@@ -1,0 +1,12 @@
+list(APPEND GEngine_SOURCES
+  "${CMAKE_CURRENT_SOURCE_DIR}/2d.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/image_manipulations.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/sprite.cpp"
+)
+list(APPEND GEngine_HEADERS
+  "${CMAKE_CURRENT_SOURCE_DIR}/2d.hpp"
+)
+
+set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)
+set(GEngine_HEADERS ${GEngine_HEADERS} PARENT_SCOPE)
+

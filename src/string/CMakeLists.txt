@@ -1,9 +1,8 @@
 list(APPEND GEngine_SOURCES
-  "${CMAKE_CURRENT_SOURCE_DIR}/cfg.cpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/variable.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/string.cpp"
 )
 list(APPEND GEngine_HEADERS
-  "${CMAKE_CURRENT_SOURCE_DIR}/config.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/string.hpp"
 )
 
 set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)

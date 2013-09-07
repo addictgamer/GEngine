@@ -1,8 +1,14 @@
 /* Please refer to license.txt */
 
+#include "build_config.hpp"
+
 #include "config/config.hpp"
 #include "data/data.hpp"
-#include "data/sqlite.hpp" //TODO: Make this an optional include.
+
+#ifdef SQLITE_FOUND
+#include "data/sqlite.hpp"
+#endif
+
 #include "error/error.hpp"
 #include "file/file.hpp"
 #include "graphic/graphic.hpp"

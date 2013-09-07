@@ -27,18 +27,27 @@ find_package(Boost COMPONENTS system REQUIRED)
 # And threads.
 find_package(Threads)
 
-# Find SQLite
-find_package(SQLite)
-
-# And finally, CEGUI TODO: Add necessary components
+# And CEGUI. TODO: Add necessary components
 find_package(CEGUI REQUIRED)
+
+# Find SQLite if enabled
+if ("${GEngine_USE_SQLITE}" STREQUAL "")
+  set (GEngine_USE_SQLITE TRUE CACHE BOOL "Whether to enable SQLite support")
+endif ("${GEngine_USE_SQLITE}" STREQUAL "")
+if (GEngine_USE_SQLITE)
+  find_package(SQLite)
+  if (NOT SQLITE3_FOUND)
+    message(FATAL_ERROR "Could not find SQLite. Use -DGEngine_USE_SQLITE=FALSE to disable SQLite support.")
+  endif (NOT SQLITE3_FOUND)
+  include_directories(${SQLITE3_INCLUDE_DIR})
+endif(GEngine_USE_SQLITE)
 
 # Add include directories
 include_directories(${GLEW_INCLUDE_DIR})
 include_directories(${GLM_INCLUDE_DIR})
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
-include_directories(${SQLITE3_INCLUDE_DIR})
+
 include_directories("${CEGUI_INCLUDE_DIR}/..")
 
 include_directories("${PROJECT_BINARY_DIR}/src/")
@@ -58,14 +67,16 @@ endif()
 target_link_libraries(gengine ${Boost_LIBRARIES})
 target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIBRARY_RELEASE} ${SFML_WINDOW_LIBRARY_RELEASE} ${SFML_AUDIO_LIBRARY_RELEASE})
 target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(gengine ${SQLITE3_LIBRARIES})
 target_link_libraries(gengine ${CEGUI_LIBRARIES} ${CEGUI_RENDERER_COMPONENTS})
+
+if (GEngine_USE_SQLITE)
+  target_link_libraries(gengine ${SQLITE3_LIBRARIES})
+endif (GEngine_USE_SQLITE)
 
 install(TARGETS gengine
   ARCHIVE DESTINATION lib COMPONENT Development
   LIBRARY DESTINATION lib COMPONENT Runtime
 )
-
 
 foreach(HEADER ${GEngine_HEADERS})
   if (NOT ${HEADER} MATCHES "internal_header.hpp")

@@ -31,9 +31,7 @@ find_package(Threads)
 find_package(CEGUI REQUIRED)
 
 # Find SQLite if enabled
-if ("${GEngine_USE_SQLITE}" STREQUAL "")
-  set (GEngine_USE_SQLITE TRUE CACHE BOOL "Whether to enable SQLite support")
-endif ("${GEngine_USE_SQLITE}" STREQUAL "")
+option(GEngine_USE_SQLITE "Whether to enable SQLite support" TRUE)
 if (GEngine_USE_SQLITE)
   find_package(SQLite)
   if (NOT SQLITE3_FOUND)

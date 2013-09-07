@@ -150,6 +150,10 @@ bool FileManager::directoryExists(std::string path) //Checks if specified direct
 		{
 			temp_string += path[i]; //Save the character.
 		}
+		if (i == 0)
+		{
+			temp_string = "./"; //Fallback in case there's nothing for it to cleave off.
+		}
 	}
 	for (int i = temp_string.length() - 1; i >= 0; --i) //Now reverse the order of characters so that the folderpath is no longer backwards.
 	{

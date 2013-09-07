@@ -1,0 +1,5 @@
+add_subdirectory(Music)
+
+set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)
+set(GEngine_HEADERS ${GEngine_HEADERS} PARENT_SCOPE)
+

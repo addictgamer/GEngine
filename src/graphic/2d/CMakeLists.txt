@@ -1,0 +1,12 @@
+list(APPEND GEngine_SOURCES
+  "${PROJECT_CURRENT_SOURCE_DIR}/2d.cpp"
+  "${PROJECT_CURRENT_SOURCE_DIR}/image_manipulation.cpp"
+  "${PROJECT_CURRENT_SOURCE_DIR}/sprite.cpp"
+)
+list(APPEND GEngine_HEADERS
+  "${PROJECT_CURRENT_SOURCE_DIR}/2d.hpp"
+)
+
+set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)
+set(GEngine_HEADERS ${GEngine_HEADERS} PARENT_SCOPE)
+

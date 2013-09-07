@@ -1,9 +1,8 @@
 list(APPEND GEngine_SOURCES
-  "${PROJECT_CURRENT_SOURCE_DIR}/cfg.cpp"
-  "${PROJECT_CURRENT_SOURCE_DIR}/variable.cpp"
+  "${PROJECT_CURRENT_SOURCE_DIR}/file.cpp"
 )
 list(APPEND GEngine_HEADERS
-  "${PROJECT_CURRENT_SOURCE_DIR}/config.hpp"
+  "${PROJECT_CURRENT_SOURCE_DIR}/file.hpp"
 )
 
 set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)

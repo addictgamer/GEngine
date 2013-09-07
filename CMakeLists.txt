@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(gengine)
+project(GEngine)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
@@ -45,13 +45,9 @@ include_directories("${PROJECT_BINARY_DIR}/src/")
 
 configure_file (${PROJECT_SOURCE_DIR}/src/build_config.hpp.in ${PROJECT_BINARY_DIR}/src/build_config.hpp )
 
-# Add the source directory
-file(GLOB_RECURSE gengine_SOURCE_FILES src/*.cpp src/*.hpp)
-# add_subdirectory(src)
-# the file() will be moved into each individual module so that we build all the different modules we need.
-# TODO: Finish this and make it work http://www.cmake.org/Wiki/CMake/Tutorials/Object_Library
+add_subdirectory(src)
 
-add_library(gengine ${gengine_SOURCE_FILES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
+add_library(gengine ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
 
 target_link_libraries(gengine ${OPENGL_LIBRARIES})
 target_link_libraries(gengine ${GLEW_LIBRARIES})

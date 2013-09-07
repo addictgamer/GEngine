@@ -5,8 +5,8 @@
 #include "data/data.hpp"
 
 #ifdef SQLITE_FOUND
-#include "data/sqlite.hpp" //TODO: Make this an optional include.
-#endif // def SQLITE_FOUND
+#include "data/sqlite.hpp"
+#endif
 
 #include "error/error.hpp"
 #include "file/file.hpp"

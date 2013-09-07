@@ -1,0 +1,14 @@
+if (SQLITE_FOUND)
+  list(APPEND GEngine_SOURCES
+    "${PROJECT_CURRENT_SOURCE_DIR}/sqlite.cpp"
+  )
+  list(APPEND GEngine_HEADERS
+    "${PROJECT_CURRENT_SOURCE_DIR}/sqlite.hpp"
+  )
+endif(SQLITE_FOUND)
+list (APPEND GEngine_HEADERS
+  "${PROJECT_CURRENT_SOURCE_DIR}/data.hpp"
+)
+set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)
+set(GEngine_HEADERS ${GEngine_HEADERS} PARENT_SCOPE)
+

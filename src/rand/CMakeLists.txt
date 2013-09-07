@@ -1,8 +1,8 @@
 list(APPEND GEngine_SOURCES
-  "${PROJECT_CURRENT_SOURCE_DIR}/rand.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/rand.cpp"
 )
 list(APPEND GEngine_HEADERS
-  "${PROJECT_CURRENT_SOURCE_DIR}/rand.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/rand.hpp"
 )
 
 set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)

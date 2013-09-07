@@ -185,7 +185,9 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 {
 	//Loop from the back, find the /, chop off everything.
 
+	int count = 0;
 	std::string input(path_with_filename);
+	std::cout << "Starting with: " << input << "\n";
 	std::string::iterator i = input.end();
 	bool done = false;
 	while (!done)
@@ -195,6 +197,7 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 		{
 			--i; //Keep going.
 			input.pop_back(); //Delete the last character.
+			count++;
 		}
 		else
 		{

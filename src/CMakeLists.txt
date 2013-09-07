@@ -13,6 +13,7 @@ add_subdirectory(string)
 add_subdirectory(thread)
 
 list(APPEND GEngine_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/GEngine.hpp)
+list(APPEND GEngine_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/internal_header.hpp)
 
 set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)
 set(GEngine_HEADERS ${GEngine_HEADERS} PARENT_SCOPE)

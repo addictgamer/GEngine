@@ -66,9 +66,13 @@ install(TARGETS gengine
   LIBRARY DESTINATION lib COMPONENT Runtime
 )
 
-list(REMOVE_ITEM GEngine_HEADERS src/internal_header.hpp)
+
 foreach(HEADER ${GEngine_HEADERS})
-  get_filename_component(HEADER_DIR "${HEADER}" PATH) # Ugly hack because CMake can't currently install headers while preserving directory structure <I think>
-  install(FILES ${HEADER} DESTINATION include/GEngine/${HEADER_DIR})
+  if (NOT ${HEADER} MATCHES "internal_header.hpp")
+    string(REPLACE "${PROJECT_SOURCE_DIR}/" "" HEADER ${HEADER})
+    get_filename_component(HEADER_DIR "${HEADER}" PATH) # Ugly hack because CMake can't currently install headers while preserving directory structure <I think>
+    get_filename_component(HEADER_NAME "${HEADER}" NAME)
+    install(FILES "${HEADER}" DESTINATION "include/GEngine/${HEADER_DIR}")
+  endif(NOT ${HEADER} MATCHES "internal_header.hpp")
 endforeach(HEADER GEngine_HEADERS)
 install(FILES ${PROJECT_BINARY_DIR}/src/build_config.hpp DESTINATION include/GEngine/)

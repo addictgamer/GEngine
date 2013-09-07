@@ -5,7 +5,7 @@
 #define ENGINE_VERSION 0.0.0.1
 
 //All operating specific code.
-//Check http://sourceforge.net/apps/mediawiki/predef/index.php?title=Operating_Systems
+//Check http://sourceforge.net/p/predef/wiki/OperatingSystems/
 //to keep this section of code up to date.
 
 

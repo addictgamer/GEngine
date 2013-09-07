@@ -1,5 +1,12 @@
 /* Please refer to license.txt */
 
+#include <sys/stat.h>
+#include <errno.h>
+#include <stdio.h>
+#include <iostream>
+#include <string.h>
+#include <dirent.h>
+
 #include "file.hpp"
 
 #include "../error/error.hpp"
@@ -7,13 +14,6 @@
 #include "../string/string.hpp"
 
 #include "../internal_header.hpp"
-
-#include <sys/stat.h>
-#include <errno.h>
-#include <stdio.h>
-//#include <iostream>
-#include <string.h>
-#include <dirent.h>
 
 namespace mfile
 {
@@ -185,7 +185,9 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 {
 	//Loop from the back, find the /, chop off everything.
 
+	int count = 0;
 	std::string input(path_with_filename);
+	std::cout << "Starting with: " << input << "\n";
 	std::string::iterator i = input.end();
 	bool done = false;
 	while (!done)
@@ -195,6 +197,7 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 		{
 			--i; //Keep going.
 			input.pop_back(); //Delete the last character.
+			count++;
 		}
 		else
 		{

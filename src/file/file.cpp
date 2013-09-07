@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string.h>
 #include <dirent.h>
+#include <boost/filesystem.hpp>
 
 #include "file.hpp"
 
@@ -216,7 +217,7 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 
 void FileManager::getFolders(std::string path, std::vector<std::string> &folders) //Get all the folders in a directory.
 {
-	#if OS == OS_WINDOWS
+	/*#if OS == OS_WINDOWS
 		struct stat s; //Required for the Windows version of the code 
 	#endif
 
@@ -264,7 +265,22 @@ void FileManager::getFolders(std::string path, std::vector<std::string> &folders
 		#endif
 	}
 
-	closedir(dir);
+	closedir(dir);*/
+
+	namespace fs = boost::filesystem;
+	fs::path someDir(path);
+	fs::directory_iterator end_iter;
+
+	if ( fs::exists(someDir) && fs::is_directory(someDir))
+	{
+		for( fs::directory_iterator dir_iter(someDir) ; dir_iter != end_iter ; ++dir_iter)
+		{
+			if (fs::is_directory(dir_iter->status()) )
+			{
+				folders.push_back(dir_iter->path().filename().string());
+			}
+		}
+	}
 } //FileManager::getFolders()
 
 } //namespace mfile

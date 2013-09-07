@@ -22,7 +22,7 @@ find_package(GLM REQUIRED)
 find_package(SFML 2 COMPONENTS system graphics window audio REQUIRED)
 
 # Find Boost.
-find_package(Boost COMPONENTS system REQUIRED)
+find_package(Boost COMPONENTS system filesystem REQUIRED)
 
 # And threads.
 find_package(Threads)

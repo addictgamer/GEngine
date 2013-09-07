@@ -17,8 +17,17 @@ cd build/debug
 #export SFML_ROOT="E:/Projects/C++/Libs/SFML-2.0-rc-gcc"
 
 # Change this to Unix Makefiles on Linux
-cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$SOURCE_DIR -G "Unix Makefiles" ../..
+if cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$SOURCE_DIR -G "Unix Makefiles" ../..
+then
+	:
+else
+	echo "ERROR: Failed to cmake." && exit 1
+fi
 
 #make -j8
-make install
-
+if make install
+then
+	:
+else
+	echo "ERROR: Failed to build." && exit 1
+fi

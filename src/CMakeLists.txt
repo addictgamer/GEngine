@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 2.6)
-project(gengine)
-
 add_subdirectory(config)
 add_subdirectory(control)
 add_subdirectory(data)
@@ -14,6 +11,8 @@ add_subdirectory(rand)
 add_subdirectory(sound)
 add_subdirectory(string)
 add_subdirectory(thread)
+
+list(APPEND GEngine_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/GEngine.hpp)
 
 set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)
 set(GEngine_HEADERS ${GEngine_HEADERS} PARENT_SCOPE)

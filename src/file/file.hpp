@@ -1,4 +1,4 @@
-/* Copyright Ciprian Ilies */
+/* Please refer to license.txt */
 
 /* Here we have the file manager. Its purpose is to encapsulate code that may
  * vary wildly, depending on implementation, allowing the specific code

@@ -1,4 +1,4 @@
-/* Copyright Ciprian Ilies */
+/* Please refer to license.txt */
 
 #include <boost/asio.hpp>
 #include <boost/array.hpp>

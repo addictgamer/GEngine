@@ -1,4 +1,4 @@
-/* Copyright Ciprian Ilies */
+/* Please refer to license.txt */
 
 #include "math.hpp"
 #include <math.h>

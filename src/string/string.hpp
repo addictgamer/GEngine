@@ -1,4 +1,4 @@
-/* Copyright Ciprian Ilies */
+/* Please refer to license.txt */
 
 /* --------------------------------------------------------------
  * Everything related to strings are defined here.

@@ -1,4 +1,4 @@
-/* Copyright Ciprian Ilies */
+/* Please refer to license.txt */
 
 #include "config/config.hpp"
 #include "data/data.hpp"

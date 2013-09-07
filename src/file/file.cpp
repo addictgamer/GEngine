@@ -186,7 +186,7 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 	//Loop from the back, find the /, chop off everything.
 
 	std::string input = path_with_filename;
-	std::string::iterator i = input.end();
+	std::string::iterator i = input.end()-1;
 	bool done = false;
 	while (!done)
 	{

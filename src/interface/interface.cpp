@@ -127,7 +127,7 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d)
 	}
 	catch(CEGUI::Exception& e)
 	{
-		std::cout << "CEGUI Exception:" << e.getMessage() << "\n";
+		std::cout << "CEGUI Exception:" << e.getMessage().c_str() << "\n";
 		return false;
 	}
 

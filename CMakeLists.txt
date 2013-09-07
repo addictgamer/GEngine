@@ -30,8 +30,8 @@ find_package(Threads)
 # Find SQLite
 find_package(SQLite)
 
-# And finally, CEGUI
-find_package(CEGUI COMPONENTS OpenGLRenderer REQUIRED)
+# And finally, CEGUI TODO: Add necessary components
+find_package(CEGUI REQUIRED)
 
 # Add include directories
 include_directories(${GLEW_INCLUDE_DIR})

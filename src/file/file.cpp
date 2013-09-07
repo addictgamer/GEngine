@@ -141,9 +141,9 @@ bool FileManager::directoryExists(std::string path) //Checks if specified direct
 	std::string directory_name = ""; //The name of the folder it's looking for.
 	for (int i = path.length() - 1; i >= 0; --i) //Loop through and extract the folderpath. Pretty much the folder the folder is in.
 	{
-		if (!start_saving && (path[i] == '\\' || path[i] == '/')) //If not already saving the characters...Check if it's a / or \ character.
+		if (!start_saving && (path[i] == '\\' || path[i] == '/') && i != path.length() - 1) //If not already saving the characters...Check if it's a / or \ character.
 		{
-			start_saving = true; //Yay, end of filename found, now we can extract the folderpath.
+			start_saving = true; //Nw we can extract the folderpath.
 			directory_name_reverse += path[i];
 		}
 		else if (start_saving) //Ok, it is saving the characters.
@@ -195,7 +195,7 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 		std::cout << "i = \"" << (*i) << "\" & count = " << count << "\n";
 
 		//If it found where the filepath ends...
-		if ((*i) != '/')
+		if ((*i) != '/' && (*i) != '\\')
 		{
 			--i; //Keep going.
 			input.pop_back(); //Delete the last character.

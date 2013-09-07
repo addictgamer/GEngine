@@ -7,6 +7,8 @@
 #include "../graphic/2d/2d.hpp"
 #include "../graphic/window/window.hpp"
 
+#include "../file/file.hpp"
+
 namespace mui
 {
 
@@ -51,6 +53,15 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d)
 	{
 		//cegui_system = &CEGUI::System::create(CEGUI::OpenGLRenderer::bootstrapSystem(), nullptr, nullptr, nullptr, nullptr, cegui_configfile, cegui_logfile);
 		CEGUI::OpenGLRenderer& myRenderer = CEGUI::OpenGLRenderer::create();
+
+		std::string log_directory("");
+		mfile::FileManager::seperatePathFromFilename(cegui_logfile_path, log_directory);
+		//Check if the directory the cegui logfile is going to be kept in exists. It not, create it.
+		if (!mfile::FileManager::directoryExists(log_directory))
+		{
+			mfile::FileManager::mkDir(log_directory);
+		}
+
 		CEGUI::System::create(myRenderer, nullptr, nullptr, nullptr, nullptr, cegui_configfile_path, cegui_logfile_path);
 
 		//Initialise the required dirs for the CEGUI DefaultResourceProvider.

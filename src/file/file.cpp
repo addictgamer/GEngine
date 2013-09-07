@@ -26,6 +26,78 @@ FileManager::~FileManager()
 {
 }
 
+void FileManager::exportFile(std::string filepath, std::string output_data, bool overwrite) //Export a file.
+{
+	FILE *file = nullptr; //The file.
+
+	if (overwrite) file = fopen(filepath.c_str(), "w+"); //Open the file for writing, overwriting whatever currently exists, if anything.
+	else file = fopen(filepath.c_str(), "a"); //Open the file for writing. Do not overwrite, append.
+
+	if (!file) //Error checking.
+	{
+		//cout << "Failed to open file: \"" << filepath << "\".\n"; //Let the user know there was an error.
+		//cout << "Attempting to create folder...\n"; //Let the user know we're trying to create the directory.
+
+		//TODO: This portiong needs to be put into a "make_directories_until()" function.
+
+		//TODO: This needs to be adjusted to recursively make the missing folders.
+
+		bool start_saving = false; //Start saving the characters from the string?
+		std::string folderpath = ""; //The folderpath.
+		std::string temp_string = ""; //Folderpath is initially read into this, backwards. Used for ordering it correctly.
+		for (int i = filepath.length() - 1; i >= 0; --i) //Loop through and extract the folderpath
+		{
+			if (!start_saving && (filepath[i] == '\\' || filepath[i] == '/')) //If not already saving the characters...Check if it's a / or \ character.
+			{
+				start_saving = true; //Yay, end of filename found, now we can extract the folderpath.
+			}
+			if (start_saving) //Ok, it is saving the characters.
+			{
+				temp_string += filepath[i]; //Save the character.
+			}
+		}
+		for (int i = temp_string.length() - 1; i >= 0; --i) //Now reverse the order of characters so that the folderpath is no longer backwards.
+		{
+			folderpath += temp_string[i]; //Save the character.
+		}
+
+		try
+		{
+			mkDir("./" + folderpath); //Create the folder. With error checking.
+		}
+		catch (...)
+		{
+			std::string *filename = new std::string; //The filename.
+			*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
+			std::string *message = new std::string;
+			*message = "Failed to create directory: \"";
+			*message += folderpath;
+			*message += "\".";
+			merror::Error *error = generateError(merror::FUNCTION_FAILURE, message, merror::SEVERITY_IGNORE, __LINE__, filename);
+			throw error;
+		}
+
+		if (overwrite) file = fopen(filepath.c_str(), "w+"); //Open the file for writing, overwriting any currently existing file.
+		else file = fopen(filepath.c_str(), "a"); //Open the file for writing. Do not overwrite, append.
+
+		if (!file) //Error checking.
+		{
+			std::string *filename = new std::string; //The filename.
+			*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
+			std::string *message = new std::string;
+			*message = "Failed to create file.";
+			merror::Error *error = generateError(merror::FUNCTION_FAILURE, message, merror::SEVERITY_IGNORE, __LINE__, filename);
+			throw error; //Failure.
+		}
+
+		//TODO: End portion that needs being put into a "make_directories_until()" function.
+	}
+
+	fprintf(file, output_data.c_str());  //Write out the string.
+
+	fclose(file); //Close the file.
+} //FileManager::exportFile()
+
 void FileManager::mkDir(std::string path) //Create a directory at the specified location.
 {
 	#if OS == OS_WINDOWS //If the operating system is windows.
@@ -109,78 +181,29 @@ bool FileManager::directoryExists(std::string path) //Checks if specified direct
 	return false; //Default case: does not exist.
 } //FileManager::directoryExists()
 
-
-void FileManager::exportFile(std::string filepath, std::string output_data, bool overwrite) //Export a file.
+void FileManager::seperatePathFromFilename(std::string &path_with_filename, std::string &path)
 {
-	FILE *file = nullptr; //The file.
+	//Loop from the back, find the /, chop off everything.
 
-	if (overwrite) file = fopen(filepath.c_str(), "w+"); //Open the file for writing, overwriting whatever currently exists, if anything.
-	else file = fopen(filepath.c_str(), "a"); //Open the file for writing. Do not overwrite, append.
-
-	if (!file) //Error checking.
+	std::string input = path_with_filename;
+	std::string::iterator i = input.end();
+	bool done = false;
+	while (!done)
 	{
-		//cout << "Failed to open file: \"" << filepath << "\".\n"; //Let the user know there was an error.
-		//cout << "Attempting to create folder...\n"; //Let the user know we're trying to create the directory.
-
-		//TODO: This portiong needs to be put into a "make_directories_until()" function.
-
-		//TODO: This needs to be adjusted to recursively make the missing folders.
-
-		bool start_saving = false; //Start saving the characters from the string?
-		std::string folderpath = ""; //The folderpath.
-		std::string temp_string = ""; //Folderpath is initially read into this, backwards. Used for ordering it correctly.
-		for (int i = filepath.length() - 1; i >= 0; --i) //Loop through and extract the folderpath
+		//If it found where the filepath ends...
+		if ((*i) != '\\')
 		{
-			if (!start_saving && (filepath[i] == '\\' || filepath[i] == '/')) //If not already saving the characters...Check if it's a / or \ character.
-			{
-				start_saving = true; //Yay, end of filename found, now we can extract the folderpath.
-			}
-			if (start_saving) //Ok, it is saving the characters.
-			{
-				temp_string += filepath[i]; //Save the character.
-			}
+			--i; //Keep going.
+			input.pop_back(); //Delete the last character.
 		}
-		for (int i = temp_string.length() - 1; i >= 0; --i) //Now reverse the order of characters so that the folderpath is no longer backwards.
+		else
 		{
-			folderpath += temp_string[i]; //Save the character.
+			done = true;
 		}
-
-		try
-		{
-			mkDir("./" + folderpath); //Create the folder. With error checking.
-		}
-		catch (...)
-		{
-			std::string *filename = new std::string; //The filename.
-			*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
-			std::string *message = new std::string;
-			*message = "Failed to create directory: \"";
-			*message += folderpath;
-			*message += "\".";
-			merror::Error *error = generateError(merror::FUNCTION_FAILURE, message, merror::SEVERITY_IGNORE, __LINE__, filename);
-			throw error;
-		}
-
-		if (overwrite) file = fopen(filepath.c_str(), "w+"); //Open the file for writing, overwriting any currently existing file.
-		else file = fopen(filepath.c_str(), "a"); //Open the file for writing. Do not overwrite, append.
-
-		if (!file) //Error checking.
-		{
-			std::string *filename = new std::string; //The filename.
-			*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
-			std::string *message = new std::string;
-			*message = "Failed to create file.";
-			merror::Error *error = generateError(merror::FUNCTION_FAILURE, message, merror::SEVERITY_IGNORE, __LINE__, filename);
-			throw error; //Failure.
-		}
-
-		//TODO: End portion that needs being put into a "make_directories_until()" function.
 	}
 
-	fprintf(file, output_data.c_str());  //Write out the string.
-
-	fclose(file); //Close the file.
-} //FileManager::exportFile()
+	path = input;
+}
 
 void FileManager::getFolders(std::string path, std::vector<std::string> &folders) //Get all the folders in a directory.
 {

@@ -188,7 +188,7 @@ void FileManager::seperatePathFromFilename(std::string &path_with_filename, std:
 	int count = 0;
 	std::string input(path_with_filename);
 	std::cout << "Starting with: " << input << "\n";
-	std::string::iterator i = input.end();
+	std::string::iterator i = input.end()-1;
 	bool done = false;
 	while (!done)
 	{

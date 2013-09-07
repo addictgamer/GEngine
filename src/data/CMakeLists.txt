@@ -1,4 +1,4 @@
-if (SQLITE_FOUND)
+if (SQLITE3_FOUND)
   list(APPEND GEngine_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/sqlite.cpp"
   )

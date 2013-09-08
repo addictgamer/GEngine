@@ -101,7 +101,7 @@ void FileManager::exportFile(std::string filepath, std::string output_data, bool
 
 void FileManager::mkDir(std::string path) //Create a directory at the specified location.
 {
-	#if OS == OS_WINDOWS //If the operating system is windows.
+	/*#if OS == OS_WINDOWS //If the operating system is windows.
 		if (mkdir(path.c_str()) == -1) //Create the directory.
 		{
 			//throw strerror(errno); //Throw an error. //TODO: Refine the error to use the error module.
@@ -123,7 +123,17 @@ void FileManager::mkDir(std::string path) //Create a directory at the specified 
 			merror::Error *error = generateError(merror::FUNCTION_FAILURE, error_message, merror::SEVERITY_IGNORE, __LINE__, filename);
 			throw error;
 		}
-	#endif
+	#endif*/
+	namespace fs = boost::filesystem;
+	if (!fs::create_directory(path))
+	{
+		std::string *error_message = new std::string; //The error message.
+		*error_message = "Failed to create directory \'" + path + "\'";
+		std::string *filename = new std::string; //The filename.
+		*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
+		merror::Error *error = generateError(merror::FUNCTION_FAILURE, error_message, merror::SEVERITY_IGNORE, __LINE__, filename);
+		throw error;
+	}
 }
 
 bool FileManager::directoryExists(std::string path) //Checks if specified directory exists.

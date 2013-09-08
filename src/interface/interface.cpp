@@ -55,7 +55,7 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d)
 		CEGUI::OpenGLRenderer& myRenderer = CEGUI::OpenGLRenderer::create();
 
 		std::string log_directory("");
-		mfile::FileManager::seperatePathFromFilename(cegui_logfile_path, log_directory);
+		mfile::FileManager::separatePathFromFilename(cegui_logfile_path, log_directory);
 		//Check if the directory the cegui logfile is going to be kept in exists. It not, create it.
 		if (!mfile::FileManager::directoryExists(log_directory))
 		{

@@ -186,7 +186,7 @@ bool FileManager::directoryExists(std::string path) //Checks if specified direct
 	return false; //Default case: does not exist.
 } //FileManager::directoryExists()
 
-void FileManager::seperatePathFromFilename(std::string &path_with_filename, std::string &path)
+void FileManager::separatePathFromFilename(std::string &path_with_filename, std::string &path)
 {
 	//Loop from the back, find the /, chop off everything.
 

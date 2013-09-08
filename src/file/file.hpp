@@ -39,10 +39,10 @@ public:
 	void recursivelyMakeDirectories(std::string path);
 
 	//TODO: Write this.
-	void seperateFilenameFromPath(std::string path, std::string &filename);
+	void separateFilenameFromPath(std::string path, std::string &filename);
 
 	//TODO: Write this.
-	void seperateFilenameFromFileExtension(std::string filename_with_extension, std::string &filename);
+	void separateFilenameFromFileExtension(std::string filename_with_extension, std::string &filename);
 
 	//TODO: Write this.
 	void getFiles(std::string path, std::vector<std::string> &files);
@@ -63,9 +63,9 @@ public:
 	static bool directoryExists(std::string directory);
 
 	/*
-	 * Seperates the path from the filename and stores it in path.
+	 * Separates the path from the filename and stores it in path.
 	 */
-	static void seperatePathFromFilename(std::string &path_with_filename, std::string &path);
+	static void separatePathFromFilename(std::string &path_with_filename, std::string &path);
 
 	/*
 	 * Get all the folders in a directory.

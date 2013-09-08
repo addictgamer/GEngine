@@ -56,7 +56,7 @@ configure_file (${PROJECT_SOURCE_DIR}/src/build_config.hpp.in ${PROJECT_BINARY_D
 add_subdirectory(src)
 
 
-add_library(gengine_static STATIC ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
+add_library(gengine_static STATIC ${GEngine_SOURCES} ${GEngine_HEADERS} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
 get_target_property(GEngine_LIBRARY_STATIC_PREFIX gengine_static PREFIX)
 get_target_property(GEngine_LIBRARY_STATIC_SUFFIX gengine_static SUFFIX)
 #add_library(gengine SHARED "${GEngine_LIBRARY_STATIC_PREFIX}gengine_static${GEngine_LIBRARY_STATIC_SUFFIX}")

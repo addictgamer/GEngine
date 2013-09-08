@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 2.6)
 project(GEngine)
 
+if (NOT CMAKE_BUILD_TYPE)
+  set (CMAKE_BUILD_TYPE Release)
+endif(NOT CMAKE_BUILD_TYPE)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g -fPIC")
@@ -73,7 +77,7 @@ if (GEngine_USE_SQLITE)
   target_link_libraries(gengine ${SQLITE3_LIBRARIES})
 endif (GEngine_USE_SQLITE)
 
-install(TARGETS gengine
+install(TARGETS gengine gengine_static
   ARCHIVE DESTINATION lib COMPONENT Development
   LIBRARY DESTINATION lib COMPONENT Runtime
 )

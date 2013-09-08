@@ -125,20 +125,39 @@ void FileManager::mkDir(std::string path) //Create a directory at the specified 
 		}
 	#endif*/
 	namespace fs = boost::filesystem;
-	if (!fs::create_directory(path))
+	/*try
 	{
+		if (!fs::create_directory(path))
+		{
+			//std::cout << fs::current_path().string() << "\n";
+			std::string *error_message = new std::string; //The error message.
+			*error_message = "Failed to create directory \'" + path + "\'";
+			std::string *filename = new std::string; //The filename.
+			*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
+			merror::Error *error = generateError(merror::FUNCTION_FAILURE, error_message, merror::SEVERITY_IGNORE, __LINE__, filename);
+			throw error;
+		}
+	catch (const fs::filesystem_error& e)
+	{
+		//std::cout << fs::current_path().string() << "\n";
 		std::string *error_message = new std::string; //The error message.
 		*error_message = "Failed to create directory \'" + path + "\'";
 		std::string *filename = new std::string; //The filename.
 		*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
 		merror::Error *error = generateError(merror::FUNCTION_FAILURE, error_message, merror::SEVERITY_IGNORE, __LINE__, filename);
 		throw error;
+	}*/
+
+	//fs::filesystem_error boost_error;
+	if (!fs::create_directory(path))
+	{
+		//TODO: Check for error and handle accordingly.
 	}
 }
 
 bool FileManager::directoryExists(std::string path) //Checks if specified directory exists.
 {
-	//This function could probably be done better with a call to an external library's superoptimised directory_exists() function.
+	/*//This function could probably be done better with a call to an external library's superoptimised directory_exists() function.
 	//But, until such a time that we have such a library, this will be used.
 
 	//TODO: This portion probably can be put into an external function.
@@ -193,7 +212,9 @@ bool FileManager::directoryExists(std::string path) //Checks if specified direct
 		if (folders[i] == directory_name) return true; //Yes, directory exists.
 	}
 
-	return false; //Default case: does not exist.
+	return false; //Default case: does not exist.*/
+
+	return boost::filesystem::exists(path);
 } //FileManager::directoryExists()
 
 void FileManager::separatePathFromFilename(std::string &path_with_filename, std::string &path)

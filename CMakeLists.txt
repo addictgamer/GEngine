@@ -59,6 +59,8 @@ configure_file (${PROJECT_SOURCE_DIR}/src/build_config.hpp.in ${PROJECT_BINARY_D
 
 add_subdirectory(src)
 
+option(GEngine_SHARED "Build shared library rather than static" FALSE)
+
 if (GEngine_SHARED)
   add_library(gengine SHARED ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
   target_link_libraries(gengine ${OPENGL_LIBRARIES})

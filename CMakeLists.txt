@@ -10,6 +10,7 @@ find_package(CXX11 REQUIRED)
 set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX11_FLAGS} -Wall")
 set ( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${CXX11_FLAGS}")
 set ( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${CXX11_FLAGS}")
+set ( CMAKE_STATIC_LINKER_FLAGS "${CMAKE_STATIC_LINKER_FLAGS} ${CMAKE_SHARED_LINKER_FLAGS}") # So the static library can be turned into a shared one
 set ( CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${CXX11_FLAGS}")
 
 
@@ -54,7 +55,20 @@ configure_file (${PROJECT_SOURCE_DIR}/src/build_config.hpp.in ${PROJECT_BINARY_D
 
 add_subdirectory(src)
 
-add_library(gengine ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
+
+add_library(gengine_static STATIC ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
+get_target_property(GEngine_LIBRARY_STATIC_PREFIX gengine_static PREFIX)
+get_target_property(GEngine_LIBRARY_STATIC_SUFFIX gengine_static SUFFIX)
+#add_library(gengine SHARED "${GEngine_LIBRARY_STATIC_PREFIX}gengine_static${GEngine_LIBRARY_STATIC_SUFFIX}")
+add_library(gengine SHARED "")
+
+# TODO: Will only work with certain linkers. Fix.
+if (APPLE)
+  target_link_libraries(gengine "-force_load" gengine_static)
+else(APPLE)
+  target_link_libraries(gengine "-whole-archive" gengine_static)
+endif(APPLE)
+set_target_properties(gengine PROPERTIES LINKER_LANGUAGE CXX)
 
 target_link_libraries(gengine ${OPENGL_LIBRARIES})
 target_link_libraries(gengine ${GLEW_LIBRARIES})

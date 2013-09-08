@@ -36,7 +36,6 @@ void FileManager::exportFile(std::string filepath, std::string output_data, bool
 
 	if (!file) //Error checking.
 	{
-
 		//TODO: This portiong needs to be put into a "make_directories_until()" function.
 
 		//TODO: This needs to be adjusted to recursively make the missing folders.
@@ -139,8 +138,6 @@ void FileManager::separatePathFromFilename(std::string &path_with_filename, std:
 
 void FileManager::getFolders(std::string path, std::vector<std::string> &folders) //Get all the folders in a directory.
 {
-	closedir(dir);*/
-
 	namespace fs = boost::filesystem;
 	fs::path someDir(path);
 	fs::directory_iterator end_iter;

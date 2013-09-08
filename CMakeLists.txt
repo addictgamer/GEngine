@@ -29,7 +29,7 @@ find_package(Boost COMPONENTS system filesystem REQUIRED)
 find_package(Threads)
 
 # And CEGUI. TODO: Add necessary components
-find_package(CEGUI REQUIRED)
+find_package(CEGUI COMPONENTS OpenGLRenderer REQUIRED)
 
 # Find SQLite if enabled
 option(GEngine_USE_SQLITE "Whether to enable SQLite support" TRUE)
@@ -79,7 +79,7 @@ endif()
 target_link_libraries(gengine ${Boost_LIBRARIES})
 target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIBRARY_RELEASE} ${SFML_WINDOW_LIBRARY_RELEASE} ${SFML_AUDIO_LIBRARY_RELEASE})
 target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(gengine ${CEGUI_LIBRARIES} ${CEGUI_RENDERER_COMPONENTS})
+target_link_libraries(gengine ${CEGUI_LIBRARIES})
 
 if (GEngine_USE_SQLITE)
   target_link_libraries(gengine ${SQLITE3_LIBRARIES})

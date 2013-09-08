@@ -59,28 +59,36 @@ configure_file (${PROJECT_SOURCE_DIR}/src/build_config.hpp.in ${PROJECT_BINARY_D
 
 add_subdirectory(src)
 
-add_library(gengine_static STATIC ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
-add_library(gengine SHARED ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
+if (GEngine_SHARED)
+  add_library(gengine SHARED ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
+  target_link_libraries(gengine ${OPENGL_LIBRARIES})
+  target_link_libraries(gengine ${GLEW_LIBRARIES})
+  # We need to link to Winsock if we're on Windows
+  if(WIN32)
+    target_link_libraries(gengine wsock32 ws2_32)
+  endif()
+  target_link_libraries(gengine ${Boost_LIBRARIES})
+  target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIBRARY_RELEASE} ${SFML_WINDOW_LIBRARY_RELEASE} ${SFML_AUDIO_LIBRARY_RELEASE})
+  target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})
+  target_link_libraries(gengine ${CEGUI_LIBRARIES})
 
-target_link_libraries(gengine ${OPENGL_LIBRARIES})
-target_link_libraries(gengine ${GLEW_LIBRARIES})
-# We need to link to Winsock if we're on Windows
-if(WIN32)
-  target_link_libraries(gengine wsock32 ws2_32)
-endif()
-target_link_libraries(gengine ${Boost_LIBRARIES})
-target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIBRARY_RELEASE} ${SFML_WINDOW_LIBRARY_RELEASE} ${SFML_AUDIO_LIBRARY_RELEASE})
-target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(gengine ${CEGUI_LIBRARIES})
+  if (GEngine_USE_SQLITE)
+    target_link_libraries(gengine ${SQLITE3_LIBRARIES})
+  endif (GEngine_USE_SQLITE)
 
-if (GEngine_USE_SQLITE)
-  target_link_libraries(gengine ${SQLITE3_LIBRARIES})
-endif (GEngine_USE_SQLITE)
+else (GEngine_SHARED)
+  add_library(gengine_static STATIC ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
+endif (GEngine_SHARED)
 
-install(TARGETS gengine gengine_static
-  ARCHIVE DESTINATION lib COMPONENT Development
-  LIBRARY DESTINATION lib COMPONENT Runtime
-)
+if (GEngine_SHARED)
+  install(TARGETS gengine
+    LIBRARY DESTINATION lib COMPONENT Runtime
+  )
+else (GEngine_SHARED)
+  install(TARGETS gengine_static
+    ARCHIVE DESTINATION lib COMPONENT Development
+  )
+endif (GEngine_SHARED)
 
 foreach(HEADER ${GEngine_HEADERS})
   if (NOT ${HEADER} MATCHES "internal_header.hpp")

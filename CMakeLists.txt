@@ -3,8 +3,8 @@ project(GEngine)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g -fPIC")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fPIC")
 
 find_package(CXX11 REQUIRED)
 set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX11_FLAGS} -Wall")
@@ -55,20 +55,8 @@ configure_file (${PROJECT_SOURCE_DIR}/src/build_config.hpp.in ${PROJECT_BINARY_D
 
 add_subdirectory(src)
 
-
-add_library(gengine_static STATIC ${GEngine_SOURCES} ${GEngine_HEADERS} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
-get_target_property(GEngine_LIBRARY_STATIC_PREFIX gengine_static PREFIX)
-get_target_property(GEngine_LIBRARY_STATIC_SUFFIX gengine_static SUFFIX)
-#add_library(gengine SHARED "${GEngine_LIBRARY_STATIC_PREFIX}gengine_static${GEngine_LIBRARY_STATIC_SUFFIX}")
-add_library(gengine SHARED "")
-
-# TODO: Will only work with certain linkers. Fix.
-if (APPLE)
-  target_link_libraries(gengine "-force_load" gengine_static)
-else(APPLE)
-  target_link_libraries(gengine "-whole-archive" gengine_static)
-endif(APPLE)
-set_target_properties(gengine PROPERTIES LINKER_LANGUAGE CXX)
+add_library(gengine_static STATIC ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
+add_library(gengine SHARED ${GEngine_SOURCES} ${PROJECT_BINARY_DIR}/src/build_config.hpp)
 
 target_link_libraries(gengine ${OPENGL_LIBRARIES})
 target_link_libraries(gengine ${GLEW_LIBRARIES})

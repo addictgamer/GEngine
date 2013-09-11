@@ -101,9 +101,9 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d)
 			return false;
 		}*/
 		CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("GlossySerpent/Tooltip");
-		/*CEGUI::WindowManager& winMgr = CEGUI::WindowManager::getSingleton();
+		CEGUI::WindowManager& winMgr = CEGUI::WindowManager::getSingleton();
 		CEGUI::DefaultWindow* root = (CEGUI::DefaultWindow*)winMgr.createWindow("DefaultWindow", "Root");
-		CEGUI::System::getSingleton().setGUISheet(root);
+		/*CEGUI::System::getSingleton().setGUISheet(root);
 		CEGUI::FrameWindow* wnd = (CEGUI::FrameWindow*)winMgr.createWindow("GlossySerpent/FrameWindow", "Demo Window");
 		root->addChildWindow(wnd);
 		wnd->setPosition(UVector2(cegui_reldim(0.25f), cegui_reldim( 0.25f)));

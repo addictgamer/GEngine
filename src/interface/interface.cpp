@@ -92,6 +92,7 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d)
 		//}
 
 		CEGUI::SchemeManager::getSingleton().createFromFile("GlossySerpent.scheme");
+		CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 		//CEGUI's default schemes are fugly with the mouse or don't have one at all. Using default sfml mouse.
 		/*CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("GlossySerpent/MouseArrow");
 		CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().show();

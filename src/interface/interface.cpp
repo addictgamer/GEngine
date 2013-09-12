@@ -135,6 +135,12 @@ void Interface::update()
 		case sf::Event::KeyPressed:
 			context.injectChar(d2d->window->events[i].text.unicode);
 			break;
+		/*
+		 * TODO: Figure this out.
+		case sf::Event::KeyReleased:
+			CEGUI::InjectedInputReceiver::injectKeyUp(d2d->window->events[i].key.code);
+		 	break;
+		 */
 		case sf::Event::MouseMoved:
 			{
 				sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);

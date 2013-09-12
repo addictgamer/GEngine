@@ -5,8 +5,11 @@
 #include <time.h>
 #include <cstdlib>
 
-namespace mrand
+namespace mmisc
 {
+
+//namespace mrand
+//{
 
 void setup()
 {
@@ -25,4 +28,6 @@ int randi(int min, int max)
 	return rand() % max + min; //Return the random number.
 }
 
-} //namespace mrand
+//} //namespace mrand
+
+} //namespace mmisc

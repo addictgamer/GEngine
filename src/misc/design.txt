@@ -14,6 +14,9 @@ Required Functionality:
 	C. Date and time reporting?
 
 Namespace:
-All misc module code is in the mmisc namespace.
+ * All misc module code is in the mmisc namespace.
+Submodules:
+	 * All rand code is in the mrand namespace (mmisc::mrand).
+	 * All time code is in the mtime namespace (mmisc::mtime).
 
 Module Dependencies:

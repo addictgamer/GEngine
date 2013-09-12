@@ -8,8 +8,8 @@
 namespace mmisc
 {
 
-//namespace mrand
-//{
+namespace mrand
+{
 
 void setup()
 {
@@ -28,6 +28,6 @@ int randi(int min, int max)
 	return rand() % max + min; //Return the random number.
 }
 
-//} //namespace mrand
+} //namespace mrand
 
 } //namespace mmisc

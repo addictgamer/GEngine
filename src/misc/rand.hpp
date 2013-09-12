@@ -5,8 +5,8 @@
 namespace mmisc
 {
 
-//namespace mrand
-//{
+namespace mrand
+{
 
 void setup(); //Does setup stuff.
 
@@ -14,6 +14,6 @@ void seed(); //Seed it.
 
 int randi(int min, int max); //Generates a random integer. //TODO: Template :)
 
-//} //namespace mrand
+} //namespace mrand
 
 } //namespace mmisc

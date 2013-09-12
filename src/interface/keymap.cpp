@@ -1,5 +1,10 @@
 /* Please refer to license.txt */
 
+/*
+ * Shamelessly taken from: http://www.cegui.org.uk/wiki/index.php/SFML_to_CEGUI_keytable :)
+ * By the way, thanks a ton to whoever made that. SFML 0.8 documentation is severely lacking.
+ */
+
 #include "interface.hpp"
 
 namespace mui

@@ -62,13 +62,22 @@ private:
 	CEGUI::DefaultResourceProvider* cegui_resourceprovider; //The cegui resource provider.
 
 	//CEGUI::WindowManager* cegui_windowmanager; //The cegui window manager. //Nah, just use: CEGUI::WindowManager::getSingleton()
+
+	std::vector<std::string> loaded_schemes; //The loaded cegui schemes. I don't think this has much actual use, but we'll see.
 public:
 	mgfx::d2d::D2D *d2d;
 
 	Interface();
 	~Interface();
 
-	bool initialize(mgfx::d2d::D2D &_d2d);
+	/*
+	 * Initializes the interface & CEGUI.
+	 * Parameters:
+	 *	&_d2d		:	reference to the 2d manager that this GUI belongs to.
+	 *	cegui_shemes	:	vector containing the NAMES of all the cegui scheme files we're using. Example: "TaharezLook", note: NOT "TaharezLook.scheme". Do NOT include the file extension, only the actual name of the theme.
+	 *	gui_layout	:	Name of the xml file that defines the program's GUI layout. Include file extension, in contrast to cegui_schemes. Leave blank ("") if you want to specify your GUI in the code rather than in an xml file.
+	 */
+	bool initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_schemes, std::string gui_layout);
 
 	/*
 	More of a draw update, since all it does (currently) is render all of cegui's stuffs.
@@ -77,6 +86,16 @@ public:
 
 	//Loads a font.
 	bool loadFont(std::string filepath);
+
+	/*
+	 * Hides the mouse (regardless of whether the current active mouse belongs to CEGUI or SFML).
+	 */
+	void hideMouse(); //TODO: Implement.
+
+	/*
+	 * Switches between the SFML mouse and the CEGUI mouse.
+	 */
+	void switchMouse(); //TODO: Implemenet.
 };
 
 } //namespace mui

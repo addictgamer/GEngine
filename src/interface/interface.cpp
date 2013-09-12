@@ -41,7 +41,7 @@ Interface::~Interface()
 	cegui_resourceprovider = nullptr;
 }
 
-bool Interface::initialize(mgfx::d2d::D2D &_d2d)
+bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_schemes, std::string gui_layout)
 {
 	d2d = &_d2d;
 
@@ -91,8 +91,14 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d)
 		//	parser->setProperty("SchemaDefaultResourceGroup", "schemas");
 		//}
 
-		CEGUI::SchemeManager::getSingleton().createFromFile("GlossySerpent.scheme");
-		CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
+		//Load the schemes specified in cegui_schemes.
+		for (std::vector<std::string>::iterator i = cegui_schemes.begin(); i != cegui_schemes.end(); ++i) //TODO: Vector iterator.
+		{
+			CEGUI::SchemeManager::getSingleton().createFromFile(*i + ".scheme");
+			loaded_schemes.push_back(*i); //Save it so we know how to access it later, if needed.
+		}
+		//CEGUI::SchemeManager::getSingleton().createFromFile("GlossySerpent.scheme");
+		//CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
 		//CEGUI's default schemes are fugly with the mouse or don't have one at all. Using default sfml mouse.
 		/*CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("GlossySerpent/MouseArrow");
 		CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().show();
@@ -101,9 +107,15 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d)
 			std::cout << "ERROR: MOUSE CURSOR NOT VISIBLE.\n";
 			return false;
 		}*/
-		CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("GlossySerpent/Tooltip");
-		CEGUI::WindowManager& winMgr = CEGUI::WindowManager::getSingleton();
-		CEGUI::DefaultWindow* root = (CEGUI::DefaultWindow*)winMgr.createWindow("DefaultWindow", "Root");
+
+
+		//CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("GlossySerpent/Tooltip"); //TODO: Set in XML.
+
+		//TODO: Load all from the xml layout.
+		CEGUI::Window* myRoot = CEGUI::WindowManager::getSingleton().loadLayoutFromFile(gui_layout); //TODO: Should this be saved somewhere, or can I just access it from CEGUI whenever I need, if I need to?
+		CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(myRoot);
+
+
 		/*CEGUI::System::getSingleton().setGUISheet(root);
 		CEGUI::FrameWindow* wnd = (CEGUI::FrameWindow*)winMgr.createWindow("GlossySerpent/FrameWindow", "Demo Window");
 		root->addChildWindow(wnd);

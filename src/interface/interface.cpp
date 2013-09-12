@@ -167,8 +167,6 @@ bool Interface::loadFont(std::string filepath)
 
 void Interface::update()
 {
-	//d2d->window->window2d->popGLStates();
-
 	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
 	//First, handle injecting events into CEGUI.
 	for (unsigned int i = 0; i < d2d->window->events.size(); ++i)
@@ -178,13 +176,9 @@ void Interface::update()
 		case sf::Event::KeyPressed:
 			context.injectChar(d2d->window->events[i].text.unicode);
 			break;
-		//case sf::Event::KeyReleased:
-		//	CEGUI::InjectedInputReceiver::injectKeyUp(d2d->window->events[i].key.code);
-		//	break;
 		case sf::Event::MouseMoved:
 			{
 				sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);
-				//CEGUI::InjectedInputReceiver::injectMousePosition(d2d->window->window2d->getInput().getMouseX(), Window.GetInput().GetMouseY());
 				context.injectMousePosition(coords.x, coords.y);
 			}
 			break;
@@ -228,7 +222,6 @@ void Interface::update()
 
 	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.
-        //d2d->window->window2d->pushGLStates();
 }
 
 } //namespace mui

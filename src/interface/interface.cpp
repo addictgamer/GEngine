@@ -45,13 +45,12 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_
 {
 	d2d = &_d2d;
 
-	//d2d->window->showMouseCursor(false); //CEGUI's default schemes are fugly with the mouse or don't have one at all. Using default sfml mouse.
+	//d2d->window->showMouseCursor(false); //CEGUI's default schemes are fugly with the mouse or don't have one at all. Using default sfml mouse. //TODO: Handle mouse.
 
 	mString.setPosition(300.0f, 400.0f);
 
 	try
 	{
-		//cegui_system = &CEGUI::System::create(CEGUI::OpenGLRenderer::bootstrapSystem(), nullptr, nullptr, nullptr, nullptr, cegui_configfile, cegui_logfile);
 		CEGUI::OpenGLRenderer& myRenderer = CEGUI::OpenGLRenderer::create();
 
 		std::string log_directory("");
@@ -76,7 +75,6 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_
 		//cegui_resourceprovider->setResourceGroupDirectory("schemas", "datafiles/xml_schemas/");
 
 		//Set the default resource groups to be used
-		//CEGUI::Imageset::setDefaultResourceGroup("imagesets");
 		CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
 		CEGUI::Font::setDefaultResourceGroup("fonts");
 		CEGUI::Scheme::setDefaultResourceGroup("schemes");
@@ -97,54 +95,17 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_
 			CEGUI::SchemeManager::getSingleton().createFromFile(*i + ".scheme");
 			loaded_schemes.push_back(*i); //Save it so we know how to access it later, if needed.
 		}
-		//CEGUI::SchemeManager::getSingleton().createFromFile("GlossySerpent.scheme");
-		//CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
-		//CEGUI's default schemes are fugly with the mouse or don't have one at all. Using default sfml mouse.
+
+		//TODO: Handle the mouse.
 		/*CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("GlossySerpent/MouseArrow");
-		CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().show();
-		if (!CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().isVisible())
-		{
-			std::cout << "ERROR: MOUSE CURSOR NOT VISIBLE.\n";
-			return false;
-		}*/
+		CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().show();*/
 
 
-		//CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("GlossySerpent/Tooltip"); //TODO: Set in XML.
+		//CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("GlossySerpent/Tooltip"); //TODO: Set in XML, if possible.
 
-		//TODO: Load all from the xml layout.
+		//Load all from the xml layout.
 		CEGUI::Window* myRoot = CEGUI::WindowManager::getSingleton().loadLayoutFromFile(gui_layout); //TODO: Should this be saved somewhere, or can I just access it from CEGUI whenever I need, if I need to?
 		CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(myRoot);
-
-
-		/*CEGUI::System::getSingleton().setGUISheet(root);
-		CEGUI::FrameWindow* wnd = (CEGUI::FrameWindow*)winMgr.createWindow("GlossySerpent/FrameWindow", "Demo Window");
-		root->addChildWindow(wnd);
-		wnd->setPosition(UVector2(cegui_reldim(0.25f), cegui_reldim( 0.25f)));
-		wnd->setSize(UVector2(cegui_reldim(0.5f), cegui_reldim( 0.5f)));
-		wnd->setMaxSize(UVector2(cegui_reldim(1.0f), cegui_reldim( 1.0f)));
-		wnd->setMinSize(UVector2(cegui_reldim(0.1f), cegui_reldim( 0.1f)));
-		wnd->setText("Hello World!");*/
-		//CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
-		//cegui_windowmanager = CEGUI::WindowManager::getSingletonPtr(); //Point to the cegui window manager.
-
-
-
-
-
-
-		/* ------------------------TEST CODE------------------ */
-		////CEGUI::Window* myRoot = wmgr.createWindow("DefaultWindow", "root");
-		//CEGUI::Window* myRoot = cegui_windowmanager->createWindow("DefaultWindow", "root"); //TODO: Make a createWindow() function for the interface manager that creates the window and add its name and root to a vector so that the interface can keep track of it. Also, at some point, add the window's button(s) to a list of buttons that need updating.
-		//CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(myRoot);
-		////CEGUI::FrameWindow* fWnd = static_cast<CEGUI::FrameWindow*>(wmgr.createWindow("GlossySerpent/FrameWindow", "testWindow"));
-		//CEGUI::FrameWindow* fWnd = static_cast<CEGUI::FrameWindow*>(cegui_windowmanager->createWindow("GlossySerpent/FrameWindow", "testWindow"));
-		//myRoot->addChild(fWnd);
-		////Position a quarter of the way in from the top-left of parent.
-		//fWnd->setPosition(CEGUI::UVector2(CEGUI::UDim(0.25f, 0), CEGUI::UDim(0.25f, 0)));
-		////Set size to be half the size of the parent
-		//fWnd->setSize(CEGUI::USize(CEGUI::UDim(0.5f, 0), CEGUI::UDim(0.5f, 0)));
-		//fWnd->setText( "Hello World!" );
-		/* ------------------------END TEST CODE------------------ */
 
 		sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(coords.x, coords.y);

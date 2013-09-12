@@ -18,5 +18,6 @@
 #include "math/math.hpp"
 #include "net/client/client.hpp"
 #include "net/server/server.hpp"
-#include "rand/rand.hpp"
+#include "misc/rand.hpp" //Random <something> generation.
+#include "misc/time.hpp" //Time related stuff.
 #include "string/string.hpp"

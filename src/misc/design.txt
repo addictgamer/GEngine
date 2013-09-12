@@ -1,0 +1,19 @@
+Purpose:
+All small, miscellaneous stuff that doesn't belong in its own dedicated module goes here.
+
+Required Functionality:
+1. Provide random stuff support (such as random numbers).
+	A. Make a random number of different types (int, long, double, float, etc)
+	B. Make random strings and stuff.
+	C. Make random graphics?
+	D. Make random everything we'll need, pretty much.
+	E. Oh, and some of these can/should probably be templates.
+2. Time.
+	A. Time elapsed between frames.
+	B. Timers.
+	C. Date and time reporting?
+
+Namespace:
+All misc module code is in the mmisc namespace.
+
+Module Dependencies:

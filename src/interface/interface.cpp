@@ -47,8 +47,6 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_
 
 	//d2d->window->showMouseCursor(false); //CEGUI's default schemes are fugly with the mouse or don't have one at all. Using default sfml mouse. //TODO: Handle mouse.
 
-	mString.setPosition(300.0f, 400.0f);
-
 	try
 	{
 		CEGUI::OpenGLRenderer& myRenderer = CEGUI::OpenGLRenderer::create();

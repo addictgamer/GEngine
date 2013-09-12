@@ -46,8 +46,6 @@ private:
 
 	sf::Font font;
 
-	sf::Text mString; //TODO: FOR TESTING.
-
 	//CEGUI filepath stuff.
 	//Default values are the corresponding #define at the beginning of this file.
 	std::string cegui_configfile_path;

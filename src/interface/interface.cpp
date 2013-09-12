@@ -107,6 +107,10 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_
 
 		sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(coords.x, coords.y);
+
+		//Map SFML Key and Mouse stuff to CEGUI stuff for injecting input into CEGUI.
+		mapSFMLKeysToCEGUI();
+		mapSFMLMouseToCEGUI();
 	}
 	catch(CEGUI::Exception& e)
 	{
@@ -134,13 +138,11 @@ void Interface::update()
 		{
 		case sf::Event::KeyPressed:
 			context.injectChar(d2d->window->events[i].text.unicode);
+			context.injectKeyDown(sfml_cegui_keymap[d2d->window->events[i].key.code]);
 			break;
-		/*
-		 * TODO: Figure this out.
 		case sf::Event::KeyReleased:
-			CEGUI::InjectedInputReceiver::injectKeyUp(d2d->window->events[i].key.code);
+			context.injectKeyUp(sfml_cegui_keymap[d2d->window->events[i].key.code]);
 		 	break;
-		 */
 		case sf::Event::MouseMoved:
 			{
 				sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);

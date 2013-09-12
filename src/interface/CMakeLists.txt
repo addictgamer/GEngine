@@ -1,6 +1,9 @@
 list(APPEND GEngine_SOURCES
   "${CMAKE_CURRENT_SOURCE_DIR}/interface.cpp"
 )
+list(APPEND GEngine_SOURCES
+  "${CMAKE_CURRENT_SOURCE_DIR}/keymap.cpp"
+)
 list(APPEND GEngine_HEADERS
   "${CMAKE_CURRENT_SOURCE_DIR}/interface.hpp"
 )

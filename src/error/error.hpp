@@ -88,39 +88,4 @@ Error* generateError(ErrorType error_type, std::string *message, int severity, i
 
 } //namespace merror
 
-
-
-//The error module class.
-//It handles everything in the error module and acts as an interface to the rest of the program.
-class ErrorModule
-{
-public:
-	ErrorModule();
-	~ErrorModule();
-
-	//Call this to initialize the error module.
-	//Returns false on error.
-	bool initialize();
-
-	//Call this on program exit to free everything the error module is using.
-	void quit(); //Exit the error module.
-
-	//Generate an error.
-	//Returns a pointer to the error.
-	//Paramaters:
-	//
-	//Please do not generate any errors without this function.
-	merror::Error* generateError(merror::ErrorType error_type, std::string *message, int severity, int line_number, std::string *filename);
-
-	//Remove/deallocate an error. This is used to mark an error as "handled".
-	//Returns true on successs, false on failure.
-	bool removeError(merror::Error *error);
-
-	//Returns the list of errors to output.
-	void getListOfErrors(std::vector<merror::Error *> &output);
-
-private:
-	std::vector<merror::Error *> errors; //Vector of all the active errors. //TODO: Update this to a std::map. Maybe.
-};
-
 } //namespace GEngine

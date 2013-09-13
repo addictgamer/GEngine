@@ -1,5 +1,4 @@
 list(APPEND GEngine_SOURCES
-  "${CMAKE_CURRENT_SOURCE_DIR}/error_module.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/error.cpp"
 )
 list(APPEND GEngine_HEADERS

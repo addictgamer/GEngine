@@ -137,13 +137,15 @@ void Interface::update()
 		switch (d2d->window->events[i].type)
 		{
 		case sf::Event::KeyPressed:
-			std::cout << "Injecting: \"" << d2d->window->events[i].text.unicode << "\" into CEGUI KeyPressed.\n";
-			context.injectChar(d2d->window->events[i].text.unicode);
 			context.injectKeyDown(sfml_cegui_keymap[d2d->window->events[i].key.code]);
 			break;
 		case sf::Event::KeyReleased:
 			context.injectKeyUp(sfml_cegui_keymap[d2d->window->events[i].key.code]);
 		 	break;
+		case sf::Event::TextEntered:
+			std::cout << "Injecting: \"" << static_cast<char>(d2d->window->events[i].text.unicode) << "\" into CEGUI KeyPressed.\n";
+			context.injectChar(static_cast<char>(d2d->window->events[i].text.unicode));
+			break;
 		case sf::Event::MouseMoved:
 			{
 				sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);

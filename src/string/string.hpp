@@ -10,6 +10,9 @@
 #include <string>
 #include <sstream>
 
+namespace GEngine
+{
+
 namespace mstring
 {
 
@@ -92,3 +95,5 @@ void formStringFromVector(std::vector<std::string> input, std::string &output, s
 void splitStringIntoWords(std::string input, std::vector<std::string> &output);
 
 } //namespace mstring
+
+} //namespace GEngine

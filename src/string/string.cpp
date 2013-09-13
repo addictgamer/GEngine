@@ -2,6 +2,9 @@
 
 #include "string.hpp"
 
+namespace GEngine
+{
+
 namespace mstring
 {
 
@@ -455,3 +458,5 @@ void formStringFromVector(std::vector<std::string> input, std::string &output, s
 }
 
 } //namespace mstring
+
+} //namespace GEngine

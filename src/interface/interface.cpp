@@ -143,7 +143,6 @@ void Interface::update()
 			context.injectKeyUp(sfml_cegui_keymap[d2d->window->events[i].key.code]);
 		 	break;
 		case sf::Event::TextEntered:
-			std::cout << "Injecting: \"" << static_cast<char>(d2d->window->events[i].text.unicode) << "\" into CEGUI KeyPressed.\n";
 			context.injectChar(static_cast<char>(d2d->window->events[i].text.unicode));
 			break;
 		case sf::Event::MouseMoved:

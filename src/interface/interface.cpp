@@ -137,6 +137,7 @@ void Interface::update()
 		switch (d2d->window->events[i].type)
 		{
 		case sf::Event::KeyPressed:
+			std::cout << "Injecting: \"" << d2d->window->events[i].text.unicode << "\" into CEGUI KeyPressed.\n";
 			context.injectChar(d2d->window->events[i].text.unicode);
 			context.injectKeyDown(sfml_cegui_keymap[d2d->window->events[i].key.code]);
 			break;

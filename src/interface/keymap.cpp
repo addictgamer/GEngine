@@ -5,10 +5,10 @@
  * By the way, thanks a ton to whoever made that. SFML 0.8 documentation is severely lacking.
  */
 
+#include "interface.hpp"
+
 namespace GEngine
 {
-
-#include "interface.hpp"
 
 namespace mui
 {

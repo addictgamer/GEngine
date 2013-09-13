@@ -16,6 +16,9 @@
 
 #include "../internal_header.hpp"
 
+namespace GEngine
+{
+
 namespace mfile
 {
 
@@ -155,3 +158,5 @@ void FileManager::getFolders(std::string path, std::vector<std::string> &folders
 } //FileManager::getFolders()
 
 } //namespace mfile
+
+} //namespace GEngine

@@ -11,6 +11,9 @@
 #include <string>
 #include <vector>
 
+namespace GEngine
+{
+
 namespace mfile
 {
 
@@ -79,3 +82,5 @@ public:
 }; //class FileManager
 
 } //namespace mfile
+
+} //namespace GEngine

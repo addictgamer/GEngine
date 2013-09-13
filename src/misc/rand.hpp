@@ -2,6 +2,9 @@
 
 #pragma once
 
+namespace GEngine
+{
+
 namespace mmisc
 {
 
@@ -17,3 +20,5 @@ int randi(int min, int max); //Generates a random integer. //TODO: Template :)
 } //namespace mrand
 
 } //namespace mmisc
+
+} //namespace GEngine

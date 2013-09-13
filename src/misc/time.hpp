@@ -11,6 +11,9 @@
 #include "../string/string.hpp"
 #include "../error/error.hpp"
 
+namespace GEngine
+{
+
 namespace mmisc
 {
 
@@ -77,3 +80,5 @@ public:
 } //namespace mtime
 
 } //namespace mmisc
+
+} //namespace GEngine

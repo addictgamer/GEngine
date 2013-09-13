@@ -5,6 +5,9 @@
 #include <time.h>
 #include <cstdlib>
 
+namespace GEngine
+{
+
 namespace mmisc
 {
 
@@ -31,3 +34,5 @@ int randi(int min, int max)
 } //namespace mrand
 
 } //namespace mmisc
+
+} //namespace GEngine

@@ -5,6 +5,9 @@
 #include <vector>
 #include <string>
 
+namespace GEngine
+{
+
 namespace merror
 {
 
@@ -119,3 +122,5 @@ public:
 private:
 	std::vector<merror::Error *> errors; //Vector of all the active errors. //TODO: Update this to a std::map. Maybe.
 };
+
+} //namespace GEngine

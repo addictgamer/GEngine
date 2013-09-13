@@ -4,6 +4,9 @@
 
 #include <string>
 
+namespace GEngine
+{
+
 namespace merror
 {
 
@@ -52,3 +55,5 @@ Error* generateError(ErrorType error_type, std::string *message, int severity, i
 }
 
 } //namespace merror
+
+} //namespace GEngine

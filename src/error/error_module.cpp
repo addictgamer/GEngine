@@ -2,6 +2,9 @@
 
 #include "error.hpp"
 
+namespace GEngine
+{
+
 ErrorModule::ErrorModule()
 {
 }
@@ -67,3 +70,5 @@ void ErrorModule::getListOfErrors(std::vector<merror::Error *> &output)
 	//This had better not be assigning output as a pointer to errors. I want it to make a copy.
 	output = errors; //Ya, that's it. Pretty simple.
 }
+
+} //namespace GEngine

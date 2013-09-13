@@ -12,7 +12,7 @@
 
 #include <SFML/Graphics.hpp>
 
-namespace GEngin
+namespace GEngine
 {
 
 namespace mgfx

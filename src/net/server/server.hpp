@@ -11,6 +11,9 @@
 
 using boost::asio::ip::tcp;
 
+namespace GEngine
+{
+
 namespace mnet
 {
 
@@ -116,3 +119,5 @@ private:
 };
 
 } // mnet
+
+} //namespace GEngine

@@ -10,6 +10,9 @@
 
 #include <vector>
 
+namespace GEngine
+{
+
 namespace mnet
 {
 
@@ -69,3 +72,5 @@ public:
 };
 
 } //namespace mnet
+
+} //namespace GEngine

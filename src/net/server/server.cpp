@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+namespace GEngine
+{
+
 namespace mnet {
 
 std::string IDENTIFICATION_MESSAGE = "HALLO!\n";
@@ -196,3 +199,5 @@ void Server::setVerbose(bool value)
 }
 
 } // mnet
+
+} //namespace GEngine

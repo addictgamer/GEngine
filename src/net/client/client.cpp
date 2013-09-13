@@ -12,6 +12,9 @@
 
 using boost::asio::ip::tcp;
 
+namespace GEngine
+{
+
 namespace mnet
 {
 
@@ -128,3 +131,5 @@ std::string Client::getData()
 }
 
 } //namespace mnet
+
+} //namespace GEngine

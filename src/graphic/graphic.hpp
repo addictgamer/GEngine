@@ -4,6 +4,11 @@
 
 //TODO: What add here?
 
+namespace GEngine
+{
+
 namespace mgfx
 {
 } //namespace mgfx
+
+} //namespace GEngine

@@ -15,6 +15,9 @@
 //TODO: SFML graphics module and opengl drawing support.
 //SFML supports it, this thing will need to wrap it correctly and stuff.
 
+namespace GEngine
+{
+
 namespace mgfx
 {
 
@@ -124,3 +127,5 @@ public:
 };
 
 } //namespace mgfx
+
+} //namespace GEngine

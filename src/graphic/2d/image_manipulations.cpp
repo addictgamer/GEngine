@@ -4,6 +4,9 @@
 
 #include <iostream>
 
+namespace GEngine
+{
+
 namespace mgfx
 {
 
@@ -66,3 +69,5 @@ void invertColor(Sprite &sprite) //Invert the specified sprite's color.
 } //namespace d2d
 
 } //namespace d2d
+
+} //namespace GEngine

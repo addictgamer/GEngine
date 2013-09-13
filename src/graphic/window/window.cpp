@@ -6,6 +6,9 @@
 
 #include <iostream>
 
+namespace GEngine
+{
+
 namespace mgfx
 {
 
@@ -258,3 +261,5 @@ void Window::showMouseCursor(bool show)
 }
 
 } //namespace mgfx
+
+} //namespace GEngine.

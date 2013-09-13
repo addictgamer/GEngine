@@ -8,6 +8,9 @@
 
 #include "../graphic.hpp"
 
+namespace GEngine
+{
+
 namespace mgfx
 {
 
@@ -112,3 +115,5 @@ void invertColor(Sprite &sprite); //Invert the specified sprite's color.
 } //namespace d2d
 
 } //namespace mgfx
+
+} //namespace GEngine

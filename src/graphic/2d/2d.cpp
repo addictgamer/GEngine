@@ -4,6 +4,9 @@
 
 #include "../window/window.hpp"
 
+namespace GEngine
+{
+
 namespace mgfx
 {
 
@@ -38,3 +41,5 @@ bool D2D::setWindow(Window &_window)
 } //namespace d2d
 
 } //namespace mgfx
+
+} //namespace GEngine

@@ -6,6 +6,9 @@
 
 #include <iostream>
 
+namespace GEngine
+{
+
 namespace mgfx
 {
 
@@ -363,3 +366,5 @@ void Sprite::copyTo(Sprite &_sprite)
 } //namespace d2d
 
 } //namespace mgfx
+
+} //namespace GEngine

@@ -5,6 +5,9 @@
  * By the way, thanks a ton to whoever made that. SFML 0.8 documentation is severely lacking.
  */
 
+namespace GEngine
+{
+
 #include "interface.hpp"
 
 namespace mui
@@ -125,3 +128,5 @@ void Interface::mapSFMLMouseToCEGUI()
 }
 
 } //namespace mui
+
+} //namespace GEngine

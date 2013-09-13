@@ -9,6 +9,9 @@
 
 #include "../file/file.hpp"
 
+namespace GEngine
+{
+
 namespace mui
 {
 
@@ -194,3 +197,5 @@ void Interface::update()
 }
 
 } //namespace mui
+
+} //namespace GEngine

@@ -12,6 +12,9 @@
 
 #include <SFML/Graphics.hpp>
 
+namespace GEngin
+{
+
 namespace mgfx
 {
 
@@ -113,3 +116,5 @@ public:
 };
 
 } //namespace mui
+
+} //namespace GEngine

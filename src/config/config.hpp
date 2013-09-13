@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 
+namespace GEngine
+{
+
 namespace mconfig
 {
 
@@ -34,3 +37,5 @@ public:
 };
 
 } //namespace mconfig
+
+} //namespace GEngine

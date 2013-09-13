@@ -2,6 +2,9 @@
 
 #include "config.hpp"
 
+namespace GEngine
+{
+
 namespace mconfig
 {
 
@@ -19,3 +22,5 @@ bool CFG::parseCFG()
 }
 
 } //namespace mconfig
+
+} //Namespace GEngine

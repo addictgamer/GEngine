@@ -4,6 +4,9 @@
 
 #include "../string/string.hpp"
 
+namespace GEngine
+{
+
 namespace mconfig
 {
 
@@ -30,4 +33,6 @@ bool Variable::isBool(const unsigned int x)
 	return false; //Default case.
 }
 
-} //namespace mconfig.
+} //namespace mconfig
+
+} //namespace GEngine

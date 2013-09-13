@@ -3,6 +3,9 @@
 #include "math.hpp"
 #include <math.h>
 
+namespace GEngine
+{
+
 namespace mmath
 {
 
@@ -29,3 +32,5 @@ float manageAngle(float angle, float max, float min)
 }
 
 } //namespace mmath
+
+} //namespace GEngine

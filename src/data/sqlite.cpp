@@ -2,6 +2,9 @@
 
 #include "sqlite.hpp"
 
+namespace GEngine
+{
+
 namespace mdata
 {
 
@@ -86,3 +89,4 @@ int Database::SQLiteCallback(void *not_used, int argc, char **argv, char **col_n
 
 } //namespace mdata
 
+} //namespace GEngine

@@ -16,6 +16,9 @@
  * SQLite 3 functions.
  */
 
+namespace GEngine
+{
+
 namespace mdata
 {
 
@@ -38,3 +41,5 @@ public:
 } //namespace sqlite
 
 } //namespace mdata
+
+} //namespace GEngine

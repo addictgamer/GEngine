@@ -2,6 +2,9 @@
 
 #pragma once
 
+namespace GEngine
+{
+
 namespace mdata
 {
 
@@ -183,3 +186,5 @@ public:
 };
 
 } //namespace mdata
+
+} //namespace GEngine

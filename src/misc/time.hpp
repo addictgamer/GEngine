@@ -6,6 +6,8 @@
 
 //Purpose: injectTimePulse( float timeElapsed ); into CEGUI (both the GUI context and the system context). ( http://www.cegui.org.uk/api_reference/input_tutorial.html )
 
+#pragma once
+
 #include <SFML/System.hpp>
 
 #include "../string/string.hpp"

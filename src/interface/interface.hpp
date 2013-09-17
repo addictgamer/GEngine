@@ -81,6 +81,8 @@ private:
 	 * Intended for use only in Interface::initialize();
 	 */
 	void mapSFMLMouseToCEGUI();
+
+	CEGUI::Window* cegui_root_window; //The root window.
 public:
 	mgfx::d2d::D2D *d2d;
 
@@ -113,6 +115,8 @@ public:
 	 * Switches between the SFML mouse and the CEGUI mouse.
 	 */
 	void switchMouse(); //TODO: Implement.
+
+	CEGUI::Window* getRootWindow(); //Returns a pointer to the root window.
 };
 
 } //namespace mui

@@ -50,7 +50,7 @@ Interface::~Interface()
 	cegui_resourceprovider = nullptr;
 }
 
-bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_schemes, std::string gui_layout)
+bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_schemes)
 {
 	d2d = &_d2d;
 
@@ -109,10 +109,6 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_
 
 
 		//CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("GlossySerpent/Tooltip"); //TODO: Set in XML, if possible.
-
-		//Load all from the xml layout.
-		cegui_root_window = CEGUI::WindowManager::getSingleton().loadLayoutFromFile(gui_layout); //TODO: Should this be saved somewhere, or can I just access it from CEGUI whenever I need, if I need to?
-		CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(cegui_root_window);
 
 		sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(coords.x, coords.y);
@@ -205,6 +201,16 @@ void Interface::update()
 CEGUI::Window* Interface::getRootWindow()
 {
 	return cegui_root_window;
+}
+
+void Interface::createVirtualWindowFromLayout(std::string layout, bool root)
+{
+	CEGUI::Window *window = CEGUI::WindowManager::getSingleton().loadLayoutFromFile(layout);
+	if (root) //If it's supposed to be the root window...
+	{
+		cegui_root_window = window;
+		CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(cegui_root_window);
+	}
 }
 
 } //namespace mui

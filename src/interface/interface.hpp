@@ -96,7 +96,7 @@ public:
 	 *	cegui_shemes	:	vector containing the NAMES of all the cegui scheme files we're using. Example: "TaharezLook", note: NOT "TaharezLook.scheme". Do NOT include the file extension, only the actual name of the theme.
 	 *	gui_layout	:	Name of the xml file that defines the program's GUI layout. Include file extension, in contrast to cegui_schemes. Leave blank ("") if you want to specify your GUI in the code rather than in an xml file.
 	 */
-	bool initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_schemes, std::string gui_layout);
+	bool initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_schemes);
 
 	/*
 	More of a draw update, since all it does (currently) is render all of cegui's stuffs.
@@ -117,6 +117,8 @@ public:
 	void switchMouse(); //TODO: Implement.
 
 	CEGUI::Window* getRootWindow(); //Returns a pointer to the root window.
+
+	void createVirtualWindowFromLayout(std::string layout, bool root = false);
 };
 
 } //namespace mui

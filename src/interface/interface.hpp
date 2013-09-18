@@ -118,7 +118,7 @@ public:
 
 	CEGUI::Window* getRootWindow(); //Returns a pointer to the root window.
 
-	void createVirtualWindowFromLayout(std::string layout, bool root = false);
+	CEGUI::Window* createVirtualWindowFromLayout(std::string layout, bool root = false);
 };
 
 } //namespace mui

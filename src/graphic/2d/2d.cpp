@@ -28,13 +28,13 @@ bool D2D::setup()
 	return true; //Success.
 }
 
-void D2D::update()
-{
-}
-
 void D2D::setWindow(Window &_window)
 {
 	window = &_window;
+}
+
+void D2D::update()
+{
 }
 
 } //namespace d2d

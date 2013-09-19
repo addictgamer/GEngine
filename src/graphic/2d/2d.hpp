@@ -31,7 +31,7 @@ public:
 	bool setup();
 
 	//Be sure to call setWindow() before using D2D!
-	bool setWindow(Window &_window);
+	void setWindow(Window &_window);
 
 	//Updates the 2D manager thingy.
 	void update();

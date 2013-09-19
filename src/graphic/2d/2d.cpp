@@ -32,10 +32,9 @@ void D2D::update()
 {
 }
 
-bool D2D::setWindow(Window &_window)
+void D2D::setWindow(Window &_window)
 {
 	window = &_window;
-	return true; //Success.
 }
 
 } //namespace d2d

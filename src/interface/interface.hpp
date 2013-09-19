@@ -118,6 +118,8 @@ public:
 
 	CEGUI::Window* getRootWindow(); //Returns a pointer to the root window.
 
+	void setRootWindow(CEGUI::Window *window); //Sets the root window. //Caller is responsible for freeing the previous root window.
+
 	CEGUI::Window* createVirtualWindowFromLayout(std::string layout, bool root = false);
 };
 

@@ -203,13 +203,19 @@ CEGUI::Window* Interface::getRootWindow()
 	return cegui_root_window;
 }
 
+void Interface::setRootWindow(CEGUI::Window *window) //Sets the root window.
+{
+	cegui_root_window = window;
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(cegui_root_window);
+	
+}
+
 CEGUI::Window* Interface::createVirtualWindowFromLayout(std::string layout, bool root)
 {
 	CEGUI::Window *window = CEGUI::WindowManager::getSingleton().loadLayoutFromFile(layout);
 	if (root) //If it's supposed to be the root window...
 	{
-		cegui_root_window = window;
-		CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(cegui_root_window);
+		setRootWindow(window); //Set it.
 	}
 
 	return window;

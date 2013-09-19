@@ -1,9 +1,8 @@
-add_subdirectory(2d)
-add_subdirectory(3d)
-add_subdirectory(window)
-
+list(APPEND GEngine_SOURCES
+  "${CMAKE_CURRENT_SOURCE_DIR}/3d.cpp"
+)
 list(APPEND GEngine_HEADERS
-  "${CMAKE_CURRENT_SOURCE_DIR}/graphic.hpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/3d.hpp"
 )
 
 set(GEngine_SOURCES ${GEngine_SOURCES} PARENT_SCOPE)

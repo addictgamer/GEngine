@@ -1,0 +1,18 @@
+Purpose:
+Handle all 3D graphics code, including, but not limited to: Textures, models, rendering, etc.
+
+Libraries/engines used (dependencies):
+SFML and OpenGL.
+
+Required Functionality:
+	1. Creating and rendering models.
+	2. Models must be fully modifiable at runtime while not sacrificing performance.
+	3. Working with the 2DD code such as to be able to draw 2D images to the screen even when in 3D mode (such as interface elements, text, etc).
+
+Libraries/engines used (dependencies):
+SFML and OpenGL.
+
+Namespace:
+All of the DD module is contained within namespace d3d.
+
+Module Dependencies:

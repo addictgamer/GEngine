@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <iostream>
+
 namespace GEngine
 {
 

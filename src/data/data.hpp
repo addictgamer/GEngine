@@ -196,9 +196,9 @@ public:
 template<typename T>
 typename std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
 {
-	typename std::vector<T>::iterator iter = vector.begin();
+	typename std::vector<T>::iterator *iter = new std::vector<T>::iterator;
 
-	for (; iter != vector.end(); ++iter)
+	for (iter = vector.begin(); iter != vector.end(); ++iter)
 	{
 		if ((*iter) == t)
 		{
@@ -206,6 +206,7 @@ typename std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
 		}
 	}
 
+	delete iter;
 	return nullptr; //Didn't find it.
 }
 

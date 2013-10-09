@@ -135,6 +135,7 @@ void Window::update()
 			}
 			else if (event->type == sf::Event::Resized && !closed && window2d) //Window resized.
 			{
+				window2d->setView(sf::View(sf::FloatRect(0, 0, event->size.width, event->size.height)));
 			}
 			else if (event->type == sf::Event::LostFocus)
 			{

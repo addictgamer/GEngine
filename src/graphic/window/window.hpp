@@ -124,6 +124,8 @@ public:
 		bool show : true = shows the cursor and false = hide it.
 	*/
 	void showMouseCursor(bool show);
+
+	//TODO: Resize function.
 };
 
 } //namespace mgfx

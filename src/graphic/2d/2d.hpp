@@ -30,8 +30,8 @@ public:
 	//Sets up the 2D manager thingy.
 	bool setup();
 
-	//Be sure to call setWindow() before using this!
-	bool setWindow(Window &_window);
+	//Be sure to call setWindow() before using D2D!
+	void setWindow(Window &_window);
 
 	//Updates the 2D manager thingy.
 	void update();

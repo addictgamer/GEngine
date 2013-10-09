@@ -193,7 +193,7 @@ public:
  * It returns an iterator pointing to that part of the vector if it found it, nullptr otherwise.
  */
 template<typename T>
-std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
+typename std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
 {
 	std::vector<T>::iterator iter = vector.begin();
 

@@ -149,8 +149,8 @@ void Sprite::draw(float _x, float _y) //Draw it with custom coordinates.
 {
 	//TODO: WARNING: This method of setting x and y might cause trippy results if x and y are simply pointers to another object's x and y.
 	//Back up the x and y.
-	float tempx = *x;
-	float tempy = *y;
+	//float tempx = *x;
+	//float tempy = *y;
 
 	//Set the new x and new y (temporary only).
 	setx(_x);
@@ -171,8 +171,8 @@ void Sprite::draw(float _x, float _y) //Draw it with custom coordinates.
 	d2d->window->drawSprite(*this); //Draws the sprite.
 
 	//Revert x and y back to the old values.
-	setx(tempx);
-	sety(tempy);
+	//setx(tempx);
+	//sety(tempy);
 }
 
 void Sprite::draw(D2D &_d2d, float _x, float _y) //Draw it with a custom d2d and custom coordinates.

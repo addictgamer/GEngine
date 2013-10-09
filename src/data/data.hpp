@@ -187,6 +187,27 @@ public:
 	}
 };
 
+/*
+ * Right, so this is pretty simple.
+ * Basically, it checks for t in vector.
+ * It returns an iterator pointing to that part of the vector if it found it, nullptr otherwise.
+ */
+template<typename T>
+std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
+{
+	std::vector<T>::iterator iter = vector.begin();
+
+	for (; iter != vector.end(); ++iter)
+	{
+		if ((*iter) == t)
+		{
+			return iter; //Found it!
+		}
+	}
+
+	return nullptr; //Didn't find it.
+}
+
 } //namespace mdata
 
 } //namespace GEngine

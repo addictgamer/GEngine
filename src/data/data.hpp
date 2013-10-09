@@ -192,7 +192,11 @@ public:
  * Right, so this is pretty simple.
  * Basically, it checks for t in vector.
  * It returns an iterator pointing to that part of the vector if it found it, nullptr otherwise.
+ *
+ * ----------------- HEY. HEY YOU. IT IS YOUR RESPONSIBILITY TO DELETE THE VALUE RETURNED -----------------
+ *
  */
+//TODO: Have the returned value automatically free itself when it's no longer needed. Shared pointers (and stuff like that) time!
 template<typename T>
 typename std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
 {

@@ -194,19 +194,21 @@ public:
  * It returns an iterator pointing to that part of the vector if it found it, nullptr otherwise.
  */
 template<typename T>
-typename std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
+void inVector(std::vector<T> &vector, T &t, std::vector<T>::iterator& (*iter))
 {
-	typename std::vector<T>::iterator iter = vector.begin();
+	//typename std::vector<T>::iterator iter = vector.begin();
+	iter = new std::vector<T>::iterator;
 
-	for (; iter != vector.end(); ++iter)
+	for (*iter = vector.begin(); *iter != vector.end(); ++(*iter))
 	{
-		if ((*iter) == t)
+		if ((*(*iter() == t)
 		{
-			return &iter; //Found it!
+			//return iter; //Found it!
+			return;
 		}
 	}
 
-	return nullptr; //Didn't find it.
+	iter = nullptr;
 }
 
 } //namespace mdata

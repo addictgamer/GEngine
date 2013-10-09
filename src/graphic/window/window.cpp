@@ -235,7 +235,9 @@ void Window::renderText(std::string text, int _x, int _y, int font_size, sf::Fon
 		std::cout << "\nAnd just what are you trying to achieve with a 2D window that does not exist?\n";
 		return;
 	}
+	window2d->pushGLStates();
 	window2d->draw(_text);
+	window2d->popGLStates();
 }
 
 void Window::setFramerateLimit(int fps)

@@ -192,6 +192,8 @@ void Sprite::draw(D2D &_d2d, float _x, float _y) //Draw it with a custom d2d and
 		throw;
 	}
 
+	std::cout << "[MGFX::D2D::SPRITE::DRAW()] x, y: " << *x << ", " << *y << "\n";
+
 	_d2d.window->drawSprite(*this);
 
 	//Revert x and y back to the old values.

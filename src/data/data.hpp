@@ -195,7 +195,7 @@ public:
 template<typename T>
 typename std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
 {
-	std::vector<T>::iterator iter = vector.begin();
+	typename std::vector<T>::iterator iter = vector.begin();
 
 	for (; iter != vector.end(); ++iter)
 	{

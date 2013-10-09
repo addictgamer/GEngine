@@ -202,7 +202,7 @@ typename std::vector<T>::iterator* inVector(std::vector<T> &vector, T &t)
 	{
 		if ((*iter) == t)
 		{
-			return iter; //Found it!
+			return &iter; //Found it!
 		}
 	}
 

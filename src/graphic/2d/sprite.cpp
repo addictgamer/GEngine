@@ -143,7 +143,9 @@ void Sprite::draw(D2D &_d2d) //Draw it with a custom d2d.
 		throw;
 	}
 
+	d2d->window->window2d->pushGLStates();
 	_d2d.window->drawSprite(*this);
+	d2d->window->window2d->popGLStates();
 }
 void Sprite::draw(float _x, float _y) //Draw it with custom coordinates.
 {
@@ -168,7 +170,9 @@ void Sprite::draw(float _x, float _y) //Draw it with custom coordinates.
 		throw;
 	}
 
+	d2d->window->window2d->pushGLStates();
 	d2d->window->drawSprite(*this); //Draws the sprite.
+	d2d->window->window2d->popGLStates();
 
 	//Revert x and y back to the old values.
 	setx(tempx);
@@ -192,7 +196,9 @@ void Sprite::draw(D2D &_d2d, float _x, float _y) //Draw it with a custom d2d and
 		throw;
 	}
 
+	d2d->window->window2d->pushGLStates();
 	_d2d.window->drawSprite(*this);
+	d2d->window->window2d->popGLStates();
 
 	//Revert x and y back to the old values.
 	setx(tempx);

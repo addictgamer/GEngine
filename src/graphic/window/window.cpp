@@ -226,7 +226,8 @@ void Window::drawSprite(mgfx::d2d::Sprite &sprite)
 
 void Window::renderText(std::string text, int _x, int _y, int font_size, sf::Font &font)
 {
-	sf::Text _text(text, font, font_size);
+	sf::Text _text(text, font);
+	_text.setCharacterSize(font_size);
 	_text.setPosition(_x, _y);
 
 	if (!window2d)

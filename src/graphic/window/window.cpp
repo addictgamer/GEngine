@@ -6,6 +6,9 @@
 
 #include <iostream>
 
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
+
 namespace GEngine
 {
 
@@ -136,6 +139,9 @@ void Window::update()
 			else if (event->type == sf::Event::Resized && !closed && window2d) //Window resized.
 			{
 				window2d->setView(sf::View(sf::FloatRect(0, 0, event->size.width, event->size.height)));
+				//CEGUI::Sizef size(event->size.width, event->size.height);
+				//CEGUI::System::getSingleton().notifyDisplaySizeChanged(size); //Notify CEGUI of the changed size.
+				CEGUI::System::getSingleton().notifyDisplaySizeChanged(CEGUI::Sizef(event->size.width, event->size.height)); //Notify CEGUI of the changed size.
 			}
 			else if (event->type == sf::Event::LostFocus)
 			{

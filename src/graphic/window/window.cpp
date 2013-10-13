@@ -14,6 +14,8 @@ namespace mgfx
 
 Window::Window()
 {
+	parent_d2d = nullptr;
+
 	width = nullptr;
 	height = nullptr;
 	delete_width = false;

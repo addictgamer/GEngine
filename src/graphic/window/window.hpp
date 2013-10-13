@@ -24,6 +24,7 @@ namespace mgfx
 namespace d2d
 {
 
+class D2D;
 class Sprite;
 
 }
@@ -31,6 +32,8 @@ class Sprite;
 class Window
 {
 public:
+	d2d::D2D *parent_d2d; //Pointer to the parent d2d.
+
 	//Window width and height.
 	int *width, *height;
 	//Are the width and height to be deleted in the deconstructor, or merely set to nullptr?

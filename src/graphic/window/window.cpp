@@ -139,7 +139,7 @@ void Window::update()
 				window2d->close(); //Close the window.
 				closed = true; //Update that it's closed.
 			}
-			else if (event->type == sf::Event::Resized && !closed && window2d) //Window resized.
+			else if (event->type == sf::Event::Resized && !closed && window2d) //Window resized. //TODO: Make a can_resize check.
 			{
 				window2d->setView(sf::View(sf::FloatRect(0, 0, event->size.width, event->size.height)));
 				//CEGUI::Sizef size(event->size.width, event->size.height);

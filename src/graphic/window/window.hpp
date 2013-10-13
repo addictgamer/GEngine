@@ -56,6 +56,8 @@ public:
 
 	//Is the window open or closed?
 	bool closed;
+	//Can the window be closed?
+	bool can_close;
 
 	//Is the window focused?
 	bool focus;

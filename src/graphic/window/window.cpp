@@ -32,6 +32,7 @@ Window::Window()
 	event = nullptr;
 
 	closed = true;
+	can_close = true;
 
 	focus = true;
 }
@@ -133,7 +134,7 @@ void Window::update()
 	{
 		while (window2d->pollEvent(*event)) //Poll events. //TODO: Give access to these events to the game.
 		{
-			if (event->type == sf::Event::Closed) //Check if the event is a window close.
+			if (event->type == sf::Event::Closed && can_close) //Check if the event is a window close.
 			{
 				window2d->close(); //Close the window.
 				closed = true; //Update that it's closed.

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo rm lib -R
-sudo rm build -R
-sudo rm include -R
+rm lib -rf
+rm build -rf
+rm include -rf

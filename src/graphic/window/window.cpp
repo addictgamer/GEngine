@@ -6,6 +6,9 @@
 
 #include <iostream>
 
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
+
 namespace GEngine
 {
 
@@ -137,6 +140,10 @@ void Window::update()
 			}
 			else if (event->type == sf::Event::Resized && !closed && window2d) //Window resized.
 			{
+				window2d->setView(sf::View(sf::FloatRect(0, 0, event->size.width, event->size.height)));
+				//CEGUI::Sizef size(event->size.width, event->size.height);
+				//CEGUI::System::getSingleton().notifyDisplaySizeChanged(size); //Notify CEGUI of the changed size.
+				CEGUI::System::getSingleton().notifyDisplaySizeChanged(CEGUI::Sizef(event->size.width, event->size.height)); //Notify CEGUI of the changed size.
 			}
 			else if (event->type == sf::Event::LostFocus)
 			{
@@ -227,7 +234,8 @@ void Window::drawSprite(mgfx::d2d::Sprite &sprite)
 
 void Window::renderText(std::string text, int _x, int _y, int font_size, sf::Font &font)
 {
-	sf::Text _text(text, font, font_size);
+	sf::Text _text(text, font);
+	_text.setCharacterSize(font_size);
 	_text.setPosition(_x, _y);
 
 	if (!window2d)
@@ -235,7 +243,9 @@ void Window::renderText(std::string text, int _x, int _y, int font_size, sf::Fon
 		std::cout << "\nAnd just what are you trying to achieve with a 2D window that does not exist?\n";
 		return;
 	}
+	window2d->pushGLStates();
 	window2d->draw(_text);
+	window2d->popGLStates();
 }
 
 void Window::setFramerateLimit(int fps)

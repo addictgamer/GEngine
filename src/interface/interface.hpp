@@ -48,8 +48,6 @@ class Interface
 private:
 	CEGUI::System* cegui_system;
 
-	sf::Font font;
-
 	//CEGUI filepath stuff.
 	//Default values are the corresponding #define at the beginning of this file.
 	std::string cegui_configfile_path;
@@ -85,6 +83,7 @@ private:
 	CEGUI::Window* cegui_root_window; //The root window.
 public:
 	mgfx::d2d::D2D *d2d;
+	sf::Font font;
 
 	Interface();
 	~Interface();

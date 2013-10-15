@@ -194,8 +194,9 @@ void Interface::update()
 
 	//onMouseButtonUp //Use this to check if the frame window's button was pressed.
 
-	//CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs. //TODO: Make this work properly later.
-	CEGUI::System::getSingleton().getDefaultGUIContext().draw();
+	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs. //TODO: Make this work properly later.
+	//CEGUI::System::getSingleton().getDefaultGUIContext().draw();
+	//CEGUI::System::getSingleton().getDefaultGUIContext().getRenderTarget().draw();
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.
 }
 

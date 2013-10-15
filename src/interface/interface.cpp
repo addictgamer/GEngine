@@ -146,7 +146,7 @@ void Interface::update()
 			break;
 		case sf::Event::KeyReleased:
 			context.injectKeyUp(sfml_cegui_keymap[d2d->window->events[i].key.code]);
-		 	break;
+			break;
 		case sf::Event::TextEntered:
 			context.injectChar(static_cast<char>(d2d->window->events[i].text.unicode));
 			break;

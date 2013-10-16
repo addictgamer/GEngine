@@ -6,6 +6,9 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
+
 #include "../graphic.hpp"
 
 namespace GEngine
@@ -22,6 +25,11 @@ namespace d2d
 class D2D
 {
 public:
+	//These three are for CEGUI stuff to make it easier on the mui::Interface class.
+	CEGUI::OpenGLRenderer *cegui_renderer; //The renderer object. We're using the OpenGL version because that's how it works for us. SFML and CEGUI, that is.
+	CEGUI::GUIContext *cegui_gui_context; //The GUI context for this window.
+	CEGUI::Window* cegui_root_window; //The root window.
+
 	Window *window; //The window being used with this. //NOTE: Please do NOT change this at runtime. Create a new d2d for every window.
 
 	D2D();
@@ -35,6 +43,10 @@ public:
 
 	//Updates the 2D manager thingy.
 	void update();
+
+	CEGUI::Window* getRootWindow(); //Returns a pointer to the root window.
+
+	void setRootWindow(CEGUI::Window *window);
 };
 
 class Sprite

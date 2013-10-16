@@ -69,10 +69,8 @@ private:
 	 * Intended for use only in Interface::initialize();
 	 */
 	void mapSFMLMouseToCEGUI();
-
-	CEGUI::Window* cegui_root_window; //The root window.
 public:
-	mgfx::d2d::D2D *d2d;
+	std::vector<mgfx::d2d::D2D* > windows; //Not responsible for freeing these D2Ds. //TODO: Make a function to add and remove from this vector. //TODO: Make a function for getDefaultD2D() which simply returns windows[0].
 	sf::Font font;
 
 	//TODO: Make these map stuff private again after all the interface code is consolidated into here as opposed to into the game.
@@ -91,12 +89,13 @@ public:
 
 	/*
 	 * Initializes the interface & CEGUI.
+	 * Uses the D2D provided as the main D2D. //TODO: Allow for no starting off D2D.
 	 * Parameters:
 	 *	&_d2d		:	reference to the 2d manager that this GUI belongs to.
 	 *	cegui_shemes	:	vector containing the NAMES of all the cegui scheme files we're using. Example: "TaharezLook", note: NOT "TaharezLook.scheme". Do NOT include the file extension, only the actual name of the theme.
 	 *	gui_layout	:	Name of the xml file that defines the program's GUI layout. Include file extension, in contrast to cegui_schemes. Leave blank ("") if you want to specify your GUI in the code rather than in an xml file.
 	 */
-	bool initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_schemes);
+	bool initialize(mgfx::d2d::D2D &d2d, std::vector<std::string> cegui_schemes);
 
 	/*
 	More of a draw update, since all it does (currently) is render all of cegui's stuffs.
@@ -116,11 +115,18 @@ public:
 	 */
 	void switchMouse(); //TODO: Implement.
 
-	CEGUI::Window* getRootWindow(); //Returns a pointer to the root window.
+	CEGUI::Window* getRootWindow(mgfx::d2d::D2D &d2d); //Returns a pointer to the root window of the specified D2D.
 
-	void setRootWindow(CEGUI::Window *window); //Sets the root window. //Caller is responsible for freeing the previous root window.
+	/*
+	 * Sets the root window.
+	 * First parameter is the CEGUI window to set the root window to, second is the d2d to set the root window of.
+	 * Caller is responsible for freeing the previous root window.
+	 */
+	void setRootWindow(CEGUI::Window *window, mgfx::d2d::D2D &d2d);
 
-	CEGUI::Window* createVirtualWindowFromLayout(std::string layout, bool root = false);
+	CEGUI::Window* createVirtualWindowFromLayout(std::string layout/*, bool root = false*/); //TODO: Reimplement the bool root functionality via providing a pointer to the D2D to set the the root of.
+
+	void addD2D(mgfx::d2d::D2D &d2d);
 };
 
 } //namespace mui

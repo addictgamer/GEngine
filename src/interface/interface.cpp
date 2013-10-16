@@ -17,7 +17,7 @@ namespace mui
 
 Interface::Interface()
 {
-	d2d = nullptr;
+	//d2d = nullptr;
 	cegui_system = nullptr;
 
 	cegui_configfile_path = CEGUI_CONFIGFILE_PATH;
@@ -30,13 +30,13 @@ Interface::Interface()
 	cegui_luascripts_path = CEGUI_LUASCRIPTS_PATH;
 
 	cegui_resourceprovider = nullptr;
-	cegui_root_window = nullptr;
+	//cegui_root_window = nullptr;
 	//cegui_windowmanager = nullptr;
 }
 
 Interface::~Interface()
 {
-	if (d2d)
+	/*if (d2d)
 	{
 		d2d = nullptr;
 	}
@@ -44,16 +44,15 @@ Interface::~Interface()
 	if (cegui_root_window)
 	{
 		delete cegui_root_window;
-	}
+	}*/
 
 	cegui_system = nullptr;
 	cegui_resourceprovider = nullptr;
 }
 
-bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_schemes)
+bool Interface::initialize(mgfx::d2d::D2D &d2d, std::vector<std::string> cegui_schemes)
 {
-	d2d = &_d2d;
-
+	//d2d = &_d2d;
 	//d2d->window->showMouseCursor(false); //CEGUI's default schemes are fugly with the mouse or don't have one at all. Using default sfml mouse. //TODO: Handle mouse.
 
 	try
@@ -110,18 +109,23 @@ bool Interface::initialize(mgfx::d2d::D2D &_d2d, std::vector<std::string> cegui_
 
 		//CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType("GlossySerpent/Tooltip"); //TODO: Set in XML, if possible.
 
-		sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);
+		sf::Vector2i coords = sf::Mouse::getPosition(*d2d.window->window2d);
 		CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(coords.x, coords.y);
 
 		//Map SFML Key and Mouse stuff to CEGUI stuff for injecting input into CEGUI.
 		mapSFMLKeysToCEGUI();
 		mapSFMLMouseToCEGUI();
+
+		d2d.cegui_gui_context = &CEGUI::System::getSingleton().getDefaultGUIContext(); //Point this accordingly.
+		d2d.cegui_renderer = &myRenderer;
 	}
 	catch(CEGUI::Exception& e)
 	{
 		std::cout << "CEGUI Exception:" << e.getMessage().c_str() << "\n";
 		return false;
 	}
+
+	addD2D(d2d); //Add the D2D to the list of D2Ds.
 
 	return true; //Success.
 }
@@ -135,7 +139,77 @@ bool Interface::loadFont(std::string filepath)
 
 void Interface::update()
 {
-	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
+	std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin();
+	for (; iter != windows.end(); ++iter)
+	{
+		mgfx::d2d::D2D *d2d = (*iter); //First point to this so I don't have to type crazy things every time.
+		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
+
+		context.getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.
+
+		//Now, handle injecting events into CEGUI.
+		for (unsigned int i = 0; i < d2d->window->events.size(); ++i)
+		{
+			switch (d2d->window->events[i].type)
+			{
+			case sf::Event::KeyPressed:
+				context.injectKeyDown(sfml_cegui_keymap[d2d->window->events[i].key.code]);
+				break;
+			case sf::Event::KeyReleased:
+				context.injectKeyUp(sfml_cegui_keymap[d2d->window->events[i].key.code]);
+				break;
+			case sf::Event::TextEntered:
+				context.injectChar(static_cast<char>(d2d->window->events[i].text.unicode));
+				break;
+			case sf::Event::MouseMoved:
+				{
+					sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);
+					context.injectMousePosition(coords.x, coords.y);
+				}
+				break;
+			case sf::Event::MouseButtonPressed:
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				{
+					context.injectMouseButtonDown(CEGUI::LeftButton);
+				}
+				else if (sf::Mouse::isButtonPressed(sf::Mouse::Middle))
+				{
+					context.injectMouseButtonDown(CEGUI::MiddleButton);
+				}
+				else if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+				{
+					context.injectMouseButtonDown(CEGUI::RightButton);
+				}
+				break;
+			case sf::Event::MouseButtonReleased:
+				switch (d2d->window->events[i].mouseButton.button)
+				{
+				case sf::Mouse::Left:
+					context.injectMouseButtonUp(CEGUI::LeftButton);
+					break;
+				case sf::Mouse::Middle:
+					context.injectMouseButtonUp(CEGUI::MiddleButton);
+					break;
+				case sf::Mouse::Right:
+					context.injectMouseButtonUp(CEGUI::RightButton);
+					break;
+				}
+				break;
+			case sf::Event::MouseWheelMoved:
+				context.injectMouseWheelChange(d2d->window->events[i].mouseWheel.delta);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
+
+
+
+
+	/*CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
 	//First, handle injecting events into CEGUI.
 	for (unsigned int i = 0; i < d2d->window->events.size(); ++i)
 	{
@@ -197,30 +271,47 @@ void Interface::update()
 	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs. //TODO: Make this work properly later.
 	//CEGUI::System::getSingleton().getDefaultGUIContext().draw();
 	//CEGUI::System::getSingleton().getDefaultGUIContext().getRenderTarget().draw();
-	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.
+	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.*/
 }
 
-CEGUI::Window* Interface::getRootWindow()
+CEGUI::Window* Interface::getRootWindow(mgfx::d2d::D2D &d2d)
 {
-	return cegui_root_window;
+	//return cegui_root_window;
+	return d2d.getRootWindow();
 }
 
-void Interface::setRootWindow(CEGUI::Window *window) //Sets the root window.
+void Interface::setRootWindow(CEGUI::Window *window, mgfx::d2d::D2D &d2d) //Sets the root window.
 {
-	cegui_root_window = window;
-	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(cegui_root_window);
-	
+	/*cegui_root_window = window;
+	CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(cegui_root_window);*/
+	d2d.cegui_root_window = window;
+	d2d.cegui_gui_context->setRootWindow(d2d.cegui_root_window);
 }
 
-CEGUI::Window* Interface::createVirtualWindowFromLayout(std::string layout, bool root)
+CEGUI::Window* Interface::createVirtualWindowFromLayout(std::string layout/*, bool root*/)
 {
 	CEGUI::Window *window = CEGUI::WindowManager::getSingleton().loadLayoutFromFile(layout);
-	if (root) //If it's supposed to be the root window...
+	/*if (root) //If it's supposed to be the root window...
 	{
 		setRootWindow(window); //Set it.
-	}
+	}*/
 
 	return window;
+}
+
+void Interface::addD2D(mgfx::d2d::D2D &d2d)
+{
+	if (!d2d.cegui_renderer)
+	{
+		d2d.cegui_renderer = &CEGUI::OpenGLRenderer::create();
+	}
+
+	if (!d2d.cegui_gui_context)
+	{
+		d2d.cegui_gui_context = &CEGUI::System::getSingleton().createGUIContext(d2d.cegui_renderer->getDefaultRenderTarget());
+	}
+
+	windows.push_back(&d2d);
 }
 
 } //namespace mui

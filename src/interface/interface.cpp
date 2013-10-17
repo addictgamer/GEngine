@@ -146,7 +146,7 @@ void Interface::update()
 		if (windows.size() > 1)
 		{
 			//std::cout << "More than one & i = " << i << "\n";
-			std::cout << "More than 1.\n";
+			//std::cout << "More than 1.\n";
 		}
 		mgfx::d2d::D2D *d2d = *iter; //First point to this so I don't have to type crazy things every time.
 		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.

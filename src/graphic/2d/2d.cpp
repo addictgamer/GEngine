@@ -33,7 +33,7 @@ D2D::~D2D()
 
 	if (cegui_gui_context)
 	{
-		delete cegui_gui_context;
+		CEGUI::System::getSingleton().destroyGUIContext(*cegui_gui_context);
 		cegui_gui_context = nullptr;
 	}
 }

@@ -141,11 +141,11 @@ bool Interface::loadFont(std::string filepath)
 void Interface::update()
 {
 	std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin();
-	//for (int i = 0; iter != windows.end(); ++iter, ++i)
-	for (int i = 0; i < windows.size(); ++i)
+	for (; iter != windows.end(); ++iter)
+	//for (int i = 0; i < windows.size(); ++i)
 	{
-		//mgfx::d2d::D2D *d2d = (*iter); //First point to this so I don't have to type crazy things every time.
-		mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
+		mgfx::d2d::D2D *d2d = (*iter); //First point to this so I don't have to type crazy things every time.
+		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
 
 		context.getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.

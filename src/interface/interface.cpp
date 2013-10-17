@@ -140,7 +140,7 @@ bool Interface::loadFont(std::string filepath)
 
 void Interface::update()
 {
-	std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin();
+	std::vector<mgfx::d2d::D2D* >::iterator iter;
 	for (iter = windows.begin(); iter != windows.end(); ++iter)
 	//for (int i = 0; i < windows.size(); ++i)
 	{

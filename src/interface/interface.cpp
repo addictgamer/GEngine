@@ -140,14 +140,14 @@ bool Interface::loadFont(std::string filepath)
 
 void Interface::update()
 {
-	for (std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin(); iter != windows.end(); ++iter)
+	for (std::vector<mgfx::d2d::D2D* >::iterator iterator = windows.begin(); iterator != windows.end(); ++iterator)
 	//for (int i = 0; i < windows.size(); ++i)
 	{
 		if (windows.size() > 1)
 		{
 			//std::cout << "More than one & i = " << i << "\n";
 		}
-		mgfx::d2d::D2D *d2d = *iter; //First point to this so I don't have to type crazy things every time.
+		mgfx::d2d::D2D *d2d = *iterator; //First point to this so I don't have to type crazy things every time.
 		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
 

@@ -30,6 +30,8 @@ public:
 	CEGUI::GUIContext *cegui_gui_context; //The GUI context for this window.
 	CEGUI::Window* cegui_root_window; //The root window.
 
+	bool default_d2d; //Setting to true will not delete the CEGUI GUI context and OpenGL Renderer because it's the default GUI context and CEGUI handles everything.
+
 	Window *window; //The window being used with this. //NOTE: Please do NOT change this at runtime. Create a new d2d for every window.
 
 	D2D();

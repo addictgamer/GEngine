@@ -18,23 +18,27 @@ D2D::D2D()
 	window = nullptr;
 	cegui_renderer = nullptr;
 	cegui_gui_context = nullptr;
+	default_d2d = false;
 }
 
 D2D::~D2D()
 {
 	window = nullptr;
 
-	if (cegui_renderer)
+	if (!default_d2d) //Don't delete them if default because the default GUI context is CEGUI's responsibility.
 	{
-		//delete cegui_renderer;
-		CEGUI::OpenGLRenderer::destroy(*cegui_renderer);
-		cegui_renderer = nullptr;
-	}
+		if (cegui_renderer)
+		{
+			//delete cegui_renderer;
+			CEGUI::OpenGLRenderer::destroy(*cegui_renderer);
+			cegui_renderer = nullptr;
+		}
 
-	if (cegui_gui_context)
-	{
-		CEGUI::System::getSingleton().destroyGUIContext(*cegui_gui_context);
-		cegui_gui_context = nullptr;
+		if (cegui_gui_context)
+		{
+			CEGUI::System::getSingleton().destroyGUIContext(*cegui_gui_context);
+			cegui_gui_context = nullptr;
+		}
 	}
 }
 

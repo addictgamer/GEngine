@@ -118,6 +118,7 @@ bool Interface::initialize(mgfx::d2d::D2D &d2d, std::vector<std::string> cegui_s
 
 		d2d.cegui_gui_context = &CEGUI::System::getSingleton().getDefaultGUIContext(); //Point this accordingly.
 		d2d.cegui_renderer = &myRenderer;
+		d2d.default_d2d = true;
 	}
 	catch(CEGUI::Exception& e)
 	{

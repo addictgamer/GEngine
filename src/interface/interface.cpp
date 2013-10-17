@@ -141,7 +141,7 @@ bool Interface::loadFont(std::string filepath)
 void Interface::update()
 {
 	std::vector<mgfx::d2d::D2D* >::iterator iter;
-	for (iter = windows.begin(); iter != windows.end(); iter++)
+	for (iter = windows.begin(); iter != windows.end(); ++iter)
 	//for (int i = 0; i < windows.size(); ++i)
 	{
 		mgfx::d2d::D2D *d2d = *iter; //First point to this so I don't have to type crazy things every time.

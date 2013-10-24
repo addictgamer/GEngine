@@ -310,6 +310,7 @@ void Interface::addD2D(mgfx::d2d::D2D &d2d)
 {
 	if (!d2d.cegui_renderer)
 	{
+		//When creating a renderer, perhaps force SFML to set the viewport to the d2d's window?
 		d2d.cegui_renderer = &CEGUI::OpenGLRenderer::create();
 	}
 

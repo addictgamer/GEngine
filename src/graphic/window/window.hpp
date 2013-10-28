@@ -130,6 +130,11 @@ public:
 	*/
 	void showMouseCursor(bool show);
 
+	/*
+	 * Basically a wrapper to SFML's setActive function for windows.
+	 */
+	void setActive();
+
 	//TODO: Resize function.
 };
 

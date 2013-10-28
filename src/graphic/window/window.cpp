@@ -273,6 +273,12 @@ void Window::showMouseCursor(bool show)
 	window2d->setMouseCursorVisible(show);
 }
 
+
+void Window::setActive()
+{
+	window2d->setActive(true);
+}
+
 } //namespace mgfx
 
 } //namespace GEngine.

@@ -145,7 +145,10 @@ void Window::update()
 				//CEGUI::Sizef size(event->size.width, event->size.height);
 				//CEGUI::System::getSingleton().notifyDisplaySizeChanged(size); //Notify CEGUI of the changed size.
 				//CEGUI::System::getSingleton().notifyDisplaySizeChanged(CEGUI::Sizef(event->size.width, event->size.height)); //Notify CEGUI of the changed size. //TODO: Notify the GUI context involved.
-				parent_d2d->cegui_renderer->setDisplaySize(CEGUI::Size<float>(event->size.width, event->size.height));
+				if (parent_d2d && parent_d2d->cegui_renderer)
+				{
+					parent_d2d->cegui_renderer->setDisplaySize(CEGUI::Size<float>(event->size.width, event->size.height));
+				}
 			}
 			else if (event->type == sf::Event::LostFocus)
 			{

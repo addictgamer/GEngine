@@ -220,7 +220,7 @@ void Interface::update()
 		glEnd( );*/
 
 		//TODO: gui context draw() ?
-		context.draw();
+		//context.draw();
 	}
 
 	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.

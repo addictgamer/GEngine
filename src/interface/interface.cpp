@@ -153,7 +153,7 @@ void Interface::update()
 		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
 
-		std::cout << "Context size: " << context.getSurfaceSize() << "\n";
+		//std::cout << "Context size: " << context.getSurfaceSize() << "\n";
 
 		context.getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.
 
@@ -220,10 +220,10 @@ void Interface::update()
 		glEnd( );*/
 
 		//TODO: gui context draw() ?
-		//context.draw();
+		context.draw();
 	}
 
-	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
+	//CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
 	//TODO: Maybe the problem is the resource browser window doesn't have a root window set? Hmm...
 	//I need to:
 	//	* Post on the forums asking about how to render one context at a time.

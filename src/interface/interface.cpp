@@ -223,7 +223,7 @@ void Interface::update()
 		context.draw();
 	}
 
-	//CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
+	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
 	//TODO: Maybe the problem is the resource browser window doesn't have a root window set? Hmm...
 	//I need to:
 	//	* Post on the forums asking about how to render one context at a time.

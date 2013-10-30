@@ -218,9 +218,12 @@ void Interface::update()
 			glVertex3f( -1.0f, -1.0f, 0.0f );
 			glVertex3f(  1.0f, -1.0f, 0.0f );
 		glEnd( );*/
+
+		//TODO: gui context draw() ?
+		context.draw();
 	}
 
-	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
+	//CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
 
 
 
@@ -317,6 +320,7 @@ CEGUI::Window* Interface::createVirtualWindowFromLayout(std::string layout/*, bo
 
 void Interface::addD2D(mgfx::d2d::D2D &d2d)
 {
+	//TODO: gui context setRenderTarget (RenderTarget &target) ?
 	d2d.window->setActive();
 	if (!d2d.cegui_renderer)
 	{

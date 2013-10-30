@@ -211,11 +211,11 @@ void Interface::update()
 			}
 		}
 
-		glBegin(GL_TRIANGLES);
+		/*glBegin(GL_TRIANGLES);
 			glVertex3f(  0.0f,  1.0f, 0.0f );
 			glVertex3f( -1.0f, -1.0f, 0.0f );
 			glVertex3f(  1.0f, -1.0f, 0.0f );
-		glEnd( );
+		glEnd( );*/
 	}
 
 	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.

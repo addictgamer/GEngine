@@ -314,6 +314,7 @@ CEGUI::Window* Interface::createVirtualWindowFromLayout(std::string layout/*, bo
 
 void Interface::addD2D(mgfx::d2d::D2D &d2d)
 {
+	d2d.window->setActive();
 	if (!d2d.cegui_renderer)
 	{
 		//When creating a renderer, perhaps force SFML to set the viewport to the d2d's window?

@@ -143,6 +143,7 @@ void Interface::update()
 	for (std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin(); iter != windows.end(); ++iter)
 	//for (int i = 0; i < windows.size(); ++i)
 	{
+		(*iter)->window->setActive();
 		if (windows.size() > 1)
 		{
 			//std::cout << "More than one & i = " << i << "\n";

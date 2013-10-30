@@ -143,7 +143,7 @@ void Interface::update()
 	for (std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin(); iter != windows.end(); ++iter)
 	//for (int i = 0; i < windows.size(); ++i)
 	{
-		(*iter)->window->setActive();
+		//(*iter)->window->setActive();
 		if (windows.size() > 1)
 		{
 			//std::cout << "More than one & i = " << i << "\n";
@@ -153,7 +153,7 @@ void Interface::update()
 		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
 
-		//std::cout << "Context size: " << context.getSurfaceSize() << "\n";
+		std::cout << "Context size: " << context.getSurfaceSize() << "\n";
 
 		context.getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.
 
@@ -220,7 +220,7 @@ void Interface::update()
 		glEnd( );
 
 		//TODO: gui context draw() ?
-		context.draw();
+		//context.draw();
 	}
 
 	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.

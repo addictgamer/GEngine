@@ -56,6 +56,8 @@ namespace mui
 #define CEGUI_LUASCRIPTS_PATH "data/interface/cegui/luascripts/"
 #define CEGUI_SCHEMES_PATH "data/interface/cegui/schemes/"
 
+class unhandledEvent;
+
 class Interface
 {
 private:
@@ -84,6 +86,8 @@ private:
 	void mapSFMLMouseToCEGUI();
 
 	mmisc::mtime::Timer& timer; //Used for finding out how much time is elapsed each frame.
+
+	std::vector<unhandledEvent> unhandled_events; //A vector of unhandled events. Intended to be handled by the game, not the engine. The engine only frees up the vector every time update is called.
 public:
 	std::vector<mgfx::d2d::D2D* > windows; //Not responsible for freeing these D2Ds. //TODO: Make a function to add and remove from this vector. //TODO: Make a function for getDefaultD2D() which simply returns windows[0].
 	sf::Font font;
@@ -143,6 +147,22 @@ public:
 	CEGUI::Window* createVirtualWindowFromLayout(std::string layout/*, bool root = false*/); //TODO: Reimplement the bool root functionality via providing a pointer to the D2D to set the the root of.
 
 	void addD2D(mgfx::d2d::D2D &d2d);
+
+	/*
+	 * Helper function that stores unhandled events in an unhandled event vector.
+	 */
+	void addUnhandledEvent(sf::Event&, mgfx::Window&);
+};
+
+class unhandledEvent
+{
+public:
+	mgfx::Window& window;
+	sf::Event& event;
+
+	unhandledEvent(mgfx::Window& window, sf::Event& event) : window(window), event(event) //TODO: Maybe a pointer to the window's events vector's element? More specifically...an iterator?
+	{
+	}
 };
 
 } //namespace mui

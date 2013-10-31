@@ -147,6 +147,8 @@ void Interface::update()
 {
 	float time_elapsed = ((float)timer.millisecondsElapsed() / (float)1000);
 
+	unhandled_events.clear(); //Empty the unhandled events vector.
+
 	for (std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin(); iter != windows.end(); ++iter)
 	{
 		(*iter)->window->setActive();
@@ -167,13 +169,22 @@ void Interface::update()
 			switch (d2d->window->events[i].type)
 			{
 			case sf::Event::KeyPressed:
-				context.injectKeyDown(sfml_cegui_keymap[d2d->window->events[i].key.code]);
+				if (!context.injectKeyDown(sfml_cegui_keymap[d2d->window->events[i].key.code]))
+				{
+					addUnhandledEvent(d2d->window->events[i], *d2d->window);
+				}
 				break;
 			case sf::Event::KeyReleased:
-				context.injectKeyUp(sfml_cegui_keymap[d2d->window->events[i].key.code]);
+				if (!context.injectKeyUp(sfml_cegui_keymap[d2d->window->events[i].key.code]))
+				{
+					addUnhandledEvent(d2d->window->events[i], *d2d->window);
+				}
 				break;
 			case sf::Event::TextEntered:
-				context.injectChar(static_cast<char>(d2d->window->events[i].text.unicode));
+				if (!context.injectChar(static_cast<char>(d2d->window->events[i].text.unicode)))
+				{
+					addUnhandledEvent(d2d->window->events[i], *d2d->window);
+				}
 				break;
 			case sf::Event::MouseMoved:
 				{
@@ -184,33 +195,54 @@ void Interface::update()
 			case sf::Event::MouseButtonPressed:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 				{
-					context.injectMouseButtonDown(CEGUI::LeftButton);
+					if(!context.injectMouseButtonDown(CEGUI::LeftButton))
+					{
+						addUnhandledEvent(d2d->window->events[i], *d2d->window);
+					}
 				}
 				else if (sf::Mouse::isButtonPressed(sf::Mouse::Middle))
 				{
-					context.injectMouseButtonDown(CEGUI::MiddleButton);
+					if(!context.injectMouseButtonDown(CEGUI::MiddleButton))
+					{
+						addUnhandledEvent(d2d->window->events[i], *d2d->window);
+					}
 				}
 				else if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 				{
-					context.injectMouseButtonDown(CEGUI::RightButton);
+					if(!context.injectMouseButtonDown(CEGUI::RightButton))
+					{
+						addUnhandledEvent(d2d->window->events[i], *d2d->window);
+					}
 				}
 				break;
 			case sf::Event::MouseButtonReleased:
 				switch (d2d->window->events[i].mouseButton.button)
 				{
 				case sf::Mouse::Left:
-					context.injectMouseButtonUp(CEGUI::LeftButton);
+					if(!context.injectMouseButtonUp(CEGUI::LeftButton))
+					{
+						addUnhandledEvent(d2d->window->events[i], *d2d->window);
+					}
 					break;
 				case sf::Mouse::Middle:
-					context.injectMouseButtonUp(CEGUI::MiddleButton);
+					if(!context.injectMouseButtonUp(CEGUI::MiddleButton))
+					{
+						addUnhandledEvent(d2d->window->events[i], *d2d->window);
+					}
 					break;
 				case sf::Mouse::Right:
-					context.injectMouseButtonUp(CEGUI::RightButton);
+					if(!context.injectMouseButtonUp(CEGUI::RightButton))
+					{
+						addUnhandledEvent(d2d->window->events[i], *d2d->window);
+					}
 					break;
 				}
 				break;
 			case sf::Event::MouseWheelMoved:
-				context.injectMouseWheelChange(d2d->window->events[i].mouseWheel.delta);
+				if(!context.injectMouseWheelChange(d2d->window->events[i].mouseWheel.delta))
+				{
+					addUnhandledEvent(d2d->window->events[i], *d2d->window);
+				}
 				break;
 			default:
 				break;
@@ -279,6 +311,12 @@ void Interface::addD2D(mgfx::d2d::D2D &d2d)
 	}
 
 	windows.push_back(&d2d);
+}
+
+void Interface::addUnhandledEvent(sf::Event& event, mgfx::Window& window)
+{
+	unhandledEvent unhandled_event(window, event);
+	unhandled_events.push_back(unhandled_event);
 }
 
 } //namespace mui

@@ -233,6 +233,8 @@ void Interface::update()
 	//I need to:
 	//	* Post on the forums asking about how to render one context at a time.
 	//	* And/or post on the forums asking about how to render to multiple SFML windows.
+
+	CEGUI::System::getSingleton().injectTimePulse(time_elapsed);
 }
 
 CEGUI::Window* Interface::getRootWindow(mgfx::d2d::D2D &d2d)

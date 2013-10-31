@@ -17,7 +17,10 @@ namespace GEngine
 namespace mui
 {
 
-Interface::Interface(mmisc::mtime::Timer& _timer) : timer(_timer)
+//Interface::Interface(mmisc::mtime::Timer& timer) : timer(timer) //TODO: Try this again, with timer and set timer = timer in the header.
+//Interface::Interface() : timer((mmisc::mtime::Timer)&(new mmisc::mtime::Timer()))
+//Interface::Interface() : timer(new mmisc::mtime::Timer())
+Interface::Interface() : timer(Interface::timer)
 {
 	//d2d = nullptr;
 	cegui_system = nullptr;

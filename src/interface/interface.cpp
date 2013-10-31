@@ -21,7 +21,7 @@ namespace mui
 //Interface::Interface() : timer((mmisc::mtime::Timer)&(new mmisc::mtime::Timer()))
 //Interface::Interface() : timer(new mmisc::mtime::Timer())
 //Interface::Interface() : timer(this->timer) //Doesn't actually allocate it...? At least this->timer is a nullptr.
-Interface::Interface() : timer(timer)
+Interface::Interface() : timer(mmisc::mtime::Timer::create())
 {
 	//timer = new mmisc::mtime::Timer;
 	//d2d = nullptr;

@@ -91,6 +91,16 @@ public:
 	}
 
 	/*
+	 * Intended to be used with ctor initialization lists for reference members.
+	 * TODO: I don't think this will memleak, but maybe I don't understand references/pointers well. So be on the lookout for this.
+	 */
+
+	static Timer& create()
+	{
+		return *new Timer;
+	}
+
+	/*
 	 * SFML's clock doesn't have a stop function. What should I do about that? It's not really necessary, I guess.
 	 */
 };

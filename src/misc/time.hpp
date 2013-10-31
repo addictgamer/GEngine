@@ -56,9 +56,9 @@ public:
 
 	/*
 	 * Returns the time elapsed.
-	 * TODO: Wrap around SFML's "get time in any format (eg seconds, milleseconds, microseconds, etc" feature.
+	 * TODO: Wrap around SFML's "get time in any format (eg seconds, milliseconds, microseconds, etc" feature.
 	 */
-	int timeElapsed()
+	int millisecondsElapsed()
 	{
 		if (!clock)
 		{
@@ -66,12 +66,28 @@ public:
 			std::string *filename = new std::string; //The filename.
 			*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
 			std::string *message = new std::string;
-			*message = "[mmisc::mtime::Timer::timeElapsed()] Error...IN YOUR FACE! The programmer forgot to initialize the timer first!";
+			*message = "[mmisc::mtime::Timer::millisecondsElapsed()] Error...IN YOUR FACE! The programmer forgot to initialize the timer first!";
 			merror::Error *error = generateError(merror::FUNCTION_FAILURE, message, merror::SEVERITY_IGNORE, __LINE__, filename);
 			throw error;
 		}
 
 		return clock->restart().asMilliseconds();
+	}
+
+	int secondsElapsed()
+	{
+		if (!clock)
+		{
+			//Error.
+			std::string *filename = new std::string; //The filename.
+			*filename = mstring::toString(__FILE__); //Convert the char* that is filename to a string.
+			std::string *message = new std::string;
+			*message = "[mmisc::mtime::Timer::secondsElapsed()] Error. The programmer forgot to initialize the timer first!";
+			merror::Error *error = generateError(merror::FUNCTION_FAILURE, message, merror::SEVERITY_IGNORE, __LINE__, filename);
+			throw error;
+		}
+
+		return clock->restart().asSeconds();
 	}
 
 	/*

@@ -7,6 +7,8 @@
 #include "../graphic/2d/2d.hpp"
 #include "../graphic/window/window.hpp"
 
+#include "../misc/time.hpp"
+
 #include "../file/file.hpp"
 
 namespace GEngine
@@ -15,7 +17,7 @@ namespace GEngine
 namespace mui
 {
 
-Interface::Interface()
+Interface::Interface(mmisc::mtime::Timer& _timer) : timer(_timer)
 {
 	//d2d = nullptr;
 	cegui_system = nullptr;
@@ -119,6 +121,8 @@ bool Interface::initialize(mgfx::d2d::D2D &d2d, std::vector<std::string> cegui_s
 		d2d.cegui_gui_context = &CEGUI::System::getSingleton().getDefaultGUIContext(); //Point this accordingly.
 		d2d.cegui_renderer = &myRenderer;
 		d2d.default_d2d = true;
+
+		timer.start();
 	}
 	catch(CEGUI::Exception& e)
 	{
@@ -140,6 +144,8 @@ bool Interface::loadFont(std::string filepath)
 
 void Interface::update()
 {
+	float time_elapsed = ((float)timer.millisecondsElapsed() / (float)1000);
+
 	for (std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin(); iter != windows.end(); ++iter)
 	{
 		(*iter)->window->setActive();
@@ -147,6 +153,8 @@ void Interface::update()
 		mgfx::d2d::D2D *d2d = *iter; //First point to this so I don't have to type crazy things every time.
 		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
+
+		context.injectTimePulse(time_elapsed);
 
 		//std::cout << "Context size: " << context.getSurfaceSize() << "\n";
 

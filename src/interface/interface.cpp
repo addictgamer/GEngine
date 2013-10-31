@@ -141,14 +141,9 @@ bool Interface::loadFont(std::string filepath)
 void Interface::update()
 {
 	for (std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin(); iter != windows.end(); ++iter)
-	//for (int i = 0; i < windows.size(); ++i)
 	{
 		(*iter)->window->setActive();
-		if (windows.size() > 1)
-		{
-			//std::cout << "More than one & i = " << i << "\n";
-			//std::cout << "More than 1.\n";
-		}
+
 		mgfx::d2d::D2D *d2d = *iter; //First point to this so I don't have to type crazy things every time.
 		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
@@ -230,73 +225,6 @@ void Interface::update()
 	//I need to:
 	//	* Post on the forums asking about how to render one context at a time.
 	//	* And/or post on the forums asking about how to render to multiple SFML windows.
-
-
-
-
-	/*CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
-	//First, handle injecting events into CEGUI.
-	for (unsigned int i = 0; i < d2d->window->events.size(); ++i)
-	{
-		switch (d2d->window->events[i].type)
-		{
-		case sf::Event::KeyPressed:
-			context.injectKeyDown(sfml_cegui_keymap[d2d->window->events[i].key.code]);
-			break;
-		case sf::Event::KeyReleased:
-			context.injectKeyUp(sfml_cegui_keymap[d2d->window->events[i].key.code]);
-			break;
-		case sf::Event::TextEntered:
-			context.injectChar(static_cast<char>(d2d->window->events[i].text.unicode));
-			break;
-		case sf::Event::MouseMoved:
-			{
-				sf::Vector2i coords = sf::Mouse::getPosition(*d2d->window->window2d);
-				context.injectMousePosition(coords.x, coords.y);
-			}
-			break;
-		case sf::Event::MouseButtonPressed:
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			{
-				context.injectMouseButtonDown(CEGUI::LeftButton);
-			}
-			else if (sf::Mouse::isButtonPressed(sf::Mouse::Middle))
-			{
-				context.injectMouseButtonDown(CEGUI::MiddleButton);
-			}
-			else if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
-			{
-				context.injectMouseButtonDown(CEGUI::RightButton);
-			}
-			break;
-		case sf::Event::MouseButtonReleased:
-			switch (d2d->window->events[i].mouseButton.button)
-			{
-			case sf::Mouse::Left:
-				context.injectMouseButtonUp(CEGUI::LeftButton);
-				break;
-			case sf::Mouse::Middle:
-				context.injectMouseButtonUp(CEGUI::MiddleButton);
-				break;
-			case sf::Mouse::Right:
-				context.injectMouseButtonUp(CEGUI::RightButton);
-				break;
-			}
-			break;
-		case sf::Event::MouseWheelMoved:
-			context.injectMouseWheelChange(d2d->window->events[i].mouseWheel.delta);
-			break;
-		default:
-			break;
-		}
-	}
-
-	//onMouseButtonUp //Use this to check if the frame window's button was pressed.
-
-	CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs. //TODO: Make this work properly later.
-	//CEGUI::System::getSingleton().getDefaultGUIContext().draw();
-	//CEGUI::System::getSingleton().getDefaultGUIContext().getRenderTarget().draw();
-	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.*/
 }
 
 CEGUI::Window* Interface::getRootWindow(mgfx::d2d::D2D &d2d)

@@ -86,9 +86,9 @@ private:
 	void mapSFMLMouseToCEGUI();
 
 	mmisc::mtime::Timer& timer; //Used for finding out how much time is elapsed each frame.
-
-	std::vector<unhandledEvent> unhandled_events; //A vector of unhandled events. Intended to be handled by the game, not the engine. The engine only frees up the vector every time update is called.
 public:
+	std::vector<unhandledEvent> unhandled_events; //A vector of unhandled events. Intended to be handled by the game, not the engine. The engine only frees up the vector every time update is called.
+
 	std::vector<mgfx::d2d::D2D* > windows; //Not responsible for freeing these D2Ds. //TODO: Make a function to add and remove from this vector. //TODO: Make a function for getDefaultD2D() which simply returns windows[0].
 	sf::Font font;
 

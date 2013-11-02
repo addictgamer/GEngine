@@ -198,6 +198,7 @@ void Interface::update()
 					if(!context.injectMouseButtonDown(CEGUI::LeftButton))
 					{
 						addUnhandledEvent(d2d->window->events[i], *d2d->window);
+						std::cout << "UNHANDLED MOUSE BUTTON LEFT PRESSED EVENT BUAHAHAHAHA!";
 					}
 				}
 				else if (sf::Mouse::isButtonPressed(sf::Mouse::Middle))

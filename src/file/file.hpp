@@ -79,6 +79,15 @@ public:
 	 * TODO: Refine this to use the error module.
 	 */
 	static void getFolders(std::string path, std::vector<std::string> &folders);
+
+	/*
+	 * Equivalent to "cd .."
+	 * Parameters:
+	 *	path	=	Path to the starting directory.
+	 * Returns a string with the new path.
+	 * Returns what it was given if it's already at the highest level directory. //TODO: Is this a good idea? At least give a warning, maybe?
+	 */
+	static std::string getParentDirectory(const std::string &path);
 }; //class FileManager
 
 } //namespace mfile

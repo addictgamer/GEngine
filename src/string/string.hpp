@@ -94,6 +94,16 @@ void formStringFromVector(std::vector<std::string> input, std::string &output, s
  */
 void splitStringIntoWords(std::string input, std::vector<std::string> &output);
 
+/*
+ * Takes a string, starts at the end, and looks from the end to the front until it finds the delimeter and chops out everything after the delimeter.
+ * Parameters:
+ *	input		=	The input string
+ *	delimeter	=	The delimeter character
+ * NOTE: Do not give it an input string that ends with the delimeter. Get rid of the delimeter first! Use std::string::pop_back() to do such.
+ * Man, redundant elaboration is funny and silly at the same time. I'll just leave it for now.
+ */
+std::string chopTail(const std::string &input, char delimeter);
+
 } //namespace mstring
 
 } //namespace GEngine

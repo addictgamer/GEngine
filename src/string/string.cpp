@@ -457,6 +457,20 @@ void formStringFromVector(std::vector<std::string> input, std::string &output, s
 	}
 }
 
+std::string chopTail(const std::string &input, char delimeter)
+{
+	std::string result = input;
+
+	unsigned location = input.find_last_of(delimeter);
+
+	if (location != std::string::npos)
+	{
+		result = input.substr(0, location);
+	}
+
+	return result;
+}
+
 } //namespace mstring
 
 } //namespace GEngine

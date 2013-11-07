@@ -48,7 +48,7 @@ public:
 	void separateFilenameFromFileExtension(std::string filename_with_extension, std::string &filename);
 
 	//TODO: Write this.
-	void getFiles(std::string path, std::vector<std::string> &files);
+	void getFiles(std::string path, std::vector<std::string> &files, std::string file_filter = "*");
 
 	/*
 	 * Create a directory at the specified location.

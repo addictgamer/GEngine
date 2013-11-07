@@ -99,6 +99,25 @@ void FileManager::exportFile(std::string filepath, std::string output_data, bool
 	fclose(file); //Close the file.
 } //FileManager::exportFile()
 
+void getFiles(std::string path, std::vector<std::string> &files, std::string file_filter = "*")
+{
+	namespace fs = boost::filesystem;
+	boost::filesystem::path someDir(path);
+	boost::filesystem::directory_iterator end_iter;
+
+	if (boost::filesystem::exists(someDir) && boost::filesystem::is_directory(someDir))
+	{
+		for (boost::filesystem::directory_iterator dir_iter(someDir); dir_iter != end_iter; ++dir_iter)
+		{
+			if (boost::filesystem::is_regular_file(dir_iter->status()))
+			{
+				files.push_back(dir_iter->path().filename().string());
+			}
+		}
+	}
+	std::sort(files.begin(), files.end()); //Sort the results.
+}
+
 void FileManager::mkDir(std::string path) //Create a directory at the specified location.
 {
 	namespace fs = boost::filesystem;

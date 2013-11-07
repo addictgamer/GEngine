@@ -100,7 +100,7 @@ void FileManager::exportFile(std::string filepath, std::string output_data, bool
 	fclose(file); //Close the file.
 } //FileManager::exportFile()
 
-void getFiles(std::string path, std::vector<std::string> &files, std::string file_filter = "*")
+void FileManager::getFiles(std::string path, std::vector<std::string> &files, std::string file_filter)
 {
 	boost::filesystem::path someDir(path); //Convert path to boost.
 	boost::filesystem::directory_iterator end_iter;

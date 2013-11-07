@@ -104,6 +104,17 @@ void splitStringIntoWords(std::string input, std::vector<std::string> &output);
  */
 std::string chopTail(const std::string &input, char delimeter);
 
+
+/*
+ * Takes a string and adds a tail (a character) to the end if it's not already present.
+ * Useful for file operations.
+ * Paramters:
+ *	input	=	The input string
+ *	tail	=	The tail character
+ * Doesn't return anything. The input string is modified.
+ */
+void addTailIfNone(std::string &input, char tail);
+
 } //namespace mstring
 
 } //namespace GEngine

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <boost/filesystem.hpp>
+#include <boost/regex.hpp>
 
 #include "file.hpp"
 
@@ -101,17 +102,22 @@ void FileManager::exportFile(std::string filepath, std::string output_data, bool
 
 void getFiles(std::string path, std::vector<std::string> &files, std::string file_filter = "*")
 {
-	namespace fs = boost::filesystem;
-	boost::filesystem::path someDir(path);
+	boost::filesystem::path someDir(path); //Convert path to boost.
 	boost::filesystem::directory_iterator end_iter;
+
+	boost::regex my_filter(file_filter); //Convert filter to boost.
 
 	if (boost::filesystem::exists(someDir) && boost::filesystem::is_directory(someDir))
 	{
 		for (boost::filesystem::directory_iterator dir_iter(someDir); dir_iter != end_iter; ++dir_iter)
 		{
-			if (boost::filesystem::is_regular_file(dir_iter->status()))
+			if (boost::filesystem::is_regular_file(dir_iter->status())) //Is a file.
 			{
-				files.push_back(dir_iter->path().filename().string());
+				boost::smatch what;
+				if (boost::regex_match(dir_iter->path().filename().string(), what, my_filter)) //Check if it matches the filter.
+				{
+					files.push_back(dir_iter->path().filename().string());
+				}
 			}
 		}
 	}

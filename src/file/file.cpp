@@ -102,26 +102,36 @@ void FileManager::exportFile(std::string filepath, std::string output_data, bool
 
 void FileManager::getFiles(std::string path, std::vector<std::string> &files, std::string file_filter)
 {
+	std::cout << "A.\n";
 	boost::filesystem::path someDir(path); //Convert path to boost.
 	boost::filesystem::directory_iterator end_iter;
 
+	std::cout << "B.\n";
 	boost::regex my_filter(file_filter); //Convert filter to boost.
+	std::cout << "C.\n";
 
 	if (boost::filesystem::exists(someDir) && boost::filesystem::is_directory(someDir))
 	{
+	std::cout << "D.\n";
 		for (boost::filesystem::directory_iterator dir_iter(someDir); dir_iter != end_iter; ++dir_iter)
 		{
+	std::cout << "E.\n";
 			if (boost::filesystem::is_regular_file(dir_iter->status())) //Is a file.
 			{
+	std::cout << "F.\n";
 				boost::smatch what;
 				if (boost::regex_match(dir_iter->path().filename().string(), what, my_filter)) //Check if it matches the filter.
 				{
+	std::cout << "G.\n";
 					files.push_back(dir_iter->path().filename().string());
 				}
+	std::cout << "G.\n";
 			}
 		}
 	}
+	std::cout << "H.\n";
 	std::sort(files.begin(), files.end()); //Sort the results.
+	std::cout << "*****BOOM*****.\n";
 }
 
 void FileManager::mkDir(std::string path) //Create a directory at the specified location.

@@ -19,10 +19,10 @@ namespace mfile
 
 #ifdef OS_WINDOWS
 	#include <direct.h>
-	#define GetCurrentDir _getcwd
+	#define GetCurrentDir _getCurrentWorkingDirectory
 #else
 	#include <unistd.h>
-	#define GetCurrentDir getcwd
+	#define GetCurrentDir getCurrentWorkingDirectory
 #endif
 
 class FileManager

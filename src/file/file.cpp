@@ -195,6 +195,7 @@ void FileManager::getFolders(std::string path, std::vector<std::string> &folders
 std::string FileManager::getParentDirectory(const std::string &path)
 {
 	std::string new_path = mstring::chopTail(path, '/');
+	return new_path;
 } //FileManager::getParentDirectory()
 
 } //namespace mfile

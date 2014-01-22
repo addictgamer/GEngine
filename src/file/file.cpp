@@ -17,6 +17,14 @@
 
 #include "../internal_header.hpp"
 
+#if OS == OS_WINDOWS
+	#include <direct.h>
+	#define GetCurrentDir _getCurrentWorkingDirectory
+#else
+	#include <unistd.h>
+	#define GetCurrentDir getCurrentWorkingDirectory
+#endif
+
 namespace GEngine
 {
 

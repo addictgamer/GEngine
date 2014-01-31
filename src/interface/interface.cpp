@@ -145,8 +145,8 @@ bool Interface::loadFont(std::string filepath)
 
 void Interface::update()
 {
-	//float time_elapsed = ((float)timer.millisecondsElapsed() / (float)1000);
-	float time_elapsed = ((float)timer.millisecondsElapsed());
+	float time_elapsed = ((float)timer.millisecondsElapsed() / (float)1000);
+	//float time_elapsed = ((float)timer.millisecondsElapsed());
 
 	unhandled_events.clear(); //Empty the unhandled events vector.
 
@@ -270,6 +270,8 @@ void Interface::update()
 		d2d->cegui_renderer->beginRendering();
 		context.draw();
 		d2d->cegui_renderer->endRendering();
+
+		context.getMouseButtonMultiClickTimeout();
 	}
 
 	//CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.
@@ -277,7 +279,6 @@ void Interface::update()
 	//I need to:
 	//	* Post on the forums asking about how to render one context at a time.
 	//	* And/or post on the forums asking about how to render to multiple SFML windows.
-
 	CEGUI::System::getSingleton().injectTimePulse(time_elapsed);
 }
 

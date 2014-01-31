@@ -485,7 +485,7 @@ void addTailIfNone(std::string &input, char tail)
 	}
 
 	//Tail not last character, append it.
-	input.append(&tail);
+	input += tail;
 	return;
 }
 

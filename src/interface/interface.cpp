@@ -158,6 +158,8 @@ void Interface::update()
 		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
 
+		context.setMouseButtonMultiClickTimeout(0.1);
+
 		context.injectTimePulse(time_elapsed);
 
 		//std::cout << "Context size: " << context.getSurfaceSize() << "\n";
@@ -271,7 +273,7 @@ void Interface::update()
 		context.draw();
 		d2d->cegui_renderer->endRendering();
 
-		std::cout << "Context multiclick timeout: " << context.getMouseButtonMultiClickTimeout() << "\n";
+		//std::cout << "Context multiclick timeout: " << context.getMouseButtonMultiClickTimeout() << "\n";
 	}
 
 	//CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.

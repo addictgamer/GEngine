@@ -213,8 +213,9 @@ std::string FileManager::getAbsolutePath(std::string path) //Turn a relative pat
 
 	if ( fs::exists(someDir) && fs::is_directory(someDir))
 	{
-		fs::path absolute_path = fs::absolute(path);
-		return absolute_path.filename().string();
+		fs::path return_val = fs::absolute(path);
+		return_val = fs::canonical(return_val);
+		return return_val.filename().string();
 	}
 
 	return path; //Failed to convert it.

@@ -476,10 +476,15 @@ void addTailIfNone(std::string &input, std::string tail)
 	unsigned location = input.find_last_of(tail); //First look to see if the tail's already in the string.
 	if (location != std::string::npos) //It is in the string.
 	{
-		std::string::iterator iter = input.begin() + location; //Convert location to an iter which we can use.
+		/*std::string::iterator iter = input.begin() + location; //Convert location to an iter which we can use.
 		if (iter == input.end()) //Check to see if the last character is the tail character.
 		{
 			//It is. Return, we have nothing to do here.
+			return;
+		}*/
+
+		if (location >= input.size()) //The last character is the tail character.
+		{
 			return;
 		}
 	}

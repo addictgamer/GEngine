@@ -175,7 +175,8 @@ void FileManager::separatePathFromFilename(std::string &path_with_filename, std:
 void FileManager::getFolders(std::string path, std::vector<std::string> &folders) //Get all the folders in a directory.
 {
 	namespace fs = boost::filesystem;
-	fs::path someDir(getAbsolutePath(path));
+	//fs::path someDir(getAbsolutePath(path));
+	fs::path someDir(path);
 	fs::directory_iterator end_iter;
 
 	if ( fs::exists(someDir) && fs::is_directory(someDir))
@@ -203,9 +204,10 @@ std::string FileManager::getAbsolutePath(std::string path) //Turn a relative pat
 
 	if ( fs::exists(someDir) && fs::is_directory(someDir))
 	{
-		fs::path return_val = fs::absolute(path);
+		fs::path return_val;
+		return_val = fs::absolute(path);
 		return_val = fs::canonical(return_val);
-		return return_val.filename().string();
+		return return_val.string();
 	}
 
 	return path; //Failed to convert it.

@@ -2,6 +2,8 @@
 
 #include "string.hpp"
 
+#include <iostream>
+
 namespace GEngine
 {
 
@@ -474,6 +476,9 @@ std::string chopTail(const std::string &input, char delimeter)
 void addTailIfNone(std::string &input, std::string tail)
 {
 	unsigned location = input.find_last_of(tail); //First look to see if the tail's already in the string.
+
+	std::cout << "\n[addTailIfNone] location = " << location << " and input.size() = " << input.size() << "\n\n";
+
 	if (location != std::string::npos) //It is in the string.
 	{
 		/*std::string::iterator iter = input.begin() + location; //Convert location to an iter which we can use.

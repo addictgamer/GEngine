@@ -94,6 +94,14 @@ public:
 	 * Returns what it was given if it's already at the highest level directory. //TODO: Is this a good idea? At least give a warning, maybe?
 	 */
 	static std::string getParentDirectory(const std::string &path);
+
+	/*
+	 * Turns a relative path into an absolute path.
+	 * Eg: "." into "/home/who/programs/MyProgram/"
+	 * Parameters:
+	 *	path	=	The relative path to make into an absolute path.
+	 */
+	static std::string getAbsolutePath(std::string path);
 }; //class FileManager
 
 } //namespace mfile

@@ -206,6 +206,20 @@ std::string FileManager::getParentDirectory(const std::string &path)
 	return new_path;
 } //FileManager::getParentDirectory()
 
+std::string FileManager::getAbsolutePath(std::string path) //Turn a relative path into an absolute path.
+{
+	namespace fs = boost::filesystem;
+	fs::path someDir(path);
+
+	if ( fs::exists(someDir) && fs::is_directory(someDir))
+	{
+		fs::path absolute_path = fs::absolute(path);
+		return absolute_path.filename().string();
+	}
+
+	return path; //Failed to convert it.
+} //FileManager::getAbsolutePath()
+
 } //namespace mfile
 
 } //namespace GEngine

@@ -145,7 +145,8 @@ bool Interface::loadFont(std::string filepath)
 
 void Interface::update()
 {
-	float time_elapsed = ((float)timer.millisecondsElapsed() / (float)1000);
+	//float time_elapsed = ((float)timer.millisecondsElapsed() / (float)1000);
+	float time_elapsed = ((float)timer.millisecondsElapsed());
 
 	unhandled_events.clear(); //Empty the unhandled events vector.
 

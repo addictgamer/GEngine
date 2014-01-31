@@ -108,14 +108,14 @@ std::string chopTail(const std::string &input, char delimeter);
 
 
 /*
- * Takes a string and adds a tail (a character) to the end if it's not already present.
+ * Takes a string and adds a tail (a string, usually a single character) to the end if it's not already present.
  * Useful for file operations.
  * Paramters:
  *	input	=	The input string
- *	tail	=	The tail character
+ *	tail	=	The tail string (usually a single character)
  * Doesn't return anything. The input string is modified.
  */
-void addTailIfNone(std::string &input, char tail);
+void addTailIfNone(std::string &input, std::string tail);
 
 } //namespace mstring
 

@@ -477,7 +477,7 @@ void addTailIfNone(std::string &input, std::string tail)
 {
 	unsigned location = input.find_last_of(tail); //First look to see if the tail's already in the string.
 
-	std::cout << "\n[addTailIfNone] location = " << location << " and input.size() = " << input.size() << "\n\n";
+	//std::cout << "\n[addTailIfNone] location = " << location << " and input.size() = " << input.size() << "\n\n";
 
 	if (location != std::string::npos) //It is in the string.
 	{
@@ -488,7 +488,7 @@ void addTailIfNone(std::string &input, std::string tail)
 			return;
 		}*/
 
-		if (location >= input.size()) //The last character is the tail character.
+		if (location >= input.size() - 1) //The last character is the tail character.
 		{
 			return;
 		}

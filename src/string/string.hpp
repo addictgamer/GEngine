@@ -24,6 +24,8 @@ namespace mstring
 //TODO: Uncommented because it causes problems currently.
 //#define string std::string
 
+//TODO: Write a function that turns \n's a user types into the program into an actual newline. Do the same for all other such things.
+
 
 //First, we have the conversion functions.
 

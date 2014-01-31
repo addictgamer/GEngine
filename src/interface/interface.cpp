@@ -159,6 +159,7 @@ void Interface::update()
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
 
 		//context.setMouseButtonMultiClickTimeout(0.1);
+		context.setMouseClickEventGenerationEnabled(false);
 
 		context.injectTimePulse(time_elapsed);
 
@@ -274,7 +275,7 @@ void Interface::update()
 		d2d->cegui_renderer->endRendering();
 
 		//std::cout << "Context multiclick timeout: " << context.getMouseButtonMultiClickTimeout() << "\n";
-		std::cout << "Context multiclick timeout: " << context.getMouseButtonMultiClickTolerance() << "\n";
+		//std::cout << "Context multiclick timeout: " << context.getMouseButtonMultiClickTolerance() << "\n";
 	}
 
 	//CEGUI::System::getSingleton().renderAllGUIContexts(); //Render all of CEGUI's stuffs.

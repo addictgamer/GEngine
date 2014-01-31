@@ -189,6 +189,7 @@ void FileManager::getFolders(std::string path, std::vector<std::string> &folders
 			}
 		}
 	}
+	std::sort(folders.begin(), folders.end()); //Sort the results.
 } //FileManager::getFolders()
 
 std::string FileManager::getParentDirectory(const std::string &path)

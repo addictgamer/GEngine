@@ -158,7 +158,7 @@ void Interface::update()
 		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
 
-		context.setMouseButtonMultiClickTimeout(0.1);
+		//context.setMouseButtonMultiClickTimeout(0.1);
 
 		context.injectTimePulse(time_elapsed);
 

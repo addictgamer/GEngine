@@ -159,7 +159,7 @@ void Interface::update()
 		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
 
 		//context.setMouseButtonMultiClickTimeout(0.1);
-		context.setMouseClickEventGenerationEnabled(false);
+		//context.setMouseClickEventGenerationEnabled(false);
 
 		context.injectTimePulse(time_elapsed);
 

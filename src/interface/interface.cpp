@@ -165,8 +165,6 @@ void Interface::update()
 
 		//std::cout << "Context size: " << context.getSurfaceSize() << "\n";
 
-		context.getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.
-
 		//Now, handle injecting events into CEGUI.
 		for (unsigned int i = 0; i < d2d->window->events.size(); ++i)
 		{
@@ -264,17 +262,6 @@ void Interface::update()
 			}
 		}
 
-		/*glBegin(GL_TRIANGLES);
-			glVertex3f(  0.0f,  1.0f, 0.0f );
-			glVertex3f( -1.0f, -1.0f, 0.0f );
-			glVertex3f(  1.0f, -1.0f, 0.0f );
-		glEnd( );*/
-
-		//TODO: gui context draw() ?
-		d2d->cegui_renderer->beginRendering();
-		context.draw();
-		d2d->cegui_renderer->endRendering();
-
 		//std::cout << "Context multiclick timeout: " << context.getMouseButtonMultiClickTimeout() << "\n";
 		//std::cout << "Context multiclick timeout: " << context.getMouseButtonMultiClickTolerance() << "\n";
 	}
@@ -285,6 +272,24 @@ void Interface::update()
 	//	* Post on the forums asking about how to render one context at a time.
 	//	* And/or post on the forums asking about how to render to multiple SFML windows.
 	CEGUI::System::getSingleton().injectTimePulse(time_elapsed);
+}
+
+void Interface::draw()
+{
+	for (std::vector<mgfx::d2d::D2D* >::iterator iter = windows.begin(); iter != windows.end(); ++iter)
+	{
+		(*iter)->window->setActive();
+
+		mgfx::d2d::D2D *d2d = *iter; //First point to this so I don't have to type crazy things every time.
+		//mgfx::d2d::D2D *d2d = windows[i]; //First point to this so I don't have to type crazy things every time.
+		CEGUI::GUIContext& context = *d2d->cegui_gui_context; //Next, point to this so that I don't have to type out the full thing every time.
+
+		context.getMouseCursor().draw(); //Force draw it because it doesn't seem to want to work otherwise.
+
+		d2d->cegui_renderer->beginRendering();
+		context.draw();
+		d2d->cegui_renderer->endRendering();
+	}
 }
 
 CEGUI::Window* Interface::getRootWindow(mgfx::d2d::D2D &d2d)

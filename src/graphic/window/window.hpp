@@ -85,8 +85,11 @@ public:
 	*/
 	bool create(int _width, int _height, bool _fullscreen, std::string _windowname, bool use_opengl);
 
-	//Polls events, handles them, and draws the window.
+	//Polls events & handles them.
 	void update();
+
+	//Draws the window.
+	void draw();
 
 	//Returns the width.
 	//Returns -1 on error.

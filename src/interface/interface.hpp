@@ -118,9 +118,14 @@ public:
 	bool initialize(mgfx::d2d::D2D &d2d, std::vector<std::string> cegui_schemes);
 
 	/*
-	More of a draw update, since all it does (currently) is render all of cegui's stuffs.
+	Update everythang.
 	*/
 	void update();
+
+	/*
+	More of a cegui draw, since all it does currently is render all of cegui's stuffs.
+	*/
+	void draw();
 
 	//Loads a font.
 	bool loadFont(std::string filepath);

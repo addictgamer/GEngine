@@ -170,12 +170,14 @@ void Window::update()
 				events.push_back(*event); //Save the event for later processing.
 			}
 		}
-
-		if (!closed && window2d) //If the window was not closed.
-		{
-			window2d->display(); //Display the window.
-			window2d->clear();
-		}
+	}
+}
+void Window::draw()
+{
+	if (!closed && window2d) //If the window was not closed.
+	{
+		window2d->display(); //Display the window.
+		window2d->clear();
 	}
 }
 

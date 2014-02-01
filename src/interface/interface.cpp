@@ -197,7 +197,7 @@ void Interface::update()
 			case sf::Event::MouseButtonPressed:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 				{
-					std::cout << "interface Mouse Button Pressed!\n";
+					//std::cout << "interface Mouse Button Pressed!\n";
 					if(!context.injectMouseButtonDown(CEGUI::LeftButton))
 					{
 						addUnhandledEvent(d2d->window->events[i], *d2d->window);

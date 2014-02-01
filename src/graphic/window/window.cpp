@@ -160,13 +160,6 @@ void Window::update()
 			}
 			else
 			{
-				if (event->type == sf::Event::MouseButtonPressed)
-				{
-					if (event->mouseButton.button == sf::Mouse::Left)
-					{
-						std::cout << "[WINDOW] the left button was pressed" << std::endl;
-					}
-				}
 				events.push_back(*event); //Save the event for later processing.
 			}
 		}

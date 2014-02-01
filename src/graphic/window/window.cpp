@@ -167,7 +167,7 @@ void Window::update()
 						std::cout << "[WINDOW] the left button was pressed" << std::endl;
 					}
 				}
-					events.push_back(*event); //Save the event for later processing.
+				events.push_back(*event); //Save the event for later processing.
 			}
 		}
 

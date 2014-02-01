@@ -199,14 +199,15 @@ void Interface::update()
 			case sf::Event::MouseButtonPressed:
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 				{
+					std::cout << "interface Mouse Button Pressed!\n";
 					if(!context.injectMouseButtonDown(CEGUI::LeftButton))
 					{
 						addUnhandledEvent(d2d->window->events[i], *d2d->window);
-						std::cout << "mouse button down not received by cegui\n";
+						//std::cout << "mouse button down not received by cegui\n";
 					}
 					else
 					{
-						std::cout << "mouse button down received by cegui\n";
+						//std::cout << "mouse button down received by cegui\n";
 					}
 				}
 				else if (sf::Mouse::isButtonPressed(sf::Mouse::Middle))

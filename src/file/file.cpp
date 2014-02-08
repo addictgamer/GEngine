@@ -110,7 +110,7 @@ void FileManager::exportFile(std::string filepath, std::string output_data, bool
 
 void FileManager::getFiles(std::string path, std::vector<std::string> &files, std::string file_filter)
 {
-	boost::filesystem::path someDir(path); //Convert path to boost.
+	/*boost::filesystem::path someDir(path); //Convert path to boost.
 	boost::filesystem::directory_iterator end_iter;
 
 	boost::regex my_filter(file_filter); //Convert filter to boost.
@@ -129,8 +129,50 @@ void FileManager::getFiles(std::string path, std::vector<std::string> &files, st
 			}
 		}
 	}
+	std::sort(files.begin(), files.end()); //Sort the results.*/
+
+	namespace fs = boost::filesystem;
+	fs::path someDir(path);
+	fs::directory_iterator end_iter;
+
+	boost::regex my_filter(file_filter); //Convert filter to boost.
+
+	if (fs::exists(someDir) && fs::is_directory(someDir))
+	{
+		for (fs::directory_iterator dir_iter(someDir) ; dir_iter != end_iter ; ++dir_iter)
+		{
+			if (fs::is_regular_file(dir_iter->status())) //Is a file.
+			{
+				boost::smatch what;
+				if (boost::regex_match(dir_iter->path().filename().string(), what, my_filter)) //Check if it matches the filter.
+				{
+					files.push_back(dir_iter->path().filename().string());
+				}
+			}
+		}
+	}
 	std::sort(files.begin(), files.end()); //Sort the results.
 }
+
+void FileManager::getFolders(std::string path, std::vector<std::string> &folders) //Get all the folders in a directory.
+{
+	namespace fs = boost::filesystem;
+	//fs::path someDir(getAbsolutePath(path));
+	fs::path someDir(path);
+	fs::directory_iterator end_iter;
+
+	if ( fs::exists(someDir) && fs::is_directory(someDir))
+	{
+		for( fs::directory_iterator dir_iter(someDir) ; dir_iter != end_iter ; ++dir_iter)
+		{
+			if (fs::is_directory(dir_iter->status()) )
+			{
+				folders.push_back(dir_iter->path().filename().string());
+			}
+		}
+	}
+	std::sort(folders.begin(), folders.end()); //Sort the results.
+} //FileManager::getFolders()
 
 void FileManager::mkDir(std::string path) //Create a directory at the specified location.
 {
@@ -171,26 +213,6 @@ void FileManager::separatePathFromFilename(std::string &path_with_filename, std:
 
 	path = input;
 }
-
-void FileManager::getFolders(std::string path, std::vector<std::string> &folders) //Get all the folders in a directory.
-{
-	namespace fs = boost::filesystem;
-	//fs::path someDir(getAbsolutePath(path));
-	fs::path someDir(path);
-	fs::directory_iterator end_iter;
-
-	if ( fs::exists(someDir) && fs::is_directory(someDir))
-	{
-		for( fs::directory_iterator dir_iter(someDir) ; dir_iter != end_iter ; ++dir_iter)
-		{
-			if (fs::is_directory(dir_iter->status()) )
-			{
-				folders.push_back(dir_iter->path().filename().string());
-			}
-		}
-	}
-	std::sort(folders.begin(), folders.end()); //Sort the results.
-} //FileManager::getFolders()
 
 std::string FileManager::getParentDirectory(const std::string &path)
 {

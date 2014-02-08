@@ -57,6 +57,16 @@ public:
 	static void getFiles(std::string path, std::vector<std::string> &files, std::string file_filter = "*");
 
 	/*
+	 * Get all the folders in a directory.
+	 * Parameters:
+	 * path, the path to the directory of which you want to get all the folders of.
+	 * folders, a reference to the array of strings that is to have the foldernames stored in.
+	 * Throws on error.
+	 * TODO: Refine this to use the error module.
+	 */
+	static void getFolders(std::string path, std::vector<std::string> &folders);
+
+	/*
 	 * Create a directory at the specified location.
 	 * Throws on error.
 	 * TODO: Refine to use the error module.
@@ -75,16 +85,6 @@ public:
 	 * Separates the path from the filename and stores it in path.
 	 */
 	static void separatePathFromFilename(std::string &path_with_filename, std::string &path);
-
-	/*
-	 * Get all the folders in a directory.
-	 * Parameters:
-	 * path, the path to the directory of which you want to get all the folders of.
-	 * folders, a reference to the array of strings that is to have the foldernames stored in.
-	 * Throws on error.
-	 * TODO: Refine this to use the error module.
-	 */
-	static void getFolders(std::string path, std::vector<std::string> &folders);
 
 	/*
 	 * Equivalent to "cd .."

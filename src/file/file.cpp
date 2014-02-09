@@ -143,8 +143,9 @@ void FileManager::getFiles(std::string path, std::vector<std::string> &files, st
 		{
 			if (fs::is_regular_file(dir_iter->status())) //Is a file.
 			{
-				boost::smatch what;
-				if (boost::regex_match(dir_iter->path().filename().string(), what, my_filter)) //Check if it matches the filter.
+				//boost::smatch what;
+				//if (boost::regex_match(dir_iter->path().filename().string(), what, my_filter)) //Check if it matches the filter.
+				if (boost::regex_search(dir_iter->path().filename().string(), my_filter))
 				{
 					files.push_back(dir_iter->path().filename().string());
 				}

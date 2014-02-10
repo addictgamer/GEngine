@@ -138,6 +138,11 @@ public:
 	 */
 	void setActive();
 
+	/*
+	 * Stores the mouse's position in x and y.
+	 */
+	void getMousePosition(int *x, int *y);
+
 	//TODO: Resize function.
 };
 

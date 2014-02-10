@@ -285,6 +285,17 @@ void Window::setActive()
 	window2d->setActive(true);
 }
 
+void Window::getMousePosition(int *x, int *y)
+{
+	if (window2d)
+	{
+		if (x)
+			*x = sf::Mouse::getPosition(*window2d).x;
+		if (y)
+			*y = sf::Mouse::getPosition(*window2d).y;
+	}
+}
+
 } //namespace mgfx
 
 } //namespace GEngine.

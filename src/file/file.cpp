@@ -191,6 +191,11 @@ bool FileManager::directoryExists(std::string path) //Checks if specified direct
 	return boost::filesystem::exists(path);
 } //FileManager::directoryExists()
 
+bool FileManager::fileExists(std::string path)
+{
+	return boost::filesystem::exists(path);
+} //FileManager::fileExists()
+
 void FileManager::separatePathFromFilename(std::string &path_with_filename, std::string &path)
 {
 	//Loop from the back, find the /, chop off everything.

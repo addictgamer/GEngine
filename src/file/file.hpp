@@ -79,7 +79,15 @@ public:
 	 * Arguments: Directory path.
 	 * Example: ./folders/blarg/does_this_folder_exist
 	 */
-	static bool directoryExists(std::string directory);
+	static bool directoryExists(std::string path);
+
+	/*
+	 * Checks to see if a file exists.
+	 * Returns true if it exists, false if it does not.
+	 * Arguments: File path.
+	 * Example: ./folders/blarg/does_this_file_exist
+	 */
+	static bool fileExists(std::string path);
 
 	/*
 	 * Separates the path from the filename and stores it in path.

@@ -22,6 +22,7 @@ class SoundData;
 /*
  * A Sound is basically a loaded audio file.
  */
+//TODO: 3D sounds.
 class Sound
 {
 private:
@@ -58,12 +59,18 @@ public:
 	/*
 	 * Plays the specified sound.
 	 */
-	//void playSound(Sound &sound); //Just call the sound's play function.
+	//void playSound(Sound &sound); //Call the sound's play function instead.
 
 	/*
 	 * Updates whatever needs updating with the audio.
 	 */
 	void update();
+
+	/*
+	 * Set the music.
+	 * //TODO: fade transition and stuff.
+	 */
+	void playMusic(Sound &music);
 }; //class AudioManager
 
 } //namespace maudio

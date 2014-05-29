@@ -240,6 +240,17 @@ void AudioManager::update()
 	fmod_wrapper->update(); //Update FMOD.
 }
 
+void AudioManager::playMusic(Sound &music)
+{
+	if (!fmod_wrapper)
+	{
+		std::cout << "\n[GEngine::maudio::AudioManager::playMusic()] Warning: Attempted to play music while FMOD was not initialized.\n\n"; //TODO: Use GEngine errors instead.
+		return;
+	}
+
+	music.play();
+}
+
 } //namespace maudio
 
 } //namespace GEngine

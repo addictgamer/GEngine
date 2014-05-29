@@ -17,11 +17,37 @@ namespace GEngine
 namespace maudio
 {
 
+class SoundData;
+
+/*
+ * A Sound is basically a loaded audio file.
+ */
+class Sound
+{
+private:
+	//TODO: Data and such here.
+	SoundData *data; //Pointer to the sound's data. //TODO: Write.
+public:
+	Sound();
+	~Sound();
+
+	/*
+	 * Loads the sound from the specified file.
+	 */
+	bool load(std::string filepath); //TODO: Write.
+};
+
+//TODO: List of playing sounds?
 class AudioManager
 {
 public:
 	AudioManager();
 	~AudioManager();
+
+	/*
+	 * Plays the specified sound.
+	 */
+	void play(Sound &sound); //TODO: Write.
 }; //class AudioManager
 
 } //namespace maudio

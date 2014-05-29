@@ -1,19 +1,8 @@
 /* Please refer to license.txt */
 
-#include <sys/stat.h>
-#include <errno.h>
-#include <stdio.h>
 #include <iostream>
-#include <string.h>
-#include <dirent.h>
-#include <boost/filesystem.hpp>
-#include <boost/regex.hpp>
 
 #include "audio.hpp"
-
-#include "../error/error.hpp"
-
-#include "../string/string.hpp"
 
 #include "../internal_header.hpp"
 
@@ -23,12 +12,47 @@ namespace GEngine
 namespace maudio
 {
 
+//Basically an implementation specific thing. Wraps around whatever is being used. In this case, FMod.
+class SoundData
+{
+public:
+	//TODO: Write.
+	SoundData()
+	{
+	}
+
+	~SoundData()
+	{
+	}
+};
+
+Sound::Sound()
+{
+	data = nullptr;
+}
+
+Sound::~Sound()
+{
+}
+
+bool Sound::load(std::string filepath)
+{
+	//TODO: Write.
+
+	return true;
+}
+
 AudioManager::AudioManager()
 {
 }
 
 AudioManager::~AudioManager()
 {
+}
+
+void AudioManager::play(Sound &sound)
+{
+	//TODO: Write.
 }
 
 } //namespace maudio

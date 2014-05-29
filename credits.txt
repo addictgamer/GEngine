@@ -1,3 +1,5 @@
 Ciprian Ilies - Programmer and project leader
 
 Marcus Åbrandt - Graphics programmer
+
+FMOD Sound System, copyright © Firelight Technologies Pty, Ltd., 1994-2014.

@@ -1,7 +1,7 @@
 add_subdirectory(Music)
 
 list(APPEND GEngine_SOURCES
-  "${CMAKE_CURRENT_SOURCE_DIR}/audio.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/audio_fmod.cpp"
 )
 list(APPEND GEngine_HEADERS
   "${CMAKE_CURRENT_SOURCE_DIR}/audio.hpp"

@@ -34,10 +34,16 @@ public:
 	/*
 	 * Loads the sound from the specified file.
 	 */
-	bool load(std::string filepath); //TODO: Write.
+	bool load(std::string filepath);
+
+	/*
+	 * Plays itself.
+	 */
+	void play();
 };
 
 //TODO: List of playing sounds?
+//TODO: Multiple devices?
 class AudioManager
 {
 public:
@@ -45,9 +51,20 @@ public:
 	~AudioManager();
 
 	/*
+	 * Initializes the audio system.
+	 * Returns false on failure.
+	 */
+	bool initialize();
+
+	/*
 	 * Plays the specified sound.
 	 */
-	void play(Sound &sound); //TODO: Write.
+	void playSound(Sound &sound); //TODO: Write.
+
+	/*
+	 * Updates whatever needs updating with the audio.
+	 */
+	void update();
 }; //class AudioManager
 
 } //namespace maudio

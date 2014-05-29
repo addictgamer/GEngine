@@ -13,6 +13,7 @@ Dependencies
 * Boost
 * SQLite (will be optional eventually)
 * CEGUI
+* FMOD
 
 Windows users
 -------------

@@ -39,7 +39,7 @@ public:
 	 *			- if true, loads the sound as a stream (which means that when it doesn't load the audio file, it'll do that realtime)
 	 *			- if false, will preload the entire sound file
 	 */
-	bool load(std::string filepath, bool stream = false);
+	bool load(std::string filepath, bool loop = false, bool stream = false);
 
 	/*
 	 * Play the sound.

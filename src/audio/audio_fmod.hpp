@@ -34,7 +34,7 @@ public:
 	SoundData();
 	~SoundData();
 
-	bool loadSound(std::string filepath, bool stream);
+	bool loadSound(std::string filepath, bool stream, bool loop);
 };
 
 /*

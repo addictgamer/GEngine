@@ -35,7 +35,7 @@ SoundData::~SoundData()
 	}
 }
 
-bool SoundData::loadSound(std::string filepath, bool stream)
+bool SoundData::loadSound(std::string filepath, bool stream, bool loop)
 {
 	if (!fmod_wrapper)
 	{
@@ -44,13 +44,18 @@ bool SoundData::loadSound(std::string filepath, bool stream)
 	}
 
 	FMOD_RESULT result;
+	FMOD_MODE mode = FMOD_SOFTWARE; //The sound's mode. By default, we're going to use software mixing.
+	if (loop)
+	{
+		mode |= FMOD_LOOP_NORMAL; //Loop it.
+	}
 	if (stream)
 	{
-		result = fmod_wrapper->fmod_system->createStream(filepath.c_str(), FMOD_SOFTWARE | FMOD_LOOP_NORMAL, NULL, &fmod_sound); //Create the sound as a stream.
+		result = fmod_wrapper->fmod_system->createStream(filepath.c_str(), mode, NULL, &fmod_sound); //Create the sound as a stream.
 	}
 	else
 	{
-		result = fmod_wrapper->fmod_system->createSound(filepath.c_str(), FMOD_SOFTWARE | FMOD_LOOP_NORMAL, NULL, &fmod_sound); //Create the sound.
+		result = fmod_wrapper->fmod_system->createSound(filepath.c_str(), mode, NULL, &fmod_sound); //Create the sound.
 	}
 	if (fmod_wrapper->FMODErrorCheck(result))
 	{
@@ -177,14 +182,14 @@ Sound::~Sound()
 	}
 }
 
-bool Sound::load(std::string filepath, bool stream)
+bool Sound::load(std::string filepath, bool loop, bool stream)
 {
 	if (!data)
 	{
 		data = new SoundData(); //Allocate memory for the data.
 	}
 
-	if (!data->loadSound(filepath, stream)) //Actually loads the sound.
+	if (!data->loadSound(filepath, stream, loop)) //Actually loads the sound.
 	{
 		std::cout << "\n[GEngine::maudio::Sound::load()] Error: Failed to load sound \"" << filepath << "\".\n\n"; //TODO: Use GEngine errors instead.
 		return false;

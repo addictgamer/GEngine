@@ -58,6 +58,7 @@ FMODWrapper::FMODWrapper()
 {
 	fmod_system = nullptr;
 	channel = nullptr;
+	music_channel = nullptr;
 }
 
 FMODWrapper::~FMODWrapper()
@@ -125,6 +126,24 @@ void FMODWrapper::playSound(SoundData &sound)
 	if (FMODErrorCheck(result))
 	{
 		std::cout << "\n[GEngine::maudio::FMODWrapper::playSound()] Error: Failed to play sound.\n\n"; //TODO: GEngine errors.
+		return; //Failed to open the channel or something.
+	}
+	fmod_system->update(); //Update the system.
+}
+
+void FMODWrapper::playMusic(SoundData &music)
+{
+	if (!music.fmod_sound)
+	{
+		std::cout << "\n[GEngine::maudio::FMODWrapper::playMusic()] Warning: Sound not loaded.\n\n"; //TODO: GEngine errors.
+		return; //Sound not actually loaded.
+	}
+
+	FMOD_RESULT result;
+	result = fmod_system->playSound(FMOD_CHANNEL_FREE, music.fmod_sound, false, &channel);
+	if (FMODErrorCheck(result))
+	{
+		std::cout << "\n[GEngine::maudio::FMODWrapper::playMusic()] Error: Failed to play music.\n\n"; //TODO: GEngine errors.
 		return; //Failed to open the channel or something.
 	}
 	fmod_system->update(); //Update the system.

@@ -44,7 +44,8 @@ class FMODWrapper
 {
 public:
 	FMOD::System* fmod_system;
-	FMOD::Channel* channel; //TODO: Multiple channels.
+	FMOD::Channel* channel; //TODO: Multiple channels?
+	FMOD::Channel* music_channel; //Music channels.
 
 	FMODWrapper();
 
@@ -69,7 +70,16 @@ public:
 	 */
 	void update();
 
+	/*
+	 * Plays the specified sound on the default channel.
+	 * TODO: Multiple channels?
+	 */
 	void playSound(SoundData &sound);
+
+	/*
+	 * Plays the music (on the music channel).
+	 */
+	void playMusic(SoundData &music);
 } extern *fmod_wrapper;
 
 } //namespace maudio

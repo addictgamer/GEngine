@@ -1,3 +1,4 @@
+add_subdirectory(audio)
 add_subdirectory(config)
 add_subdirectory(control)
 add_subdirectory(data)
@@ -8,7 +9,6 @@ add_subdirectory(interface)
 add_subdirectory(math)
 add_subdirectory(misc)
 add_subdirectory(net)
-add_subdirectory(sound)
 add_subdirectory(string)
 add_subdirectory(thread)
 

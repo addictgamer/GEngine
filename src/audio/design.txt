@@ -1,0 +1,19 @@
+Purpose:
+Provide needed audio code.
+
+Required Functionality:
+1. Allow for the creation of sounds/music. (This is for the worldsim)
+2. Setup audio devices and close them when the time comes for it.
+3. Keep track of and free all audio resources.
+4. Fast and efficient. This is a worldsim.
+5. Ability to stop playing playing sounds/music.
+6. Keeping track of all currently playing sounds/music.
+7. Music crossfading.
+
+Subsystems:
+1. Music.
+
+Namespace:
+All sound module code is in the maudio namespace.
+
+Module Dependencies:

@@ -125,7 +125,7 @@ void FMODWrapper::update()
 	fmod_system->update();
 }
 
-void FMODWrapper::playSound(SoundData &sound)
+void FMODWrapper::playSound(SoundData &sound, bool track)
 {
 	if (!sound.fmod_sound)
 	{
@@ -134,7 +134,8 @@ void FMODWrapper::playSound(SoundData &sound)
 	}
 
 	FMOD_RESULT result;
-	result = fmod_system->playSound(FMOD_CHANNEL_FREE, sound.fmod_sound, false, &channel); //TODO: Specify channel?
+	result = fmod_system->playSound(FMOD_CHANNEL_FREE, sound.fmod_sound, false, (track) ? &channel : nullptr); //TODO: Specify channel?
+	
 	if (FMODErrorCheck(result))
 	{
 		std::cout << "\n[GEngine::maudio::FMODWrapper::playSound()] Error: Failed to play sound.\n\n"; //TODO: GEngine errors.
@@ -198,7 +199,7 @@ bool Sound::load(std::string filepath, bool loop, bool stream)
 	return true;
 }
 
-void Sound::play()
+void Sound::play(bool soundeffect)
 {
 	if (!fmod_wrapper)
 	{
@@ -211,7 +212,7 @@ void Sound::play()
 		return;
 	}
 
-	fmod_wrapper->playSound(*data);
+	fmod_wrapper->playSound(*data, soundeffect);
 }
 
 AudioManager::AudioManager()
@@ -267,7 +268,7 @@ void AudioManager::playMusic(Sound &music)
 		return;
 	}
 
-	music.play();
+	music.play(false);
 }
 
 } //namespace maudio

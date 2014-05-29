@@ -35,16 +35,23 @@ public:
 	 * Loads the sound from the specified file.
 	 * Parameters:
 	 *	filepath	=	the path to the audio file
+	 *	loop:
+	 *		true	=	the sound will loop
+	 *		false	=	the sound won't loop
 	 *	stream:
-	 *			- if true, loads the sound as a stream (which means that when it doesn't load the audio file, it'll do that realtime)
-	 *			- if false, will preload the entire sound file
+	 *		true	=	loads the sound as a stream (which means that when it doesn't load the audio file, it'll do that realtime)
+	 *		false	=	will preload the entire sound file
 	 */
 	bool load(std::string filepath, bool loop = false, bool stream = false);
 
 	/*
 	 * Play the sound.
+	 * Parameters:
+	 *	soundeffect:
+	 *		true = will play it as a sound efect. Just fire and forget. Doesn't even assign it a channel.
+	 *		false = will assign the sound a channel and everything. Meant for music or other sounds that you want to keep tabs on.
 	 */
-	void play();
+	void play(bool soundeffect = false);
 };
 
 //TODO: List of playing sounds?

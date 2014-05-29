@@ -74,7 +74,8 @@ public:
 	 * Plays the specified sound on the default channel.
 	 * TODO: Multiple channels?
 	 */
-	void playSound(SoundData &sound);
+	//Track controls whether or not we want FMOD to keep tabs on the file (i.e. false = put it on whatever channel and just fire and forget).
+	void playSound(SoundData &sound, bool track);
 
 	/*
 	 * Plays the music (on the music channel).

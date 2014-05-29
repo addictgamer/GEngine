@@ -71,6 +71,7 @@ FMODWrapper::FMODWrapper()
 	fmod_system = nullptr;
 	channel = nullptr;
 	music_channel = nullptr;
+	dsp_echo = nullptr;
 }
 
 FMODWrapper::~FMODWrapper()
@@ -81,6 +82,9 @@ FMODWrapper::~FMODWrapper()
 		fmod_system->release();
 		fmod_system = nullptr;
 	}
+
+	//TODO: Close channels?
+	//TODO: Close DPSs?
 }
 
 bool FMODWrapper::initialize()
@@ -99,6 +103,13 @@ bool FMODWrapper::initialize()
 	{
 		std::cout << "\n[GEngine::maudio::FMODWrapper::initialize()] Error: Failed to initialize FMOD system.\n\n"; //TODO: Use GEngine errors instead.
 		return false; //Failed to initialize FMOD.
+	}
+
+	result = fmod_system->createDSPByType(FMOD_DSP_TYPE_ECHO, &dsp_echo);
+	if (FMODErrorCheck(result))
+	{
+		std::cout << "\n[GEngine::maudio::FMODWrapper::initialize()] Error: Failed to create echo DSP.\n\n"; //TODO: Use GEngine errors instead.
+		return false; //Failed to create echo DSP.
 	}
 
 	return true;

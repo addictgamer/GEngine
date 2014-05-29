@@ -46,6 +46,7 @@ public:
 	FMOD::System* fmod_system;
 	FMOD::Channel* channel; //TODO: Multiple channels?
 	FMOD::Channel* music_channel; //Music channels.
+	FMOD::DSP* dsp_echo; //DSP for echo.
 
 	FMODWrapper();
 
@@ -74,7 +75,7 @@ public:
 	 * Plays the specified sound on the default channel.
 	 * TODO: Multiple channels?
 	 */
-	//Track controls whether or not we want FMOD to keep tabs on the file (i.e. false = put it on whatever channel and just fire and forget).
+	//Track controls whether or not we want FMOD to keep tabs on the file (i.e. false = put it on whatever channel and just fire and forget)..
 	void playSound(SoundData &sound, bool track);
 
 	/*

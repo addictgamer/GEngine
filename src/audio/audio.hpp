@@ -25,8 +25,7 @@ class SoundData;
 class Sound
 {
 private:
-	//TODO: Data and such here.
-	SoundData *data; //Pointer to the sound's data. //TODO: Write.
+	SoundData *data; //Pointer to the sound's data.
 public:
 	Sound();
 	~Sound();
@@ -37,7 +36,7 @@ public:
 	bool load(std::string filepath);
 
 	/*
-	 * Plays itself.
+	 * Play the sound.
 	 */
 	void play();
 };
@@ -59,7 +58,7 @@ public:
 	/*
 	 * Plays the specified sound.
 	 */
-	void playSound(Sound &sound); //TODO: Write.
+	//void playSound(Sound &sound); //Just call the sound's play function.
 
 	/*
 	 * Updates whatever needs updating with the audio.

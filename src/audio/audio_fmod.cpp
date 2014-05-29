@@ -219,7 +219,7 @@ bool AudioManager::initialize()
 	return true;
 }
 
-void AudioManager::playSound(Sound &sound)
+/*void AudioManager::playSound(Sound &sound)
 {
 	if (!fmod_wrapper)
 	{
@@ -228,7 +228,7 @@ void AudioManager::playSound(Sound &sound)
 	}
 
 	sound.play();
-}
+}*/
 
 void AudioManager::update()
 {

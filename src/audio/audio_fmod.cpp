@@ -79,6 +79,7 @@ FMODWrapper::~FMODWrapper()
 	//Close system, if it's open.
 	if (fmod_system)
 	{
+		fmod_system->close();
 		fmod_system->release();
 		fmod_system = nullptr;
 	}

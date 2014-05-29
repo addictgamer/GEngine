@@ -156,6 +156,11 @@ void FMODWrapper::playMusic(SoundData &music)
 	fmod_system->update(); //Update the system.
 }
 
+void FMODWrapper::setVolume(FMOD::Channel &channel, float volume)
+{
+	channel.setVolume(volume);
+}
+
 Sound::Sound()
 {
 	data = nullptr;

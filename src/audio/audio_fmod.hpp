@@ -80,6 +80,8 @@ public:
 	 * Plays the music (on the music channel).
 	 */
 	void playMusic(SoundData &music);
+
+	void setVolume(FMOD::Channel &channel, float volume); //TODO: Expose this outside of the engine somehow. I guess I need to recreate channels now.
 } extern *fmod_wrapper;
 
 } //namespace maudio

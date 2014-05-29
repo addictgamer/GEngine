@@ -46,6 +46,11 @@ public:
 	FMOD::System* fmod_system;
 	FMOD::Channel* channel; //TODO: Multiple channels?
 	FMOD::Channel* music_channel; //Music channels.
+	/*
+	 * Note: To use the DSP:
+result = channel->addDSP(dspecho, 0);
+result = dspecho->setParameter(FMOD_DSP_ECHO_DELAY, 150.0f);
+	 */
 	FMOD::DSP* dsp_echo; //DSP for echo.
 
 	FMODWrapper();

@@ -33,8 +33,13 @@ public:
 
 	/*
 	 * Loads the sound from the specified file.
+	 * Parameters:
+	 *	filepath	=	the path to the audio file
+	 *	stream:
+	 *			- if true, loads the sound as a stream (which means that when it doesn't load the audio file, it'll do that realtime)
+	 *			- if false, will preload the entire sound file
 	 */
-	bool load(std::string filepath);
+	bool load(std::string filepath, bool stream = false);
 
 	/*
 	 * Play the sound.

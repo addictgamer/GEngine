@@ -35,7 +35,7 @@ SoundData::~SoundData()
 	}
 }
 
-bool SoundData::loadSound(std::string filepath)
+bool SoundData::loadSound(std::string filepath, bool stream)
 {
 	if (!fmod_wrapper)
 	{
@@ -44,7 +44,14 @@ bool SoundData::loadSound(std::string filepath)
 	}
 
 	FMOD_RESULT result;
-	result = fmod_wrapper->fmod_system->createSound(filepath.c_str(), FMOD_LOOP_NORMAL, NULL, &fmod_sound); //Create the sound.
+	if (stream)
+	{
+		result = fmod_wrapper->fmod_system->createStream(filepath.c_str(), FMOD_SOFTWARE | FMOD_LOOP_NORMAL, NULL, &fmod_sound); //Create the sound as a stream.
+	}
+	else
+	{
+		result = fmod_wrapper->fmod_system->createSound(filepath.c_str(), FMOD_SOFTWARE | FMOD_LOOP_NORMAL, NULL, &fmod_sound); //Create the sound.
+	}
 	if (fmod_wrapper->FMODErrorCheck(result))
 	{
 		std::cout << "\n[GEngine::maudio::SoundData::loadSound()] Error: Failed to load sound.\n\n"; //TODO: Use GEngine errors instead.
@@ -96,7 +103,7 @@ bool FMODWrapper::FMODErrorCheck(FMOD_RESULT result)
 {
 	if (result != FMOD_OK)
 	{
-		printf("\n[GEngine::maudio::FMOD error checker] FMOD error (%d \"%s\"\n\n", result, FMOD_ErrorString(result)); //TODO: GEngine errors instead.
+		printf("\n[GEngine::maudio::FMOD error checker] FMOD error (%d): \"%s\"\n\n", result, FMOD_ErrorString(result)); //TODO: GEngine errors instead.
 		return true; //Error.
 	}
 
@@ -107,7 +114,7 @@ void FMODWrapper::update()
 {
 	if (!fmod_system)
 	{
-		std::cout << "\n[GEngine::maudio::FMODWrapper::update()] Warning: update called when FMOD system not initialized.\n\n"; //TODO: Use GEngine errors instead.
+		std::cout << "\n[GEngine::maudio::FMODWrapper::update()] Error: update called when FMOD system not initialized.\n\n"; //TODO: Use GEngine errors instead.
 		return;
 	}
 	fmod_system->update();
@@ -117,7 +124,7 @@ void FMODWrapper::playSound(SoundData &sound)
 {
 	if (!sound.fmod_sound)
 	{
-		std::cout << "\n[GEngine::maudio::FMODWrapper::playSound()] Warning: Sound not loaded.\n\n"; //TODO: GEngine errors.
+		std::cout << "\n[GEngine::maudio::FMODWrapper::playSound()] Error: Sound not loaded.\n\n"; //TODO: GEngine errors.
 		return; //Sound not actually loaded.
 	}
 
@@ -135,12 +142,12 @@ void FMODWrapper::playMusic(SoundData &music)
 {
 	if (!music.fmod_sound)
 	{
-		std::cout << "\n[GEngine::maudio::FMODWrapper::playMusic()] Warning: Sound not loaded.\n\n"; //TODO: GEngine errors.
+		std::cout << "\n[GEngine::maudio::FMODWrapper::playMusic()] Error: Sound not loaded.\n\n"; //TODO: GEngine errors.
 		return; //Sound not actually loaded.
 	}
 
 	FMOD_RESULT result;
-	result = fmod_system->playSound(FMOD_CHANNEL_FREE, music.fmod_sound, false, &channel);
+	result = fmod_system->playSound(FMOD_CHANNEL_FREE, music.fmod_sound, false, &music_channel);
 	if (FMODErrorCheck(result))
 	{
 		std::cout << "\n[GEngine::maudio::FMODWrapper::playMusic()] Error: Failed to play music.\n\n"; //TODO: GEngine errors.
@@ -165,15 +172,16 @@ Sound::~Sound()
 	}
 }
 
-bool Sound::load(std::string filepath)
+bool Sound::load(std::string filepath, bool stream)
 {
 	if (!data)
 	{
 		data = new SoundData(); //Allocate memory for the data.
 	}
 
-	if (!data->loadSound(filepath)) //Actually loads the sound.
+	if (!data->loadSound(filepath, stream)) //Actually loads the sound.
 	{
+		std::cout << "\n[GEngine::maudio::Sound::load()] Error: Failed to load sound \"" << filepath << "\".\n\n"; //TODO: Use GEngine errors instead.
 		return false;
 	}
 
@@ -184,12 +192,13 @@ void Sound::play()
 {
 	if (!fmod_wrapper)
 	{
-		std::cout << "\n[GEngine::maudio::AudioManager::playSound()] Warning: Attempted to play sound while FMOD was not initialized.\n\n"; //TODO: Gengine errors.
+		std::cout << "\n[GEngine::maudio::AudioManager::playSound()] Error: Attempted to play sound while FMOD was not initialized.\n\n"; //TODO: Gengine errors.
 		return;
 	}
 	if (!data)
 	{
-		std::cout << "\n[GEngine::maudio::Sound::play()] Warning: Attempted to play sound while no data was loaded.\n\n"; //TODO: GEngine errors.
+		std::cout << "\n[GEngine::maudio::Sound::play()] Error: Attempted to play sound while no data was loaded.\n\n"; //TODO: GEngine errors.
+		return;
 	}
 
 	fmod_wrapper->playSound(*data);
@@ -234,7 +243,7 @@ void AudioManager::update()
 {
 	if (!fmod_wrapper)
 	{
-		std::cout << "\n[GEngine::maudio::AudioManager::update()] Warning: Updating while FMOD is not initialized.\n\n"; //TODO: Use GEngine errors instead.
+		std::cout << "\n[GEngine::maudio::AudioManager::update()] Error: Updating while FMOD is not initialized.\n\n"; //TODO: Use GEngine errors instead.
 		return; //Can't continue if FMOD is not initialized.
 	}
 	fmod_wrapper->update(); //Update FMOD.
@@ -244,7 +253,7 @@ void AudioManager::playMusic(Sound &music)
 {
 	if (!fmod_wrapper)
 	{
-		std::cout << "\n[GEngine::maudio::AudioManager::playMusic()] Warning: Attempted to play music while FMOD was not initialized.\n\n"; //TODO: Use GEngine errors instead.
+		std::cout << "\n[GEngine::maudio::AudioManager::playMusic()] Error: Attempted to play music while FMOD was not initialized.\n\n"; //TODO: Use GEngine errors instead.
 		return;
 	}
 

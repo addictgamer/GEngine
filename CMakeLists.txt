@@ -34,6 +34,8 @@ find_package(Threads)
 # And CEGUI. TODO: Add necessary components
 find_package(CEGUI COMPONENTS OpenGLRenderer REQUIRED)
 
+find_package(FMOD REQUIRED)
+
 # Find SQLite if enabled
 option(GEngine_USE_SQLITE "Whether to enable SQLite support" TRUE)
 if (GEngine_USE_SQLITE)
@@ -49,8 +51,8 @@ include_directories(${GLEW_INCLUDE_DIR})
 include_directories(${GLM_INCLUDE_DIR})
 include_directories(${SFML_INCLUDE_DIR})
 include_directories(${Boost_INCLUDE_DIR})
-
 include_directories("${CEGUI_INCLUDE_DIR}/..")
+include_directories(${FMOD_INCLUDE_DIR})
 
 include_directories("${PROJECT_BINARY_DIR}/src/")
 
@@ -72,6 +74,7 @@ if (GEngine_SHARED)
   target_link_libraries(gengine ${SFML_SYSTEM_LIBRARY_RELEASE} ${SFML_GRAPHICS_LIBRARY_RELEASE} ${SFML_WINDOW_LIBRARY_RELEASE} ${SFML_AUDIO_LIBRARY_RELEASE})
   target_link_libraries(gengine ${CMAKE_THREAD_LIBS_INIT})
   target_link_libraries(gengine ${CEGUI_LIBRARIES})
+  target_link_libraries(gengine ${FMOD_LIBRARY})
 
   if (GEngine_USE_SQLITE)
     target_link_libraries(gengine ${SQLITE3_LIBRARIES})

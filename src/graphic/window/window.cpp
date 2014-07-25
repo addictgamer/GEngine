@@ -149,6 +149,8 @@ void Window::update()
 				{
 					parent_d2d->cegui_renderer->setDisplaySize(CEGUI::Size<float>(event->size.width, event->size.height));
 				}
+
+				std::cout << "\n[GEngine::mgfx::Window::update()] Resized window.\n";
 			}
 			else if (event->type == sf::Event::LostFocus)
 			{

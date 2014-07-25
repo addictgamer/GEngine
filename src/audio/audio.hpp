@@ -11,6 +11,8 @@
 #include <string>
 #include <vector>
 
+//TODO: Sound groups & channels.
+
 namespace GEngine
 {
 
@@ -22,11 +24,14 @@ class SoundData;
 /*
  * A Sound is basically a loaded audio file.
  */
-//TODO: 3D sounds.
+//TODO: 3D sounds. Not fully implemented yet. Only started on it. FINISH IT!
 class Sound
 {
 private:
 	SoundData *data; //Pointer to the sound's data.
+	float x;
+	float y;
+	float z;
 public:
 	Sound();
 	~Sound();
@@ -52,6 +57,11 @@ public:
 	 *		false = will assign the sound a channel and everything. Meant for music or other sounds that you want to keep tabs on.
 	 */
 	void play(bool soundeffect = false);
+
+	/*
+	 * Play a 3D sound.
+	 */
+	void playLoc(bool soundeffect, float x, float y, float z);
 };
 
 //TODO: List of playing sounds?

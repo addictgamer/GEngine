@@ -29,12 +29,18 @@ namespace maudio
 class SoundData
 {
 public:
+	//The sound's position.
+	FMOD_VECTOR pos;
+
 	FMOD::Sound* fmod_sound; //The FMOD sound data.
 
 	SoundData();
+	SoundData(float x, float y, float z);
 	~SoundData();
 
 	bool loadSound(std::string filepath, bool stream, bool loop);
+
+	void setPos(float x, float y, float z);
 };
 
 /*
@@ -82,6 +88,13 @@ result = dspecho->setParameter(FMOD_DSP_ECHO_DELAY, 150.0f);
 	 */
 	//Track controls whether or not we want FMOD to keep tabs on the file (i.e. false = put it on whatever channel and just fire and forget)..
 	void playSound(SoundData &sound, bool track);
+
+	/*
+	 * Plays the specified sound on the default channel so that it sounds like it's playing from the specified location.
+	 * TODO: Multiple channels?
+	 */
+	//Track controls whether or not we want FMOD to keep tabs on the file (i.e. false = put it on whatever channel and just fire and forget)..
+	void playSoundLoc(SoundData &sound, bool track, float x, float y, float z);
 
 	/*
 	 * Plays the music (on the music channel).

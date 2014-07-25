@@ -25,6 +25,12 @@ SoundData::SoundData()
 	fmod_sound = nullptr;
 }
 
+SoundData::SoundData(float x, float y, float z)
+{
+	fmod_sound = nullptr;
+	pos = {x, y, z};
+}
+
 SoundData::~SoundData()
 {
 	//Free sound, if it's loaded.
@@ -64,6 +70,11 @@ bool SoundData::loadSound(std::string filepath, bool stream, bool loop)
 	}
 
 	return true;
+}
+
+void SoundData::setPos(float x, float y, float z)
+{
+	pos = {x, y, z};
 }
 
 FMODWrapper::FMODWrapper()
@@ -182,6 +193,9 @@ void FMODWrapper::setVolume(FMOD::Channel &channel, float volume)
 Sound::Sound()
 {
 	data = nullptr;
+	x = 0.0f;
+	y = 0.0f;
+	z = 0.0f;
 }
 
 Sound::~Sound()
@@ -215,7 +229,7 @@ void Sound::play(bool soundeffect)
 {
 	if (!fmod_wrapper)
 	{
-		std::cout << "\n[GEngine::maudio::AudioManager::playSound()] Error: Attempted to play sound while FMOD was not initialized.\n\n"; //TODO: Gengine errors.
+		std::cout << "\n[GEngine::maudio::Sound::playSound()] Error: Attempted to play sound while FMOD was not initialized.\n\n"; //TODO: Gengine errors.
 		return;
 	}
 	if (!data)
@@ -225,6 +239,22 @@ void Sound::play(bool soundeffect)
 	}
 
 	fmod_wrapper->playSound(*data, soundeffect);
+}
+
+void Sound::playLoc(bool soundeffect, float x, float y, float z)
+{
+	if (!fmod_wrapper)
+	{
+		std::cerr << "\b[GEngine::maudio::Sound::playLoc()] Error: Attempted to play sound while FMOD was not initialized.\n\n"; //TODO: Gengine errors.
+		return;
+	}
+	if (!data)
+	{
+		std::cout << "\n[GEngine::maudio::Sound::playLoc()] Error: Attempted to play sound while no data was loaded.";
+		return;
+	}
+
+	fmod_wrapper->playSoundLoc(*data, soundeffect, x, y, z);
 }
 
 AudioManager::AudioManager()

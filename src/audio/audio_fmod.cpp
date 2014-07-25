@@ -167,6 +167,25 @@ void FMODWrapper::playSound(SoundData &sound, bool track)
 	fmod_system->update(); //Update the system.
 }
 
+void FMODWrapper::playSoundLoc(SoundData &sound, bool track, float x, float y, float z) //TODO: Implement this properly. All I did was copypasta so that GEngine compiles properly until I get around to actually implementing 3D sound.
+{
+	if (!sound.fmod_sound)
+	{
+		std::cout << "\n[GEngine::maudio::FMODWrapper::playSound()] Error: Sound not loaded.\n\n"; //TODO: GEngine errors.
+		return; //Sound not actually loaded.
+	}
+
+	FMOD_RESULT result;
+	result = fmod_system->playSound(FMOD_CHANNEL_FREE, sound.fmod_sound, false, (track) ? &channel : nullptr); //TODO: Specify channel?
+	
+	if (FMODErrorCheck(result))
+	{
+		std::cout << "\n[GEngine::maudio::FMODWrapper::playSound()] Error: Failed to play sound.\n\n"; //TODO: GEngine errors.
+		return; //Failed to open the channel or something.
+	}
+	fmod_system->update(); //Update the system.
+}
+
 void FMODWrapper::playMusic(SoundData &music)
 {
 	if (!music.fmod_sound)

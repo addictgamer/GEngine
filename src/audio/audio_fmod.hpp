@@ -94,7 +94,7 @@ result = dspecho->setParameter(FMOD_DSP_ECHO_DELAY, 150.0f);
 	 * TODO: Multiple channels?
 	 */
 	//Track controls whether or not we want FMOD to keep tabs on the file (i.e. false = put it on whatever channel and just fire and forget)..
-	void playSoundLoc(SoundData &sound, bool track, float x, float y, float z);
+	void playSoundLoc(SoundData &sound, bool track, float x, float y, float z); //TODO: Implement this properly. All I did was copypasta so that GEngine compiles properly until I get around to actually implementing 3D sound.
 
 	/*
 	 * Plays the music (on the music channel).

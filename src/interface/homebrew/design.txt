@@ -1,0 +1,11 @@
+Purpose:
+An in-house graphical interface. It's meant to be a simple & easy-to-use GUI that's ready to roll out into a new program at a moment's notice with minimal hassle. Because CEGUI is complex, after all.
+
+Required Functionality:
+1. Buttons
+2. Menus.
+
+Namespace:
+All homebrew interface code is in the mui::homebrew namespace.
+
+Module Dependencies:

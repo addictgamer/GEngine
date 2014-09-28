@@ -150,6 +150,9 @@ void Window::update()
 					parent_d2d->cegui_renderer->setDisplaySize(CEGUI::Size<float>(event->size.width, event->size.height));
 				}
 
+				//TODO: Maybe I need to do a bunch of OpenGL calls?
+				//TODO: At any rate, check out SFML's forums and wiki to see why it's not working properly. Maybe OpenGL mode needs special stuff.
+
 				std::cout << "\n[GEngine::mgfx::Window::update()] Resized window.\n";
 			}
 			else if (event->type == sf::Event::LostFocus)
